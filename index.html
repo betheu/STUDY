@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Im의 의학 공부 아카이브</title>
+<title>STUDY TREE</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,6 +17,7 @@
     --accent:#8a3324;
     --accent-ink:#ffffff;
     --tag-bg:#f1ece2;
+    --empty-bg:#f5f2ec;
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
@@ -28,6 +29,7 @@
       --accent:#e07856;
       --accent-ink:#1c1a17;
       --tag-bg:#2a2519;
+      --empty-bg:#1a1811;
     }
   }
   :root[data-theme="dark"]{
@@ -39,6 +41,7 @@
     --accent:#e07856;
     --accent-ink:#1c1a17;
     --tag-bg:#2a2519;
+    --empty-bg:#1a1811;
   }
   *{box-sizing:border-box}
   [hidden]{display:none!important}
@@ -50,50 +53,88 @@
     line-height:1.6;
   }
   header{
-    max-width:760px;
+    max-width:820px;
     margin:0 auto;
     padding:56px 20px 28px;
   }
   header .eyebrow{
     font-family:"IBM Plex Mono", monospace;
     font-size:13px;
-    letter-spacing:.04em;
+    letter-spacing:.06em;
     color:var(--muted);
     text-transform:uppercase;
   }
   header h1{
-    font-size:clamp(28px, 5vw, 38px);
+    font-size:clamp(30px, 6vw, 44px);
     margin:8px 0 6px;
-    letter-spacing:-0.01em;
+    letter-spacing:-0.02em;
+    font-weight:700;
   }
   header p{
     color:var(--muted);
     margin:0;
     font-size:15px;
   }
-  main{
-    max-width:760px;
+  nav.toc{
+    max-width:820px;
     margin:0 auto;
-    padding:0 20px 80px;
+    padding:0 20px 8px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
   }
-  .section-title{
-    font-size:13px;
+  nav.toc a{
     font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
     color:var(--muted);
-    text-transform:uppercase;
-    letter-spacing:.05em;
-    margin:36px 0 12px;
-    padding-top:20px;
-    border-top:1px solid var(--rule);
+    text-decoration:none;
+    background:var(--tag-bg);
+    padding:6px 11px;
+    border-radius:999px;
+    border:1px solid transparent;
   }
-  .section-title:first-child{border-top:none;padding-top:0;}
+  nav.toc a:hover{border-color:var(--accent); color:var(--accent);}
+  main{
+    max-width:820px;
+    margin:0 auto;
+    padding:20px 20px 100px;
+  }
+  .chapter{
+    padding-top:38px;
+    margin-top:38px;
+    border-top:1px solid var(--rule);
+    scroll-margin-top:20px;
+  }
+  .chapter:first-child{border-top:none; margin-top:24px; padding-top:0;}
+  .chapter-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .chapter-num{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:13px;
+    color:var(--accent);
+    font-weight:500;
+  }
+  .chapter h2{
+    font-size:20px;
+    margin:0;
+    font-weight:600;
+  }
+  .chapter .en{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
   .card{
     display:block;
     background:var(--surface);
     border:1px solid var(--rule);
     border-radius:14px;
-    padding:20px 22px;
-    margin-bottom:12px;
+    padding:18px 20px;
+    margin-bottom:10px;
     text-decoration:none;
     color:inherit;
     transition:border-color .15s ease, transform .15s ease;
@@ -109,8 +150,8 @@
     gap:12px;
     flex-wrap:wrap;
   }
-  .card h2{
-    font-size:17px;
+  .card h3{
+    font-size:16px;
     margin:0;
     font-weight:600;
   }
@@ -140,11 +181,14 @@
   }
   .empty{
     color:var(--muted);
-    font-size:14px;
-    padding:20px 0;
+    font-size:13px;
+    padding:16px 20px;
+    border:1px dashed var(--rule);
+    border-radius:14px;
+    background:var(--empty-bg);
   }
   footer{
-    max-width:760px;
+    max-width:820px;
     margin:0 auto;
     padding:20px 20px 60px;
     color:var(--muted);
@@ -155,27 +199,137 @@
 </head>
 <body>
   <header>
-    <div class="eyebrow">Study Archive</div>
-    <h1>Im의 의학 공부 아카이브</h1>
-    <p>KMLE 및 각 과목 시험 준비를 위해 만든 학습 자료를 모아둔 페이지입니다.</p>
+    <div class="eyebrow">Study Tree</div>
+    <h1>STUDY TREE</h1>
+    <p>Im의 의학 공부 아카이브 — 과목별 예습·복습 자료 모음</p>
   </header>
-  <main>
-    <div class="section-title">외과 · 흉부외과</div>
-    <a class="card" href="pages/chd-surgery-review.html">
-      <div class="card-top">
-        <h2>선천성 심장외과 복습노트</h2>
-        <span class="date">2026-09-28</span>
-      </div>
-      <p>선천성 심질환의 외과적 치료 총정리 — 질환별 수술의 본질(핵심 기전), 고식적 단락수술 비교표, 수술 시기 요약. 문항별 상세 해설이 포함된 61문항 연습문제 수록.</p>
-      <div class="tags">
-        <span class="tag">흉부외과</span>
-        <span class="tag">선천성 심질환</span>
-        <span class="tag">퀴즈 61문항</span>
-      </div>
-    </a>
 
-    <div class="section-title">앞으로 추가될 자료</div>
-    <div class="empty">새 예습자료를 만들 때마다 이 페이지에 자동으로 추가됩니다.</div>
+  <nav class="toc" aria-label="챕터 목차">
+    <a href="#cardio">01 순환기학</a>
+    <a href="#pulm">02 호흡기학</a>
+    <a href="#repro">03 생식의학</a>
+    <a href="#allergy">04 알레르기·류마티스</a>
+    <a href="#endo">05 내분비학</a>
+    <a href="#neuro">06 신경계학</a>
+    <a href="#sensory">07 감각계학</a>
+    <a href="#msk">08 근골격계학</a>
+    <a href="#clinical">09 임상표현</a>
+    <a href="#fever">10 발열</a>
+    <a href="#forensic">11 법의학</a>
+  </nav>
+
+  <main>
+
+    <section class="chapter" id="cardio">
+      <div class="chapter-head">
+        <span class="chapter-num">01</span>
+        <h2>순환기학</h2>
+        <span class="en">Cardiology</span>
+      </div>
+      <a class="card" href="pages/chd-surgery-review.html">
+        <div class="card-top">
+          <h3>선천성 심장외과 복습노트</h3>
+          <span class="date">2026-09-28</span>
+        </div>
+        <p>선천성 심질환의 외과적 치료 총정리 — 질환별 수술의 본질(핵심 기전), 고식적 단락수술 비교표, 수술 시기 요약. 문항별 상세 해설이 포함된 61문항 연습문제 수록.</p>
+        <div class="tags">
+          <span class="tag">흉부외과</span>
+          <span class="tag">선천성 심질환</span>
+          <span class="tag">퀴즈 61문항</span>
+        </div>
+      </a>
+    </section>
+
+    <section class="chapter" id="pulm">
+      <div class="chapter-head">
+        <span class="chapter-num">02</span>
+        <h2>호흡기학</h2>
+        <span class="en">Pulmonology</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="repro">
+      <div class="chapter-head">
+        <span class="chapter-num">03</span>
+        <h2>생식의학</h2>
+        <span class="en">Reproductive Medicine</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="allergy">
+      <div class="chapter-head">
+        <span class="chapter-num">04</span>
+        <h2>알레르기·류마티스</h2>
+        <span class="en">Allergy &amp; Rheumatology</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="endo">
+      <div class="chapter-head">
+        <span class="chapter-num">05</span>
+        <h2>내분비학</h2>
+        <span class="en">Endocrinology</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="neuro">
+      <div class="chapter-head">
+        <span class="chapter-num">06</span>
+        <h2>신경계학</h2>
+        <span class="en">Neurology</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="sensory">
+      <div class="chapter-head">
+        <span class="chapter-num">07</span>
+        <h2>감각계학</h2>
+        <span class="en">Sensory (Eye · ENT)</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="msk">
+      <div class="chapter-head">
+        <span class="chapter-num">08</span>
+        <h2>근골격계학</h2>
+        <span class="en">Musculoskeletal</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="clinical">
+      <div class="chapter-head">
+        <span class="chapter-num">09</span>
+        <h2>임상표현</h2>
+        <span class="en">Clinical Presentation</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="fever">
+      <div class="chapter-head">
+        <span class="chapter-num">10</span>
+        <h2>발열</h2>
+        <span class="en">Fever</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
+    <section class="chapter" id="forensic">
+      <div class="chapter-head">
+        <span class="chapter-num">11</span>
+        <h2>법의학</h2>
+        <span class="en">Forensic Medicine</span>
+      </div>
+      <div class="empty">아직 등록된 자료가 없습니다.</div>
+    </section>
+
   </main>
   <footer>betheu/study · GitHub Pages</footer>
 </body>
