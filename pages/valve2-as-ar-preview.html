@@ -138,6 +138,13 @@ figcaption{font-size:13px; color:var(--muted); margin-top:6px}
 .q .essence{display:none}
 .q.done .essence{display:block}
 .q.hide-done.done{display:none}
+.q.case .case-v{margin-top:6px; font-size:15px}
+.q.case details{margin-top:12px; border-top:1px dashed var(--rule); padding-top:10px}
+.q.case summary{cursor:pointer; font-weight:700; color:var(--accent); font-size:14px}
+.q.case summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.q.case ol{margin:4px 0 0; padding-left:1.3em; display:grid; gap:6px; font-size:14.5px}
+.q.case p{margin-top:4px}
+.qgrp{font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:22px}
 
 footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:var(--mono)}
 @media (max-width:560px){ .scorebar{top:47px} }
@@ -149,7 +156,7 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
   <header class="hero">
     <div class="eyebrow">순환기학 · 최동현 교수님 · 19번 강의 예습</div>
     <h1>심장판막질환 2 — <span class="as">AS</span> · <span class="ar">AR</span> <span style="font-size:.6em;color:var(--muted)">(+TS · TR)</span></h1>
-    <p class="lede">25년도 학습부(19번, 2025-08-27 강의) 검안본 기준으로 정리했습니다. <span class="hy">연도</span> 표시는 해당 내용이 그 해 기출(P = 본시험) 또는 교수님 강조였다는 뜻입니다.</p>
+    <p class="lede">25년도 학습부(19번, 2025-08-27 강의) 검안본 기준으로 정리했습니다. <span class="hy">연도</span> 표시는 해당 내용이 그 해 기출(P = 본시험) 또는 교수님 강조였다는 뜻입니다. <span class="new">26 추가</span> 26년 강의안의 형성평가·clinical reasoning case 해설과, 그 출제 스타일로 바꾼 퀴즈를 맨 아래에 넣었습니다.</p>
     <div class="callout">
       <h3>예습 전략 — 시간이 없으면 이것부터</h3>
       <ul>
@@ -174,7 +181,8 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
     <a class="chip" href="#ar-tx">AR 치료</a>
     <a class="chip" href="#tricuspid">TS · TR</a>
     <a class="chip" href="#misc">판막·조작법</a>
-    <a class="chip" href="#quiz">퀴즈 25문항</a>
+    <a class="chip" href="#fa">26 형성평가</a>
+    <a class="chip" href="#quiz">퀴즈 26문항</a>
   </div>
 </nav>
 
@@ -769,10 +777,53 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
   <div class="essence"><b>기억법</b>Valsalva에서 거꾸로 노는 건 <b>HCM과 MVP 둘뿐</b>. 22년 “전부하 변화 조작에서 나머지와 다른 질환” = HCM.</div>
 </section>
 
+<!-- ================= 26 LECTURE FORMATIVE ================= -->
+<section class="block" id="fa">
+  <h2>26 강의안 형성평가 — 원문 + 해설</h2>
+  <p class="sub">26년 강의안(AS 36–39번, AR 62–64번 슬라이드)에 실린 문제를 원문 그대로 옮겼습니다. 교수님 스타일: <b>A–D 4지선다</b>, “왜?”를 묻는 기전형, <b>always·항상·만</b>이 붙은 선지는 거의 오답. AR 문제 답은 순서대로 A, B, C.</p>
+
+  <article class="q case">
+    <div class="q-head"><span class="q-num">CASE</span><span class="q-src">AS 36번 · Clinical reasoning case</span></div>
+    <ul class="case-v">
+      <li>78-year-old with exertional dyspnea</li>
+      <li>Harsh systolic murmur radiating to the carotids</li>
+      <li>Vmax 4.5 m/s, mean gradient 48 mmHg, AVA 0.8 cm², LVEF 60%</li>
+    </ul>
+    <p class="q-stem">What is the diagnosis, and what should happen next?</p>
+    <details>
+      <summary>답·해설 보기</summary>
+      <div class="essence" style="display:block"><b>본질</b>숫자 세 개(4.5 / 48 / 0.8)가 전부 severe 기준선(4 / 40 / 1)을 넘었고, 증상까지 생겼어요. <b>“증상 있는 severe AS = 판막 교체”</b>, 이 한 줄이 답이에요.</div>
+      <h4>Diagnosis</h4>
+      <p><b>Symptomatic severe high-gradient AS</b>, LVEF는 보존. 78세니까 원인은 <b>calcific (degenerative) AS</b>가 가장 유력해요.</p>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>소견</th><th>이렇게 읽어요</th></tr></thead>
+        <tbody>
+          <tr><th>78세</th><td>고령 AS의 m/c = calcific degeneration. BAV는 더 이른 나이에 오고, rheumatic은 대개 MS를 끼고 와요.</td></tr>
+          <tr><th>Exertional dyspnea</th><td>SAD의 <b>D</b>. 두꺼워진 LV가 뻣뻣해서 filling pressure가 오르고, 그게 폐울혈로 이어져요. 증상 = 수술 신호.</td></tr>
+          <tr><th>Harsh systolic murmur → carotids</th><td>AS 잡음 그대로예요 (RUSB, crescendo-decrescendo, 경동맥 방사).</td></tr>
+          <tr><th class="mono">Vmax 4.5 · MG 48 · AVA 0.8</th><td>4.5 ≥ 4.0 ✔ · 48 ≥ 40 ✔ · 0.8 ≤ 1.0 ✔ → <b>4-40-1 전부 충족</b>, high-gradient severe.</td></tr>
+          <tr><th>LVEF 60%</th><td>EF 보존 + gradient 높음 → 판단이 이미 명확해요. <b>DSE는 필요 없음</b> (DSE는 low-flow low-gradient + EF 저하일 때만).</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <h4>Next</h4>
+      <ol>
+        <li><b>AVR 평가를 바로</b>: symptomatic severe AS → AVR <b>Class I</b>. 증상이 생기면 예후가 급하게 나빠져요 (dyspnea 후 평균 약 2년, CHF 후 1.5–2년).</li>
+        <li><b>Heart Team이 SAVR vs TAVI 결정</b>: 78세면 TAVI(대개 transfemoral)가 유력한 선택지예요. 다만 판막·혈관 해부, 수술 위험, 동반 수술(CABG, 상행대동맥) 필요성을 같이 보고 정해요. “TAVI가 항상 우선”은 아니에요 (형성평가 3의 D).</li>
+        <li><b>시술 전 coronary angiography</b>: AVR 받는 성인 AS 환자의 50% 넘게 bypass가 필요한 CAD가 있어요.</li>
+        <li><b>기다리는 동안</b>: 격한 운동 피하기, 탈수·hypovolemia 피하기(CO가 뚝 떨어질 수 있음). 이뇨제는 울혈 완화용으로 조심해서만 써요. 근본 치료가 아니에요. Statin은 진행을 못 막아요.</li>
+      </ol>
+    </details>
+  </article>
+
+  <div id="fa-list"></div>
+</section>
+
 <!-- ================= QUIZ ================= -->
 <section class="block" id="quiz">
   <h2>예습 확인 퀴즈</h2>
-  <p class="sub">기출 복원 문항 + 강의 핵심. 선지를 누르면 모든 선지의 해설이 열립니다.</p>
+  <p class="sub">기출 복원 문항과 강의 핵심을 <b>26 강의안 형성평가 스타일</b>로 바꿨습니다: A–D 4지선다, “왜?”·“가장 적절한 것은?” 위주, always·항상·만·절대가 붙은 함정 선지. AS 문항은 강의안처럼 영어, AR 이후는 한국어. 선지를 누르면 모든 선지의 해설이 열립니다. 점수는 위 형성평가 6문항까지 합산.</p>
   <div class="scorebar">
     <div class="in">
       <span class="score">정답 <b id="sc-ok">0</b> / 푼 문제 <b id="sc-done">0</b> / 전체 <b id="sc-total">0</b></span>
@@ -788,154 +839,197 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
 </section>
 
 </main>
-<div class="wrap"><footer>순환기학 19번 · 최동현 교수님 · 심장판막질환 2 (AS, AR) · 25년도 학습부 검안본 기반 예습노트</footer></div>
+<div class="wrap"><footer>순환기학 19번 · 최동현 교수님 · 심장판막질환 2 (AS, AR) · 25년도 학습부 검안본 기반 예습노트 · 26 강의안 형성평가 반영</footer></div>
 
 <script>
 const QUIZ = [
-{src:"22 기출 변형", q:"각 판막질환과 가장 흔한 원인의 연결로 옳은 것은?",
- o:["승모판 협착증 – 류마티스열","대동맥판 협착증 – 비후성 심근병증","만성 승모판 역류증 – 감염성 심내막염","만성 대동맥판 역류증 – 대동맥 박리","대동맥판 협착증 – 류마티스열"],
- a:0,
- w:["MS의 leading cause는 rheumatic fever.","AS의 원인은 age-related degenerative calcification (BAV에서 잘 생김). HCM은 판막질환이 아님.","Chronic MR의 m/c는 MVP(myxomatous degeneration). IE는 acute MR의 원인.","Aortic dissection은 acute AR의 원인.","류마티스 AS는 드물고 대개 MS와 동반. 단독 원인으로 가장 흔한 것은 석회화."],
- e:"MS = 류마티스열 / chronic MR = MVP / AS = degenerative calcification — 교수님: “툭 치면 나올 정도로”."},
-{src:"강의 핵심", q:"AS 환자에서 관상동맥 질환이 흔히 동반되는 이유로 가장 적절한 것은?",
- o:["판막 석회화의 기전이 죽상경화증과 유사하기 때문","LVH로 관상동맥이 압박되기 때문","류마티스열이 관상동맥도 침범하기 때문","Poststenotic dilatation이 관상동맥 입구를 막기 때문","Bicuspid valve가 관상동맥 기형을 동반하기 때문"],
- a:0,
- w:["Endothelial dysfunction → lipid → 염증 → cytokine: atherosclerosis와 같은 경로, risk factor도 비슷. 그래서 AVR 때 CABG를 같이 하는 경우가 50% 이상.","LVH는 상대적 내막하 허혈을 만들지만 CAD 자체의 원인은 아님.","류마티스는 판막(특히 mitral)을 침범.","Ascending aorta 확장이지 관상동맥 폐쇄와는 무관.","BAV는 ascending aortic aneurysm 동반이 포인트."],
- e:"석회화 = 죽상경화 → CAD 동반 → 수술 전 CAG 필수."},
-{src:"17P·23P 형성평가", q:"AS의 classic triad (SAD)에 해당하지 않는 것은?",
- o:["Syncope","Angina pectoris","Exertional dyspnea","Palpitation with head pounding","(위 셋은 모두 triad)"],
+/* ---------- 26 강의안 형성평가 (원문) ---------- */
+{g:"fa", n:"AS-1", src:"AS 37번 · Formative assessment 1", q:"Which finding most strongly supports severe high-gradient AS?",
+ o:["Vmax 3 m/s","Mean gradient 25 mmHg","Aortic valve area 1.4 cm²","Vmax 4.3 m/s"],
  a:3,
- w:["S — 운동 시 CO를 못 늘려 뇌혈류↓.","A — LVH로 산소요구량↑.","D — 결국 heart failure.","Palpitation·head pounding은 chronic AR의 증상 (wide PP).","①–③이 triad이므로 ④가 답."],
- e:"SAD = Syncope, Angina, Dyspnea. 두근거림·머리 쿵쿵은 AR."},
-{src:"18P·20P·21P·22P", q:"Severe AS의 기준으로 옳은 조합은?",
- o:["AVA <1.0 cm², mean gradient >40 mmHg, Vmax >4.0 m/s","AVA <1.5 cm², mean gradient >25 mmHg, Vmax >3.0 m/s","AVA <0.6 cm², mean gradient >60 mmHg, Vmax >5.0 m/s","AVA 1.0–1.5 cm², mean gradient >40 mmHg, Vmax >4.0 m/s","AVA <1.0 cm², mean gradient >20 mmHg, Vmax >2.0 m/s"],
- a:0,
- w:["정답. 1.0 / 40 / 4.","Moderate 수준의 숫자.","Critical(very severe) 기준 — 22P ま.","AVA 1.0–1.5는 AS에선 moderate (MS에선 severe였음 — 헷갈림 주의).","Gradient·속도가 mild 수준."],
- e:"AS severe = 1 · 40 · 4, very severe = 0.6 · 60 · 5."},
-{src:"18P·22P·23P·25P", q:"Severe AS 환자의 청진 소견으로 가장 특징적인 것은?",
- o:["흡기 시 S2 분리가 커짐","호기 시 S2가 분리되고 흡기 시 하나로 들림","S2의 고정 분리 (fixed splitting)","Opening snap 후 diastolic rumble","Mid-systolic click 후 late systolic murmur"],
+ w:["3 m/s는 moderate가 시작되는 선(3.0–3.9)이에요. severe는 ≥4.0.","25 mmHg는 moderate 범위(20–39). severe는 ≥40.","1.4 cm²는 moderate(1.0–1.5). MS에선 1.0–1.5가 severe였던 거랑 헷갈리지 않게.","정답. 네 개 중 severe 기준선(Vmax ≥4.0 m/s)을 넘은 건 이거 하나예요."],
+ e:"구멍이 좁아지면 같은 양의 피가 지나가려고 <b>속도(Vmax)가 빨라지고</b>, 그만큼 <b>압력차(gradient)가 커져요</b>. 그래서 severe high-gradient AS = <b>4-40-1</b> (Vmax ≥4.0 m/s, MG ≥40 mmHg, AVA ≤1.0 cm²). 선지를 기준선에 하나씩 대보면 D만 넘어요."},
+{g:"fa", n:"AS-2", src:"AS 38번 · Formative assessment 2", q:"Why can severe AS cause syncope during exercise?",
+ o:["Excessive rise in cardiac output","Fixed obstruction limits output during vasodilation","Acute mitral stenosis develops","Coronary flow always stops"],
  a:1,
- w:["정상 생리적 분리.","Paradoxical splitting: AV가 늦게 닫혀 P2→A2, 흡기 때 P2가 늦어져 A2와 겹침.","ASD의 소견.","MS의 소견.","MVP의 소견."],
- e:"AS = paradoxical splitting of S2 (+ 석회화되면 A2 약해짐, apex에서 S4)."},
-{src:"21P", q:"AS 환자의 경동맥 맥박에 대한 설명으로 옳은 것은?",
- o:["빠르게 상승하고 빠르게 떨어진다","수축기에 peak가 두 번 나타난다","천천히 상승하여 늦게 peak에 도달하고 크기가 작다","흡기 시 수축기압이 10 mmHg 이상 떨어진다","박동마다 크기가 번갈아 달라진다"],
+ w:["반대예요. 문제는 CO를 ‘못’ 올린다는 거예요.","정답. 운동하면 근육 혈관이 열려서 말초저항이 떨어지는데, 좁은 판막 때문에 CO가 따라 못 올라가요 → BP 뚝 → 뇌관류↓ → syncope.","AS랑 상관없어요. 운동한다고 MS가 갑자기 생기지 않아요.","‘always’가 붙으면 오답 신호. 관상동맥 관류가 모자라지는 건 angina 쪽 기전(수요↑, 공급 제한)이고, 항상 멈추는 게 아니에요."],
+ e:"한 단어로 <b>fixed output</b>. 강의 “Why do symptoms occur?” 슬라이드 그대로예요. <b>Syncope</b> = 운동 중 출력 고정 · <b>Angina</b> = LVH로 O₂ 수요↑ + coronary reserve 부족 · <b>Dyspnea</b> = 뻣뻣한 LV의 filling pressure↑ → 폐울혈."},
+{g:"fa", n:"AS-3", src:"AS 39번 · Formative assessment 3", q:"A patient has symptomatic severe AS. Which statement is best?",
+ o:["Statin therapy reverses the stenosis","Diuretics are the definitive treatment","Valve intervention should be evaluated promptly","TAVI is always preferred to SAVR"],
  a:2,
- w:["Water-hammer/Corrigan — AR.","Bisferiens — AR (또는 HCM).","Pulsus parvus et tardus — 좁은 판막을 비집고 나가서.","Pulsus paradoxus — tamponade.","Pulsus alternans — 심한 LV dysfunction."],
- e:"AS = parvus et tardus (작고 늦게)."},
-{src:"19P·20·21P·22P·23P", q:"LVEF 30%, AVA 0.9 cm², mean gradient 25 mmHg인 유증상 환자. 다음 검사로 가장 적절한 것은?",
- o:["Treadmill exercise test","Dobutamine stress echocardiography","Cardiac MRI","Holter monitoring","6개월 후 추적 심초음파"],
- a:1,
- w:["증상 있는 severe AS 의심 환자에게 운동부하는 위험하며 목적에도 맞지 않음. ETT는 ‘무증상’ severe AS에서 숨은 증상 확인용.","Low-flow, low-gradient AS with reduced EF → DSE로 true-severe(판막 안 열림, Vmax↑) vs pseudo-severe(LV 문제, 판막 잘 열림) 감별.","감별의 표준 검사가 아님.","부정맥 평가용.","증상 + EF 저하 환자를 방치하면 안 됨."],
- e:"EF↓ + 면적은 작은데 gradient가 낮다 → DSE."},
-{src:"21P·23P (25 변경)", q:"Severe AS로 AVR을 계획 중인 환자의 수술 전 관상동맥조영술(CAG)에 대한 설명으로 옳은 것은?",
- o:["45세 이상에서만 시행한다","흉통이 있는 경우에만 시행한다","나이와 관계없이 반드시 시행한다","TAVR 예정이면 생략한다","ECG에 strain이 있을 때만 시행한다"],
- a:2,
- w:["예전 강의 내용. 25년엔 나이 무관이라고 직접 언급 — 나이 기준은 MS.","AS 환자의 CAD 동반은 증상과 무관하게 흔함.","정답. AVR 환자의 50% 이상이 CABG 필요한 CAD.","TAVR 환자도 관상동맥 평가는 필요.","ECG strain은 severity와도, CAD와도 직접 상관없음."],
- e:"Severe AS 수술 전 CAG = 나이 무관 필수 (25 변경점)."},
-{src:"18P·21P·22P", q:"무증상 severe AS 환자에서 AVR의 Class I 적응증은?",
- o:["LVEF 45%","Vmax 4.3 m/s, LVEF 65%","고령 (80세 이상)","ECG에서 LVH","AVA 0.9 cm²에 BNP 정상"],
+ w:["Calcific AS는 atherosclerosis랑 닮았지만 statin으로 진행이 멈추지 않아요 (강의 5번 슬라이드 그대로). reverse는 더더욱 아니고요.","이뇨제는 울혈 증상 완화용일 뿐이에요. 게다가 AS는 preload에 기대는 심장이라 너무 빼면 CO가 떨어져요 (탈수·hypovolemia 피하기).","정답. “Once symptoms occur, valve replacement is indicated” → symptomatic severe AS는 AVR Class I.","‘always’ 오답. 나이, 수술 위험, 해부학(BAV, 동반 CABG·대동맥 수술 등)을 보고 Heart Team이 골라요."],
+ e:"AS는 <b>기계적으로 막힌 문</b>이라 약으로는 못 열어요. 증상이 생기면 예후가 급하게 나빠지니(angina·syncope 후 ~3년, dyspnea 후 ~2년) <b>판막 교체를 서둘러 평가</b>하는 게 답이에요."},
+{g:"fa", n:"AR-1", src:"AR 62번 · 형성평가", q:"만성 중증 AR에서 맥압이 넓어지는 주된 이유는?",
+ o:["수축기 박출량 증가와 이완기 대동맥압 감소","심박수 감소만","폐동맥압 상승","우심실 유출로 협착"],
  a:0,
- w:["정답. Severe AS + LVEF <50%면 증상 없어도 수술.","Severe이지만 EF 정상 무증상 → 경과관찰 (Vmax ≥5면 IIa).","나이는 적응증이 아님 — 오히려 증상이 생기면 고령이어도 설득해서 수술.","ECG는 severity와 상관없음.","무증상, EF 정상, BNP 정상 → 경과관찰."],
- e:"무증상 severe AS의 Class I = EF <50% 또는 다른 심장수술. IIa = very severe, ETT 이상, BNP >3배."},
-{src:"탈마 기출", q:"70세 남자, 건강검진에서 심잡음 발견. AVA 1.23 cm², Vmax 3.5 m/s, mean gradient 33 mmHg, EF 66%, 무증상. 적절한 조치는?",
- o:["정상 소견이므로 추적 불필요","주기적으로 심초음파를 시행한다","수술이 필요하므로 입원시킨다","응급 대동맥판 치환술","즉시 TAVR"],
+ w:["정답. LV가 (정상 박출분 + 역류해 들어온 양)을 한꺼번에 짜내니 SV↑ → 수축기압↑. 이완기엔 대동맥 피가 LV로 새어 들어가니 이완기압↓. 둘이 합쳐져서 PP가 벌어져요.","‘만’이 오답 신호. 서맥이면 이완기가 길어져 역류가 늘긴 하지만 주된 이유가 아니에요.","폐동맥압은 대동맥 맥압이랑 관계없어요.","RVOT 협착은 우심 쪽 문제라 대동맥 맥압을 넓히지 않아요."],
+ e:"“<b>많이 짜내고(SBP↑), 빨리 샌다(DBP↓)</b>.” Wide PP가 AR의 defining characteristic이고, water-hammer·Quincke·Traube·Duroziez·Hill·de Musset 같은 말초 징후도 전부 이거 하나로 설명돼요."},
+{g:"fa", n:"AR-2", src:"AR 63번 · 형성평가", q:"급성 중증 AR에서 만성 AR보다 폐부종이 빠른 이유는?",
+ o:["좌심실이 확장해 충분히 적응해서","좌심실 적응 시간이 없어 이완기압이 급상승해서","말초저항이 항상 감소해서","맥박이 항상 느려서"],
  a:1,
- w:["Moderate AS는 진행하는 질환(매년 AVA −0.1).","정답. 무증상 moderate AS(stage B) → 1–2년마다 echo. 다른 심장수술 할 일이 생기면 그때 같이 AVR.","수술 적응증 아님.","응급 수술 대상 아님.","TAVR도 AVR의 한 방법 — 적응증이 없음."],
- e:"1.0–1.5 / 20–39 / 3–4 = moderate → 추적 관찰."},
-{src:"기출 31-32 변형", q:"32세 무증상 BAV 환자, 심초음파에서 AS·AR 소견과 함께 상행대동맥 직경 5.6 cm. 가장 적절한 처치는?",
- o:["상행대동맥 치환술만 의뢰","대동맥판막 치환술만 의뢰","베타차단제 투여 후 6개월 뒤 재평가","상행대동맥 치환 + 대동맥판막 수술 의뢰","6개월마다 심초음파 추적"],
+ w:["이건 만성 AR 얘기예요. 만성은 LV가 천천히 커지면서(compliance↑) 10–15년 잠복기를 버텨요. 급성은 그럴 시간이 없어요.","정답. 크기 정상인 뻣뻣한 LV에 역류량이 갑자기 들이닥쳐요 → LVEDP 급상승 → LA pr·PCWP↑ → 폐부종, cardiogenic shock. 강의: LV dilatation(−), LV pr↑, LA pr↑, PCW pr↑.","‘항상’ 오답. 말초저항 변화가 폐부종 속도 차이를 만드는 게 아니에요.","‘항상’ 오답에 방향도 반대예요. 급성 AR은 보상성 빈맥이 흔하고, 맥이 느려지면 이완기가 길어져 역류가 더 늘어요 (그래서 β-blocker 금기)."],
+ e:"같은 역류량이라도 <b>받아줄 공간(compliance)이 있느냐</b>가 핵심이에요. 급성은 공간이 없으니 바로 압력으로 튀어서 폐로 넘어가요. 그래서 CW Doppler 감속이 급하고(rapid deceleration), 치료는 <b>응급 수술</b>."},
+{g:"fa", n:"AR-3", src:"AR 64번 · 형성평가", q:"무증상 중증 만성 AR의 추적 중 가장 중요한 조합은?",
+ o:["심잡음의 음량만","말초 징후 이름의 개수","LVEF와 좌심실 크기의 변화","흉부 X선만"],
+ a:2,
+ w:["‘만’ 오답. 잡음 크기는 중증도나 LV 기능을 반영하지 못해요.","징후 이름은 진단 단서일 뿐이고, 수술 타이밍을 알려주지 않아요.","정답. 6–12개월마다 echo로 LVEF(≤55%면 수술 권고)와 LV 크기(LVESD >50 mm 또는 >25 mm/m²면 수술 고려)를 봐요.","‘만’ 오답. CXR로 심비대는 보여도 EF·LVESD를 잴 수 없어요."],
+ e:"만성 중증 AR은 <b>LV 기능이 이미 망가진 뒤에야 증상이 와요</b>. 그러니 증상 대신 <b>LV를 봐야</b> 해요. 증상이나 LV dysfunction이 생기고 1년 넘게 미루면 수술해도 LV가 회복되지 않아요. 최적 시점 = LV dysfunction이 시작된 뒤, 심한 증상이 오기 전."},
+
+/* ---------- 아카이브 문항 → 강의 스타일 변환 ---------- */
+{src:"22 기출 변형", q:"판막질환과 가장 흔한 원인의 연결로 가장 적절한 것은?",
+ o:["대동맥판 협착 – 류마티스열이 항상 주원인","만성 승모판 역류 – 감염성 심내막염","승모판 협착 – 류마티스열","만성 대동맥판 역류 – 대동맥 박리"],
+ a:2,
+ w:["‘항상’ 오답. 고령 AS의 m/c는 calcific degeneration. 류마티스 AS는 드물고 대개 MS나 AR을 동반해요.","Chronic MR의 m/c는 MVP(myxomatous). IE는 acute MR의 원인.","정답. MS의 leading cause는 rheumatic fever.","Aortic dissection은 acute AR의 원인이에요."],
+ e:"MS = 류마티스열 / chronic MR = MVP / AS = calcific degeneration. 교수님 말로 “툭 치면 나올 정도로”."},
+{src:"강의 5번 슬라이드", q:"Why is coronary artery disease common in patients with calcific AS?",
+ o:["LVH compresses the epicardial coronary arteries","Valve calcification shares an atherosclerosis-like mechanism","Rheumatic fever always involves the coronary arteries","Poststenotic dilatation occludes the coronary ostia"],
+ a:1,
+ w:["LVH는 상대적 내막하 허혈은 만들어도 CAD 자체의 원인은 아니에요.","정답. Endothelial injury → lipid infiltration → 염증·osteogenic signalling → 섬유화·석회화. 죽상경화랑 같은 길이라 risk factor도 겹쳐요.","‘always’ 오답. 류마티스는 판막(특히 mitral)을 침범해요.","Poststenotic dilatation은 상행대동맥 얘기지 관상동맥 입구를 막지 않아요."],
+ e:"Calcific AS는 <b>active disease</b>, 죽상경화랑 닮은꼴이에요 (그래도 statin으로 진행은 못 막음). 그래서 AVR 대상 성인의 <b>50% 넘게 CABG가 필요한 CAD</b>가 있고, 시술 전 CAG를 해요."},
+{src:"17P·23P 형성평가 변형", q:"Why does angina occur in severe AS even when the coronary arteries are normal?",
+ o:["Coronary embolism from the calcified valve is the usual cause","Low pulse pressure always causes coronary spasm","Pulmonary hypertension causes right ventricular ischemia","LVH raises oxygen demand while coronary reserve is limited"],
  a:3,
- w:["어차피 개흉하는데 판막을 남길 이유가 없음.","5.5 cm 넘는 aorta를 방치하면 rupture 위험.","5.5 cm 초과는 이미 수술 적응증.","정답. BAV + ascending aorta >5.5 cm → 인공혈관 치환, 이때 판막도 같이.","경과관찰 단계 지남."],
- e:"숫자 5.5 cm (정상 ~4 cm). 다른 심장수술 할 때 판막도 같이."},
-{src:"강의 핵심", q:"AS에 대한 설명으로 틀린 것은?",
- o:["증상이 생기면 1–3개월 내 수술한다","AS는 풍선확장술 후 재협착이 흔해 판막 치환을 시행한다","Severe AS의 약물치료로 β-blocker와 ACEI는 금기이다","탈수와 격렬한 운동을 피한다","Angina에 NTG가 도움이 된다"],
- a:2,
- w:["맞음 — promptly.","맞음 — 약 80%가 금방 제자리로.","틀림 → 정답. 예전엔 금기였지만 대규모 연구로 안전 검증 (23P).","맞음 — CO 감소 방지.","맞음."],
- e:"AS에서 BB/ACEI/NTG는 “써도 된다”. 금기는 acute AR의 BB."},
-{src:"21 형성평가", q:"AR의 peripheral sign과 설명의 연결로 옳은 것은?",
- o:["Hill’s sign – 하지 수축기혈압이 상지보다 60 mmHg 이상 높다","Quincke’s sign – 심박에 맞춘 고개 끄덕임","Traube’s sign – 크고 빠르게 올라갔다 떨어지는 맥박","Duroziez’s sign – 손톱 모세혈관 박동","Corrigan’s sign – 대퇴동맥의 pistol-shot sound"],
+ w:["석회 색전은 드문 합병증이지 주된 기전이 아니에요.","‘always’ 오답. 연축과는 관계없어요.","우심 허혈이 AS angina의 기전이 아니에요.","정답. 두꺼운 근육 = 산소 많이 먹음, 그런데 공급 여력은 제한 → 수요-공급 불균형."],
+ e:"SAD triad의 기전을 한 줄씩: <b>S</b> fixed output · <b>A</b> O₂ demand↑ + limited reserve · <b>D</b> filling pressure↑. 두근거림·머리 쿵쿵은 SAD가 아니라 <b>chronic AR</b> 증상이에요."},
+{src:"18P·20P·21P·22P", q:"Which set of echo findings meets the definition of severe high-gradient AS?",
+ o:["AVA 0.9 cm², mean gradient 45 mmHg, Vmax 4.2 m/s","AVA 1.4 cm², mean gradient 25 mmHg, Vmax 3.2 m/s","AVA 1.2 cm², mean gradient 35 mmHg, Vmax 3.8 m/s","AVA 1.8 cm², mean gradient 15 mmHg, Vmax 2.5 m/s"],
  a:0,
- w:["정답.","Head bobbing은 De Musset’s. Quincke = 손톱 capillary pulsation.","그건 Corrigan’s (water-hammer). Traube = pistol-shot.","손톱은 Quincke’s. Duroziez = femoral을 눌러 듣는 to-and-fro bruit.","Pistol-shot은 Traube’s. Corrigan = carotid의 collapsing pulse."],
- e:"이름만 섞어 내는 매칭형이 반복 출제. 표를 통째로 외우기."},
-{src:"22·23 기출", q:"51세 남자, 1시간 전 수면 중 orthopnea로 내원. 2개월 전 NYHA II, 1주 전부터 NYHA III. Color Doppler에서 aorta → LV 역류 jet. 이 환자의 신체검사 소견으로 옳은 것은?",
- o:["상지 120/80 mmHg, 하지 140/90 mmHg","손톱을 누르면 손톱 기저부에 청색증","악력기로 1분 이상 쥐면 잡음 감소","경동맥 시진·촉진 시 박동이 매우 세게 느껴짐","심첨부에서 high-pitched systolic ejection murmur"],
+ w:["정답. ≤1.0 / ≥40 / ≥4.0 세 개 다 충족.","전부 moderate 범위예요.","역시 moderate. AVA 1.0–1.5를 severe로 착각하면 MS 기준이랑 섞인 거예요.","Mild."],
+ e:"Severe = <b>4-40-1</b>, very severe(critical) = <b>5-60-0.6</b>. 해마다 AVA −0.1 cm², Vmax +0.3 m/s, MG +7 mmHg씩 진행해요."},
+{src:"18P·22P·23P·25P", q:"Why is S2 paradoxically split in severe AS?",
+ o:["LV ejection is prolonged, so A2 follows P2","RV ejection is prolonged by pulmonary hypertension","An atrial septal defect equalizes RV and LV filling","Calcification makes A2 louder and earlier"],
+ a:0,
+ w:["정답. 좁은 문으로 짜내느라 LV systole이 길어져서 A2가 P2 뒤로 밀려요. 흡기 때 P2가 늦어지면 오히려 둘이 겹쳐요.","그건 P2가 늦어지는 wide splitting 쪽이에요.","ASD = fixed splitting.","반대예요. 석회화되면 A2가 약해져요."],
+ e:"AS 청진 세트: <b>paradoxical splitting</b>, A2 감소, apex의 <b>S4</b>(LVH, LVEDP↑), S3는 LV가 늘어나 망가진 말기에."},
+{src:"21P", q:"Why is the carotid pulse small and delayed (parvus et tardus) in severe AS?",
+ o:["Rapid runoff of blood back into the LV during diastole","Two systolic peaks from dynamic LVOT obstruction","Fixed obstruction slows and limits LV ejection","Respiratory variation of stroke volume"],
+ a:2,
+ w:["그건 AR의 water-hammer(Corrigan) 기전.","Bisferiens — AR이나 HCM.","정답. 좁은 판막을 비집고 나가니 천천히(tardus), 적게(parvus).","Pulsus paradoxus — tamponade."],
+ e:"AS = <b>작고 늦게</b>, AR = <b>크게 솟았다 급히 꺼짐</b>. 진행하면 AS에서도 맥압이 좁아져요."},
+{src:"19P·20·21P·22P·23P", q:"A symptomatic patient has AVA 0.9 cm², mean gradient 25 mmHg, and LVEF 30%. Which test best separates true-severe from pseudo-severe AS?",
+ o:["Treadmill exercise test","Dobutamine stress echocardiography","Holter monitoring","Repeat echocardiography in 6 months"],
+ a:1,
+ w:["증상 있는 환자에게 운동부하는 위험하고 목적에도 안 맞아요. ETT는 ‘무증상’ severe AS에서 숨은 증상을 찾을 때.","정답. Low-flow, low-gradient AS + EF↓ → dobutamine으로 flow를 올려봐요. 판막이 그대로 안 열리고 gradient가 오르면 true-severe, 판막이 열리면 pseudo-severe.","부정맥 평가용.","증상 + EF 저하를 6개월 방치하면 안 돼요."],
+ e:"면적은 작은데 gradient가 낮다 = <b>펌프가 약해서 못 미는 건지, 문이 진짜 좁은 건지</b> 모르는 상황. Flow를 올려보면 답이 나와요 → DSE."},
+{src:"21P·23P (25 변경)", q:"Before valve replacement for severe AS, which statement about coronary angiography is best?",
+ o:["It is needed only if the patient has chest pain","It is always omitted when TAVI is planned","It is needed only when ECG shows LV strain","It screens for CAD, which is common in these patients"],
  a:3,
- w:["차이 20 mmHg — Hill’s sign은 60 mmHg 이상.","Quincke’s는 청색증이 아니라 붉게 찼다 빠지는 capillary pulsation.","Handgrip(afterload↑)은 AR 잡음을 증가시킴. 감소하는 건 HCM, AS.","정답. Corrigan’s pulse (carotid water-hammer).","AR은 Lt 3rd ICS의 high-pitched decrescendo diastolic murmur. 두 잡음 특징을 섞은 오답."],
- e:"“판막이 닫힌 뒤 문제” → AR은 이완기 잡음. 경동맥 박동↑ = Corrigan."},
-{src:"20 기출", q:"심한 만성 대동맥판막 역류증 환자에 합당한 신체검사 소견은?",
- o:["손톱 끝을 눌렀을 때 모세혈관 박동이 관찰됨","제2심음의 고정 분리","수축기 혈압 감소 및 이완기 혈압 증가","Valsalva 조작 시 잡음 증가","상지의 좌우 혈압 차이"],
- a:0,
- w:["정답 — Quincke’s pulse.","ASD.","반대. SBP↑, DBP↓로 PP widening.","Valsalva로 잡음이 커지는 건 HCM, MVP.","좌우 차이가 아니라 상·하지 차이(Hill’s)."],
- e:"Wide PP = SBP↑ + DBP↓."},
-{src:"17P·18P·23P", q:"AR의 전형적 잡음에 대한 설명으로 옳은 것은?",
- o:["Low-pitched rumbling mid-diastolic murmur, 심첨부","High-pitched blowing decrescendo diastolic murmur, 좌측 3번째 늑간 흉골연","Harsh crescendo-decrescendo systolic murmur, 우측 2번째 늑간","Holosystolic blowing murmur, 심첨부에서 액와로 방사","환자를 눕히고 흡기 시 가장 잘 들림"],
+ w:["‘only’ 오답. CAD 동반은 증상이랑 상관없이 흔해요.","‘always’ 오답. TAVI 환자도 관상동맥 평가가 필요해요.","‘only’ 오답. ECG strain은 중증도와도 CAD와도 잘 안 맞아요.","정답. AVR 받는 성인 AS 환자의 50% 넘게 bypass가 필요한 CAD."],
+ e:"25년 강의에선 <b>“나이 무관”</b>이라고 직접 말씀하셨어요 (나이 기준이 있는 건 MS). 석회화 = 죽상경화 → CAD 동반 → 수술 전 CAG."},
+{src:"18P·21P·22P", q:"An asymptomatic patient has severe AS. Which finding makes AVR a Class I recommendation?",
+ o:["Age over 80 years","LVEF 45%","LVH on ECG","Vmax 4.3 m/s with LVEF 65%"],
  a:1,
- w:["Austin Flint (또는 MS) 잡음.","정답. Erb’s point, diaphragm으로, 앉아서 앞으로 숙이고 호기 정지.","AS.","MR.","앉아서 숙이고 ‘호기’ 때. 흡기 시엔 폐에 가려짐."],
- e:"AR 청진 자세 = sitting up, leaning forward, forced expiration."},
-{src:"15P·17P", q:"Austin Flint murmur의 기전으로 옳은 것은?",
- o:["류마티스성 승모판 협착이 동반되어서","AR jet가 승모판 전엽을 때려 승모판이 덜 열려서","Aortic root 확장으로 판막이 늘어나서","폐동맥 확장에 의한 폐동맥판 역류","증가한 박출량이 대동맥판을 통과하면서"],
- a:1,
- w:["기질적 MS가 아님 — 그래서 ‘기능적’ MS처럼 들리는 것.","정답. Soft, low-pitched, rumbling mid-to-late diastolic. Echo에서 AML fluttering.","Root 확장은 AR의 원인이고, RSB에서 잡음이 더 큰 이유.","그건 Graham Steell murmur.","그건 AR에서 들리는 기능성 midsystolic ejection murmur."],
- e:"AR인데 MS 같은 rumble = Austin Flint."},
-{src:"14P~25P 최빈출", q:"Severe AR을 시사하는 심초음파 소견은?",
- o:["Jet width가 LVOT 직경의 30%","Regurgitant fraction 30%","복부대동맥에서 이완기 전체에 걸친 역류(holodiastolic flow reversal)","CW Doppler의 완만한 감속 경사","LV 크기 정상"],
+ w:["나이는 적응증이 아니에요.","정답. Asymptomatic severe AS + LVEF <50% → AVR Class I.","ECG는 중증도랑 상관이 약해요.","Severe이긴 하지만 무증상·EF 정상이면 Class I은 아니에요 (선택적으로 early AVR 고려)."],
+ e:"AVR Class I 세 개: <b>증상</b> · <b>무증상 + LVEF &lt;50%</b> · <b>다른 심장수술(CABG, 상행대동맥, 다른 판막) 때 같이</b>."},
+{src:"탈마 기출", q:"A 70-year-old asymptomatic man has AVA 1.23 cm², Vmax 3.5 m/s, mean gradient 33 mmHg, and LVEF 66%. What is best?",
+ o:["No follow-up is needed","Urgent aortic valve replacement","Periodic echocardiographic surveillance","Immediate TAVI"],
  a:2,
- w:["Severe는 ≥65%.","Severe는 ≥50%.","정답. Thoracic desc. aorta 역류 = moderate 이상, abdominal aorta까지 = severe.","완만하면 chronic. 급하면 acute (severity 기준은 아님).","Chronic severe AR은 LV가 커짐."],
- e:"Severe AR = 65% · 60 mL · 50% · desc. aorta holodiastolic reversal (가장 자주 나온 ま)."},
-{src:"20P·21P·22P·23P", q:"Acute severe AR 환자에서 수술 전 금기인 것은? (2개 고르기형 — 가장 옳은 조합)",
- o:["IV diuretics, nitroprusside","IABP, β-blocker","Nitroprusside, IABP","β-blocker, ACEI","IV diuretics, β-blocker"],
- a:1,
- w:["둘 다 수술 전까지 써야 하는 약.","정답. IABP는 이완기 aortic pressure↑로 역류 악화, BB는 HR↓ → 이완기 연장 → 역류↑.","Nitroprusside는 권장.","ACEI는 금기가 아님 (주로 chronic에서 사용).","IV diuretics는 권장."],
- e:"Acute AR 금기 두 가지 = IABP, β-blocker."},
-{src:"21·22 기출 (답안 논란 포함)", q:"57세 남자, 1시간 전 갑자기 NYHA IV 호흡곤란. CXR 폐부종, echo에서 AR jet(LVOT의 65% 이상), 급경사 CW Doppler, 복부대동맥 이완기 역류. 가장 적절한 조치는?",
- o:["대동맥판 치환 등 판막 수술을 24시간 이내 의뢰","심박수 조절을 위해 β-blocker 투여","수술 전 안정 위해 IABP 삽입","EF가 50% 이상이면 3개월 약물치료","경구 hydralazine으로 외래 추적"],
+ w:["AS는 진행하는 병이에요. 추적 안 하면 안 돼요.","수술 적응증이 아니에요.","정답. 무증상 moderate AS → 주기적 echo, 증상이나 severe 진행을 기다려요.","TAVI도 AVR의 한 방법이라 적응증이 없긴 마찬가지예요."],
+ e:"1.0–1.5 / 20–39 / 3–4 = <b>moderate</b>. 해마다 AVA 0.1 cm²씩 줄고 Vmax 0.3 m/s씩 올라요. 그래서 ‘지켜보기’가 아니라 <b>‘재면서 지켜보기’</b>."},
+{src:"기출 31-32 변형", q:"A 32-year-old asymptomatic man with a bicuspid aortic valve has AS/AR and an ascending aorta of 5.6 cm. What is best?",
+ o:["Ascending aorta replacement alone","Aortic valve replacement alone","Ascending aorta replacement plus aortic valve surgery","Echocardiography every 6 months"],
+ a:2,
+ w:["어차피 가슴을 여는데 병든 판막을 남길 이유가 없어요.","5.5 cm 넘는 aorta를 두면 rupture 위험.","정답. BAV는 medial degeneration으로 상행대동맥류가 잘 생겨요. >5.5 cm면 인공혈관 치환, 그때 판막도 같이.","이미 경과관찰 단계를 지났어요."],
+ e:"BAV = <b>판막 병 + 대동맥 병</b>. 숫자는 <b>5.5 cm</b>. ‘다른 심장수술 할 때 판막도 같이’는 AS·AR 공통 원칙."},
+{src:"강의 28번 슬라이드", q:"Which statement about medical management of severe AS is best?",
+ o:["Avoid dehydration and hypovolemia to protect cardiac output","Statins halt progression of calcific AS","β-blockers and ACE inhibitors are absolutely contraindicated","Strenuous exercise is safe until symptoms appear"],
  a:0,
- w:["정답. Acute severe AR = 응급 수술(진단 24시간 내), 그 전까지 IV diuretics + nitroprusside.","금기.","금기.","Acute severe AR은 기다리지 않음.","Chronic AR의 약물. Acute에선 부적절."],
- e:"실제 기출 선지는 ‘경피적 대동맥판 치환술(TAVI)’ vs ‘흉부외과 전원 후 판막 성형술’로 답안이 엇갈림(야마/22학습부 ①, 25학습부 ③). 25학습부 근거: 교수님이 AR엔 TAVR을 하지 않는다고 하셨고, 알고리즘상 AVR에 repair 포함 → surgical로 가는 선지를 고르는 게 원칙."},
-{src:"19P·21P·22P·23P", q:"Marfan syndrome 환자의 chronic AR에서 aortic root 확장 속도를 늦추는 약물은?",
- o:["Hydralazine","β-blocker, losartan","Digoxin","Nitroprusside","Warfarin"],
- a:1,
- w:["Chronic AR 혈관확장제로는 쓰지만 root 확장 억제 근거는 아님.","정답. Acute AR과 달리 chronic에선 BB 효과 있음.","관련 없음.","Acute AR 수술 전 IV 혈관확장제.","관련 없음."],
- e:"BB: acute AR 금기 ↔ chronic(Marfan) AR 유용. 이 대비가 출제 포인트."},
-{src:"15P~23P 반복", q:"대동맥판막 역류증의 수술 적응증으로 틀린 것은?",
- o:["증상이 있는 severe AR은 수술한다","무증상이라도 LVEF ≤55%면 수술한다","다른 심장수술을 할 때 severe AR은 같이 수술한다","무증상이고 LVEF가 저하되어 있으면 외래 추적관찰만 한다","무증상, EF 보존, LVESD >50 mm면 수술을 고려한다"],
+ w:["정답. Preload가 떨어지면 좁은 문을 밀어줄 힘이 없어져 CO가 뚝 떨어져요.","Statin은 진행을 못 막아요.","‘absolutely’ 오답. 예전엔 금기였지만 대규모 연구로 안전성이 확인됐어요. 고혈압·CAD 약은 써요.","무증상이어도 격한 운동은 피해요."],
+ e:"Severe AS 약물치료 4줄: 격한 운동 피하기 · 탈수 피하기 · 고혈압/CAD 약은 사용 · angina에 NTG 도움. <b>진짜 금기는 acute AR의 β-blocker</b>랑 헷갈리지 않기."},
+{src:"26 신규 슬라이드", q:"TAVI에 대한 설명으로 가장 적절한 것은?",
+ o:["석회화된 기존 판막을 먼저 제거하고 삽입한다","기계판막을 카테터에 실어 전달한다","만성 AR의 일반적인 1차 치료다","대부분 대퇴동맥으로 들어가 기존 판막을 밀어내며 고정한다"],
  a:3,
- w:["Class I.","Class I (개정 기준 55%; 옛 선지는 50%).","Class I.","틀림 → 정답. EF 저하는 증상 없어도 수술.","Class IIa."],
- e:"AR 수술은 ‘증상 or LV 기능 저하 전에’. 1년 넘기면 LV 회복 안 됨."},
-{src:"22 기출", q:"Grade 3 수축기 잡음에서 전부하를 변화시키는 조작(Valsalva 등)을 했을 때, 나머지와 반대 방향의 강도 변화를 보이는 질환은?",
- o:["심실중격결손","승모판막 역류증","삼첨판막 역류증","대동맥판막 역류증","폐쇄성 비후성 심근병증"],
- a:4,
- w:["일반적인 반응 (Valsalva 시 감소).","일반적인 반응.","일반적인 반응.","일반적인 반응.","정답. HCM(과 MVP)은 Valsalva·standing 시 증가, squatting 시 감소."],
- e:"거꾸로 노는 건 HCM, MVP 딱 둘."},
-{src:"강의 핵심", q:"Tricuspid regurgitation에 대한 설명으로 옳은 것은?",
- o:["대부분 류마티스성 원발 판막질환이다","JVP에서 prominent a wave가 특징이다","대부분 좌심 질환에 따른 기능성(secondary)이다","주로 단독으로 수술한다","Diastolic rumble이 특징적 잡음이다"],
+ w:["제거하지 않아요. 바깥으로 밀어내면서 그 자리에 고정해요.","접은 <b>생체판막</b>(bioprosthetic)을 실어요.","교수님: AR엔 TAVR 안 해요. AR 수술은 surgical.","정답. Transfemoral approach가 대부분, 풍선확장형과 자가확장형이 대표적."],
+ e:"TAVI = <b>가슴을 안 여는 AVR</b>. 접은 생체판막 → 대퇴동맥 → 병든 판막을 밀어내며 고정. 선택은 Heart Team이 하고 ‘항상 우선’은 아니에요."},
+{src:"21 형성평가", q:"AR의 말초 징후와 소견의 연결로 옳은 것은?",
+ o:["Quincke's sign – 심박에 맞춘 고개 끄덕임","Hill's sign – 하지 수축기압이 상지보다 60 mmHg 이상 높음","Traube's sign – 손톱 모세혈관 박동","Duroziez's sign – 경동맥의 collapsing pulse"],
+ a:1,
+ w:["고개 끄덕임은 de Musset's. Quincke's = 손톱·입술 capillary pulsation.","정답.","손톱은 Quincke's. Traube's = 대퇴동맥의 pistol-shot sound.","Collapsing pulse는 Corrigan's. Duroziez's = 대퇴동맥을 살짝 눌러 들리는 to-and-fro bruit."],
+ e:"이름만 섞어서 내는 매칭형이 반복 출제돼요. 전부 <b>wide PP 하나</b>에서 나오니까, 기전 한 줄 + 표 통째로."},
+{src:"20 기출", q:"심한 만성 AR 환자에서 보일 신체 소견으로 가장 적절한 것은?",
+ o:["손톱 끝을 눌렀을 때 모세혈관 박동이 보인다","제2심음이 고정 분리된다","수축기압이 내려가고 이완기압이 올라간다","Valsalva 조작 시 잡음이 커진다"],
+ a:0,
+ w:["정답. Quincke's pulse.","ASD 소견이에요.","방향이 반대예요. SBP↑, DBP↓.","Valsalva로 커지는 건 HCM, MVP."],
+ e:"AR 소견은 <b>SBP↑ + DBP↓ = wide PP</b>에서 출발해요."},
+{src:"22·23 기출", q:"51세 남자, 수면 중 orthopnea로 내원. Color Doppler에서 대동맥 → 좌심실 역류 jet가 보인다. 이 환자에서 기대되는 신체 소견은?",
+ o:["상지 120/80 mmHg, 하지 140/90 mmHg","악력기를 1분 쥐면 잡음이 작아진다","경동맥 박동이 크게 솟았다가 급히 꺼진다","심첨부에서 high-pitched systolic ejection murmur"],
  a:2,
- w:["대부분 functional.","TR은 prominent v wave (심실 수축 때 역류). a wave↑는 TS, AS(septum bulging), MS(pul HTN).","정답. 좌심 → pul HTN → RV 확장 → annulus 확장.","다른 판막 수술 시 같이. 단독 수술은 거의 없음.","TR은 blowing holosystolic murmur."],
- e:"TR = v wave, hepatojugular reflux, 간 수축기 박동."},
-{src:"14 기출", q:"조직판막(bioprosthetic)과 기계판막(mechanical)의 비교로 옳은 것은?",
- o:["조직판막은 평생 warfarin이 필요하다","기계판막은 10년 내 30%가 재수술을 필요로 한다","조직판막은 이식 후 약 3개월만 항응고제를 쓴다","기계판막은 중앙이 열리는 구조다","조직판막이 내구성이 더 좋다"],
+ w:["차이가 20 mmHg뿐. Hill's sign은 60 mmHg 이상.","Handgrip(afterload↑)은 AR 잡음을 키워요. 작아지는 건 HCM, AS.","정답. Corrigan's pulse(water-hammer). 강의 증례에서도 Quincke·Traube·Duroziez (+), 하지 SBP가 상지보다 50 mmHg 높았어요.","AR은 좌측 3번째 늑간의 high-pitched decrescendo <b>diastolic</b> murmur. 두 잡음 특징을 섞은 오답."],
+ e:"“판막이 닫힌 뒤의 문제” → AR은 <b>이완기</b> 잡음. 경동맥 박동↑ = Corrigan."},
+{src:"17P·18P·23P", q:"AR 잡음을 가장 잘 듣는 방법은?",
+ o:["누운 자세에서 흡기 중 bell로 심첨부","좌측와위에서 bell로 심첨부","우측 2번째 늑간에서 경동맥 방사 확인","앉아서 앞으로 숙이고 숨을 내쉰 채 멈추고, diaphragm으로 좌측 3번째 늑간"],
+ a:3,
+ w:["흡기 땐 폐가 가려서 오히려 안 들려요.","그건 MS rumble 듣는 법.","그건 AS 잡음.","정답. High-pitched, blowing, decrescendo — 고음이라 diaphragm, 심장을 흉벽에 붙이려고 숙이고 호기 정지."],
+ e:"고음은 diaphragm, 저음(MS·Austin Flint)은 bell. AR = <b>sitting up, leaning forward, forced expiration</b>."},
+{src:"15P·17P", q:"Austin Flint murmur가 생기는 이유는?",
+ o:["류마티스성 승모판 협착이 항상 동반되어서","AR jet가 승모판 전엽을 밀어 이완기에 승모판이 덜 열려서","폐동맥 확장으로 폐동맥판 역류가 생겨서","늘어난 박출량이 대동맥판을 빠르게 지나가서"],
+ a:1,
+ w:["‘항상’ 오답. 진짜 MS가 아니라서 ‘기능적’ MS처럼 들리는 거예요.","정답. Soft, low-pitched, rumbling mid-to-late diastolic. Echo에서 AML fluttering이 같은 현상.","그건 Graham Steell murmur.","그건 AR에서 들리는 기능성 midsystolic ejection murmur."],
+ e:"AR인데 MS 같은 rumble = <b>Austin Flint</b>. 원인은 승모판이 아니라 <b>AR jet</b>."},
+{src:"14P~25P 최빈출", q:"Severe AR을 가장 강하게 시사하는 심초음파 소견은?",
+ o:["Jet width가 LVOT 직경의 30%","Regurgitant fraction 30%","하행대동맥의 이완기 역류(diastolic flow reversal)","좌심실 크기 정상"],
  a:2,
- w:["평생 warfarin은 기계판막.","구조적 퇴행(10년 30%, 15년 50%)은 조직판막.","정답.","기계판막은 나비처럼 양옆이 열림. 중앙이 열리는 건 조직판막(자연판막처럼).","내구성은 기계판막이 우수."],
- e:"조직 = 항응고 짧음·내구성↓ / 기계 = 내구성↑·warfarin 평생."}
+ w:["Severe는 >65%.","Severe는 ≥50%.","정답. 역류가 워낙 많아서 하행대동맥 피까지 이완기에 거꾸로 끌려와요.","Chronic severe AR은 LV가 커져요."],
+ e:"Severe AR = <b>jet >65% LVOT · RVol ≥60 mL · RF ≥50% · desc. aorta diastolic flow reversal</b>. 가장 자주 나온 ま."},
+{src:"20P·21P·22P·23P", q:"급성 중증 AR에서 IABP를 쓰면 안 되는 이유는?",
+ o:["이완기에 풍선이 부풀어 대동맥 이완기압을 올려 역류를 늘려서","수축기 후부하가 너무 떨어져 저혈압이 와서","심박수를 항상 느리게 만들어서","폐동맥압을 직접 올려서"],
+ a:0,
+ w:["정답. IABP는 이완기에 부풀어 대동맥압을 올리는 장치. AR에선 그 압력이 새는 판막으로 LV에 그대로 밀려 들어가요.","IABP의 수축기 afterload 감소 자체는 문제가 아니에요.","‘항상’ 오답. IABP는 심박수를 조절하는 장치가 아니에요.","폐동맥압과 무관."],
+ e:"금기 두 개, 기전은 하나: <b>이완기 역류를 늘리는 것</b>. IABP = 이완기압↑ · β-blocker = HR↓ → 이완기 길어짐. (Chronic AR·Marfan에선 BB가 오히려 유용하다는 대비가 출제 포인트.)"},
+{src:"21·22 기출 (답안 논란 포함)", q:"57세 남자, 1시간 전 갑자기 NYHA IV 호흡곤란. CXR 폐부종, echo에서 severe AR jet, 급경사 CW Doppler. 가장 적절한 것은?",
+ o:["β-blocker로 심박수를 조절한 뒤 수술한다","응급 판막 수술을 의뢰하고, 그 전까지 IV 이뇨제·nitroprusside","IABP를 삽입해 안정시킨 뒤 수술한다","EF가 보존돼 있으면 3개월 약물치료 후 재평가한다"],
+ a:1,
+ w:["금기. 서맥 → 이완기 연장 → 역류↑.","정답. Acute severe AR → operation urgently. 수술 전까지 IV diuretics + vasodilator(sodium nitroprusside).","금기.","급성 중증 AR은 기다리지 않아요."],
+ e:"실제 기출 선지는 ‘TAVI’ vs ‘흉부외과 전원 후 판막 성형술’로 답안이 엇갈렸어요(야마/22학습부 ①, 25학습부 ③). 교수님이 AR엔 TAVR을 안 한다고 하셨으니 <b>surgical 쪽 선지</b>를 고르는 게 원칙."},
+{src:"19P·21P·22P·23P", q:"Marfan 증후군 젊은 환자의 만성 AR에서 aortic root 확장 속도를 늦추는 데 도움이 되는 약은?",
+ o:["Nitroprusside","Digoxin","Warfarin","β-blocker, losartan"],
+ a:3,
+ w:["Acute AR 수술 전 IV 혈관확장제.","관계없어요.","관계없어요.","정답. Acute AR에선 금기인 BB가 여기선 유용해요."],
+ e:"<b>BB: acute AR 금기 ↔ chronic(Marfan) AR 유용</b>. 이 대비가 출제 포인트. Chronic AR의 증상·혈압 조절은 혈관확장제(ACEI, dihydropyridine CCB, hydralazine), SBP 목표 &lt;140."},
+{src:"15P~23P 반복 · 26 신규 표", q:"무증상 중증 만성 AR 환자, LVEF 50%, LVESD 45 mm. 가장 적절한 것은?",
+ o:["증상이 생길 때까지 기다린다","6개월 뒤 흉부 X선만 다시 찍는다","대동맥판 수술을 권고한다","IABP를 거치한다"],
+ a:2,
+ w:["증상은 LV가 망가진 뒤에야 와요. 기다리면 늦어요.","‘만’ 오답. EF와 LV 크기를 봐야 해요.","정답. 중증 AR + 무증상 + LVEF ≤55% → 수술 권고 (LVESD는 50 mm 안 넘어도 EF만으로 충분).","AR 금기."],
+ e:"26 강의 표: <b>증상</b> → 권고 · <b>무증상 + LVEF ≤55%</b> → 권고 · <b>무증상 + LVESD >50 mm(>25 mm/m²)</b> → 고려 · <b>다른 심장수술 예정</b> → 동시 수술 고려. 1년 넘게 미루면 LV가 안 돌아와요."},
+{src:"강의 17번 슬라이드 · 22 기출 연계", q:"Isometric handgrip으로 AR 잡음이 커지는 이유는?",
+ o:["말초혈관저항이 올라가 이완기 역류가 늘어서","전부하가 줄어서","심박수가 줄기만 해서","폐동맥압이 올라가서"],
+ a:0,
+ w:["정답. 1분 쥐면 PVR↑ → 대동맥에서 LV로 되돌아가는 압력이 커져요. MR, VSD도 같은 이유로 커져요.","Handgrip은 afterload 조작이에요.","‘만’ 오답.","관계없어요."],
+ e:"Handgrip(afterload↑): <b>커짐</b> = MR, VSD, AR · <b>작아짐</b> = HCM, AS(약 30%). Valsalva(preload↓)에서 거꾸로 커지는 건 <b>HCM, MVP</b> 둘뿐 (22 기출)."},
+{src:"강의 핵심", q:"TR에서 JVP의 prominent v wave가 생기는 이유는?",
+ o:["우심방 수축이 강해져서","수축기에 우심실 혈액이 우심방으로 역류해서","삼첨판이 좁아져 우심방 배출이 막혀서","좌심방압이 직접 전달돼서"],
+ a:1,
+ w:["그건 a wave 쪽.","정답. v wave는 심실 수축기에 RA가 차는 파형인데, 거기에 역류량이 얹혀요.","그건 TS → prominent a wave.","관계없어요."],
+ e:"TR은 대부분 <b>functional</b>: 좌심 질환 → pul HTN → RV 확장 → annulus 확장. 소견은 v wave, hepatojugular reflux, holosystolic murmur. 수술은 보통 MV 수술 때 같이."},
+{src:"14 기출", q:"조직판막(bioprosthetic)에 대한 설명으로 가장 적절한 것은?",
+ o:["평생 warfarin이 필요하다","내구성이 기계판막보다 좋다","감염성 심내막염이 절대 생기지 않는다","이식 약 3개월 후엔 혈전색전 걱정이 적지만 구조적 퇴행이 약점이다"],
+ a:3,
+ w:["그건 기계판막.","반대예요. 내구성은 기계판막이 우수.","‘절대’ 오답. 인공판막은 모두 IE 위험이 있어요.","정답. 장점 = 3개월 이후 혈전색전 합병증 없음, 단점 = structural deterioration."],
+ e:"조직 = <b>항응고 짧음, 내구성↓</b> / 기계 = <b>내구성↑, warfarin 평생</b>. 판막치환 후기 합병증: paravalvular leak, 혈전색전, 항응고 출혈, 구조적 퇴행, IE."}
 ];
 
-const KEY = "valve2-quiz-v1";
+const KEY = "valve2-quiz-v2";
 let state = {};
 try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { state = {}; }
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} };
 
 const list = document.getElementById("quiz-list");
-const L = ["①","②","③","④","⑤"];
+const faList = document.getElementById("fa-list");
+const L = ["A","B","C","D","E"];
 
 function render(){
-  list.innerHTML = "";
+  list.innerHTML = ""; faList.innerHTML = "";
+  let k = 0;
   QUIZ.forEach((item, i) => {
+    const isFA = item.g === "fa";
+    if (!isFA) k++;
+    const label = isFA ? item.n : "Q" + k;
     const card = document.createElement("article");
     card.className = "q";
-    card.id = "q" + (i+1);
+    card.id = isFA ? "fa-" + item.n : "q" + k;
     const head = document.createElement("div");
     head.className = "q-head";
-    head.innerHTML = `<span class="q-num">Q${i+1}</span><span class="q-src">${item.src}</span>`;
+    head.innerHTML = `<span class="q-num">${label}</span><span class="q-src">${item.src}</span>`;
     const stem = document.createElement("p");
     stem.className = "q-stem";
     stem.textContent = item.q;
@@ -954,9 +1048,9 @@ function render(){
     verdict.hidden = true;
     const ess = document.createElement("div");
     ess.className = "essence";
-    ess.innerHTML = `<b>핵심</b>${item.e}`;
+    ess.innerHTML = `<b>본질</b>${item.e}`;
     card.append(head, stem, opts, verdict, ess);
-    list.appendChild(card);
+    (isFA ? faList : list).appendChild(card);
     paint(card, i);
   });
   updateScore();
@@ -1001,7 +1095,7 @@ const btnHide = document.getElementById("btn-hide");
 function applyFilters(){
   const onlyWrong = btnWrong.getAttribute("aria-pressed") === "true";
   const hideDone = btnHide.getAttribute("aria-pressed") === "true";
-  list.querySelectorAll(".q").forEach((card, i) => {
+  document.querySelectorAll("#fa-list .q, #quiz-list .q").forEach((card, i) => {
     const pick = state[i];
     let show = true;
     if (onlyWrong) show = pick !== undefined && pick !== QUIZ[i].a;
