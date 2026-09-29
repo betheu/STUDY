@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Im의 의학 공부 아카이브</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf9f7;
+    --surface:#ffffff;
+    --ink:#1c1a17;
+    --muted:#6b6459;
+    --rule:#e6e1d9;
+    --accent:#8a3324;
+    --accent-ink:#ffffff;
+    --tag-bg:#f1ece2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#16140f;
+      --surface:#1f1c16;
+      --ink:#f2ede4;
+      --muted:#a89e8c;
+      --rule:#332e25;
+      --accent:#e07856;
+      --accent-ink:#1c1a17;
+      --tag-bg:#2a2519;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#16140f;
+    --surface:#1f1c16;
+    --ink:#f2ede4;
+    --muted:#a89e8c;
+    --rule:#332e25;
+    --accent:#e07856;
+    --accent-ink:#1c1a17;
+    --tag-bg:#2a2519;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"IBM Plex Sans KR", system-ui, sans-serif;
+    line-height:1.6;
+  }
+  header{
+    max-width:760px;
+    margin:0 auto;
+    padding:56px 20px 28px;
+  }
+  header .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:13px;
+    letter-spacing:.04em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  header h1{
+    font-size:clamp(28px, 5vw, 38px);
+    margin:8px 0 6px;
+    letter-spacing:-0.01em;
+  }
+  header p{
+    color:var(--muted);
+    margin:0;
+    font-size:15px;
+  }
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 20px 80px;
+  }
+  .section-title{
+    font-size:13px;
+    font-family:"IBM Plex Mono", monospace;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    margin:36px 0 12px;
+    padding-top:20px;
+    border-top:1px solid var(--rule);
+  }
+  .section-title:first-child{border-top:none;padding-top:0;}
+  .card{
+    display:block;
+    background:var(--surface);
+    border:1px solid var(--rule);
+    border-radius:14px;
+    padding:20px 22px;
+    margin-bottom:12px;
+    text-decoration:none;
+    color:inherit;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .card:hover{
+    border-color:var(--accent);
+    transform:translateY(-1px);
+  }
+  .card-top{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .card h2{
+    font-size:17px;
+    margin:0;
+    font-weight:600;
+  }
+  .card .date{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .card p{
+    margin:8px 0 10px;
+    color:var(--muted);
+    font-size:14px;
+  }
+  .tags{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .tag{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11px;
+    background:var(--tag-bg);
+    color:var(--muted);
+    padding:3px 8px;
+    border-radius:999px;
+  }
+  .empty{
+    color:var(--muted);
+    font-size:14px;
+    padding:20px 0;
+  }
+  footer{
+    max-width:760px;
+    margin:0 auto;
+    padding:20px 20px 60px;
+    color:var(--muted);
+    font-size:12px;
+    font-family:"IBM Plex Mono", monospace;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Study Archive</div>
+    <h1>Im의 의학 공부 아카이브</h1>
+    <p>KMLE 및 각 과목 시험 준비를 위해 만든 학습 자료를 모아둔 페이지입니다.</p>
+  </header>
+  <main>
+    <div class="section-title">외과 · 흉부외과</div>
+    <a class="card" href="pages/chd-surgery-review.html">
+      <div class="card-top">
+        <h2>선천성 심장외과 복습노트</h2>
+        <span class="date">2026-09-28</span>
+      </div>
+      <p>선천성 심질환의 외과적 치료 총정리 — 질환별 수술의 본질(핵심 기전), 고식적 단락수술 비교표, 수술 시기 요약. 문항별 상세 해설이 포함된 61문항 연습문제 수록.</p>
+      <div class="tags">
+        <span class="tag">흉부외과</span>
+        <span class="tag">선천성 심질환</span>
+        <span class="tag">퀴즈 61문항</span>
+      </div>
+    </a>
+
+    <div class="section-title">앞으로 추가될 자료</div>
+    <div class="empty">새 예습자료를 만들 때마다 이 페이지에 자동으로 추가됩니다.</div>
+  </main>
+  <footer>betheu/study · GitHub Pages</footer>
+</body>
+</html>
