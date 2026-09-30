@@ -1,0 +1,341 @@
+<title>인공심폐기 운용 예상문제</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700;800&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column; sticky score bar; question cards set off only by a hairline, CPB-line colors (venous blue / arterial ochre) mark the two question styles */
+:root{
+  --bg:#F2F5F4; --surface:#FFFFFF; --sunk:#E8EEEC;
+  --fg:#16201D; --muted:#56635E; --line:#D3DCD8;
+  --accent:#1D4E9E; --accent-soft:#E3EBF8;
+  --ochre:#8A5A0B; --ochre-soft:#F6ECD8;
+  --ok:#17744A; --ok-soft:#E1F2E8;
+  --no:#B02A1F; --no-soft:#FBE6E3;
+  --f-display:"Gothic A1","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1412; --surface:#151D1A; --sunk:#1B2521;
+    --fg:#E3EAE7; --muted:#9AA8A2; --line:#2A3632;
+    --accent:#86A9EE; --accent-soft:#1B2740;
+    --ochre:#E2B45E; --ochre-soft:#2F2615;
+    --ok:#5EC48F; --ok-soft:#14291F;
+    --no:#F08176; --no-soft:#35191A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1412; --surface:#151D1A; --sunk:#1B2521;
+  --fg:#E3EAE7; --muted:#9AA8A2; --line:#2A3632;
+  --accent:#86A9EE; --accent-soft:#1B2740;
+  --ochre:#E2B45E; --ochre-soft:#2F2615;
+  --ok:#5EC48F; --ok-soft:#14291F;
+  --no:#F08176; --no-soft:#35191A;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:780px;margin:0 auto;padding-inline:16px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* masthead */
+.masthead{padding-block:34px 22px;border-bottom:1px solid var(--line);background:var(--surface)}
+.eyebrow{margin:0 0 10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+h1{margin:0;font-family:var(--f-display);font-weight:800;font-size:clamp(26px,5.4vw,36px);line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+h1 .part-no{display:inline-block;font-family:var(--f-mono);font-weight:500;font-size:.5em;vertical-align:.45em;margin-right:10px;padding:2px 8px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.scope{margin:12px 0 0;color:var(--muted);font-size:14px;max-width:64ch}
+.parts{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.parts a,.parts span{font-size:13.5px;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--fg);background:var(--bg)}
+.parts a:hover{border-color:var(--accent);color:var(--accent)}
+.parts .here{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+/* sticky bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;flex-direction:column;gap:10px;padding-block:10px}
+.score-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.score{font-variant-numeric:tabular-nums;font-size:14px;color:var(--muted);white-space:nowrap}
+.score b{font-family:var(--f-display);font-size:20px;color:var(--fg);font-weight:800}
+.meter{flex:1 1 160px;min-width:120px;height:8px;border-radius:99px;background:var(--sunk);overflow:hidden;display:flex}
+.meter i{display:block;height:100%}
+.meter .m-ok{background:var(--ok)}
+.meter .m-no{background:var(--no)}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface);padding:5px 11px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip .n{font-family:var(--f-mono);font-size:11.5px;margin-left:4px;opacity:.8}
+.act{display:flex;gap:4px}
+.btn-ghost{border:1px solid transparent;background:none;padding:5px 9px;border-radius:8px;font-size:13px;color:var(--muted);cursor:pointer}
+.btn-ghost:hover{color:var(--fg);border-color:var(--line)}
+.btn-ghost.warn{color:var(--no);border-color:var(--no)}
+
+/* brief */
+.brief{margin-top:22px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.brief>summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.brief>summary::-webkit-details-marker{display:none}
+.brief>summary::after{content:"펼치기";font-family:var(--f-mono);font-size:12px;color:var(--muted);font-weight:500}
+.brief[open]>summary::after{content:"접기"}
+.brief .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:14px}
+.brief h3{margin:4px 0 0;font-family:var(--f-display);font-size:15px}
+.brief ul{margin:0;padding-left:18px}
+.brief li{margin:3px 0}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:480px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px}
+td.mono{font-family:var(--f-mono);font-size:12px;white-space:nowrap;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted)}
+
+/* sections */
+.sec{margin-top:30px}
+.sec>h2{display:flex;align-items:baseline;gap:10px;margin:0 0 4px;font-family:var(--f-display);font-weight:800;font-size:21px}
+.sec>h2 .k{font-family:var(--f-mono);font-weight:500;font-size:13px;padding:2px 8px;border-radius:6px}
+.sec.A>h2 .k{background:var(--accent-soft);color:var(--accent)}
+.sec.B>h2 .k{background:var(--ochre-soft);color:var(--ochre)}
+.sec>p.lead{margin:0 0 14px;color:var(--muted);font-size:14px;max-width:64ch}
+.list{display:flex;flex-direction:column;gap:14px}
+
+/* question card */
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 14px;border-left-width:3px}
+.q.A{border-left-color:var(--accent)}
+.q.B{border-left-color:var(--ochre)}
+.q-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:8px}
+.qno{font-family:var(--f-mono);font-size:13px;font-weight:500}
+.q.A .qno{color:var(--accent)} .q.B .qno{color:var(--ochre)}
+.topic{font-size:13px;color:var(--muted)}
+.tag{font-size:11.5px;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tag.hot{border-color:var(--no);color:var(--no)}
+.state{margin-left:auto;font-family:var(--f-mono);font-size:11.5px}
+.state.ok{color:var(--ok)} .state.no{color:var(--no)}
+.stem{margin:0 0 10px;font-weight:600;font-size:16px;line-height:1.6;max-width:66ch}
+.opts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.opt{display:flex;gap:10px;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 12px;cursor:pointer;line-height:1.55;transition:border-color .15s,background-color .15s}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt .num{font-family:var(--f-mono);flex:0 0 auto;color:var(--muted)}
+.opt .txt{min-width:0}
+.opt.is-ans{border-color:var(--ok);background:var(--ok-soft)}
+.opt.is-ans .num{color:var(--ok)}
+.opt.is-wrong{border-color:var(--no);background:var(--no-soft)}
+.opt.is-wrong .num{color:var(--no)}
+.fb{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:10px}
+.verdict{margin:0;font-weight:600}
+.verdict.ok{color:var(--ok)} .verdict.no{color:var(--no)} .verdict.peek{color:var(--muted)}
+.core{margin:0;padding:10px 12px;border-radius:8px;background:var(--sunk);font-size:14.5px}
+.core b{font-family:var(--f-display);font-weight:800;margin-right:6px}
+.ex{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.ex li{display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:baseline}
+.ex .num{font-family:var(--f-mono);color:var(--muted)}
+.ex .lab{font-size:11.5px;font-weight:600;padding:0 6px;border-radius:4px;white-space:nowrap}
+.ex .ok .lab{background:var(--ok-soft);color:var(--ok)}
+.ex .no .lab{background:var(--sunk);color:var(--muted)}
+.ex .txt{min-width:0}
+.src{margin:0;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.q-foot{display:flex;justify-content:flex-end;margin-top:8px}
+.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
+footer{margin-block:40px 30px;color:var(--muted);font-size:13px}
+@media (max-width:520px){
+  body{font-size:15px}
+  .score-row{gap:8px 12px}
+  .meter{order:3;flex-basis:100%}
+  .act{margin-left:auto}
+  .seg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
+  .seg::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .q{padding:14px 13px 12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">순환기학 · 이석기 교수님 · 24번 학습부 후반부</p>
+    <h1><span class="part-no">PART 2/3</span>인공심폐기 운용 예상문제</h1>
+    <p class="scope">수업(24번 인공심폐기 운용·심근보호) + 『의대생을 위한 흉부외과학』 19장 개심술시의 체외순환법과 심근보호법, 49장 체외막산소화 장치(CPB와의 차이)</p>
+    <nav class="parts" aria-label="파트 이동"><a href="cts-anatomy-exam.html">① 심장외과 해부학</a><span class="here" aria-current="page">② 인공심폐기 운용</span><a href="cts-congenital-exam.html">③ 선천성 심질환 외과치료</a></nav>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="score-row">
+      <div class="score" id="score" aria-live="polite"></div>
+      <div class="meter" aria-hidden="true"><i class="m-ok" id="mOk"></i><i class="m-no" id="mNo"></i></div>
+      <div class="act">
+        <button class="btn-ghost" id="btnReveal" aria-pressed="false">해설 모두 보기</button>
+        <button class="btn-ghost" id="btnReset">다시 풀기</button>
+      </div>
+    </div>
+    <div class="ctrl">
+      <div class="seg" role="group" aria-label="문항 필터" id="seg">
+        <button class="chip" data-f="all" aria-pressed="true">전체<span class="n" id="n-all"></span></button>
+        <button class="chip" data-f="A" aria-pressed="false">A 교과서·수업<span class="n" id="n-A"></span></button>
+        <button class="chip" data-f="B" aria-pressed="false">B 이해형<span class="n" id="n-B"></span></button>
+        <button class="chip" data-f="wrong" aria-pressed="false">틀린 문제<span class="n" id="n-wrong"></span></button>
+        <button class="chip" data-f="todo" aria-pressed="false">안 푼 문제<span class="n" id="n-todo"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <details class="brief" id="brief">
+    <summary>출제 범위 · 문항 구성 · 25년 기출 경향</summary>
+    <div class="inner">
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>주제</th><th>교과서</th><th>문항</th></tr></thead>
+        <tbody><tr><td>CPB 정의·정맥캐뉼라·완전/부분 우회</td><td class="mono">p.235–236</td><td class="mono">A1 · B9</td></tr><tr><td>심폐기 구성 (저혈조·산화기·펌프·흡인장치·셀세이버)</td><td class="mono">p.236–238</td><td class="mono">A2 A3 A4 A5 A6 · B2 B3</td></tr><tr><td>충전·혈희석</td><td class="mono">p.238–239</td><td class="mono">A7 A8 · B4</td></tr><tr><td>헤파린·프로타민·와파린</td><td class="mono">p.239 + 학습부 p.27</td><td class="mono">A9 A17 · B3</td></tr><tr><td>관류속도·저체온법·완전순환정지</td><td class="mono">p.240</td><td class="mono">A10 A11 A12 · B5</td></tr><tr><td>체외순환 후 합병증</td><td class="mono">p.241–242</td><td class="mono">A13 A14 · B1</td></tr><tr><td>심근보호법·심정지액</td><td class="mono">p.242–244</td><td class="mono">A15 A16 · B6 B7 B8</td></tr><tr><td>ECMO vs CPB, 이탈(weaning)</td><td class="mono">p.524–526 + 학습부</td><td class="mono">B10 B11</td></tr></tbody>
+      </table></div>
+      <div>
+        <h3>25년 기출에서 달라진 점</h3>
+        <ul>
+          <li>이석기 교수님 13문항: 해부 2 · 인공심폐기 3 · 선천성 8.</li>
+          <li>예전: 교과서 문장을 숫자·용어만 바꿔 내는 방식. 25년: <b>"왜 조심하나 · 목적은 · 수술의 두 목표는"</b>처럼 이유·목적·기전을 묻는 방식이 대부분.</li>
+          <li>그래도 정답 근거는 교과서와 학습부 문장에 있음. 25년 퀴즈 21개 항목이 그대로 출제 소재가 됨.</li>
+          <li>25년 문항과의 대응: 25년 1번(헤파린–프로타민) = A9·A17, 2번(체외순환 후 SIRS의 원인) = B1, 3번(cold cardioplegia의 목적) = B6.</li>
+          <li>이 페이지: A 17문항 · B 11문항, 총 28문항</li>
+        </ul>
+      </div>
+      <div class="legend">
+        <span><b style="color:var(--accent)">A</b> 교과서·수업 문장 기반(수치·용어·정의)</span>
+        <span><b style="color:var(--ochre)">B</b> 이해형(이유·목적·기전·상황 적용)</span>
+        <span>태그: 25 기출 · 기출 변형 · 수업 강조 · 교과서만</span>
+      </div>
+    </div>
+  </details>
+
+  <section class="sec A" id="secA">
+    <h2><span class="k">A</span>교과서·수업 기반</h2>
+    <p class="lead">교과서와 학습부 문장을 그대로 확인하는 문항. 수치·용어 말바꾸기에 대비.</p>
+    <div class="list" id="listA"></div>
+  </section>
+  <section class="sec B" id="secB">
+    <h2><span class="k">B</span>이해형</h2>
+    <p class="lead">25년 기출 형식. 구조가 왜 그렇게 생겼는지, 수술을 왜 그렇게 하는지를 묻는 문항.</p>
+    <div class="list" id="listB"></div>
+  </section>
+  <p class="empty" id="empty" hidden>이 필터에 해당하는 문항이 없음.</p>
+
+  <footer>근거: 『의대생을 위한 흉부외과학』(3판) · 순환기학 24·25번 학습부(2025) · 2025 본과 2학년 2학기 순환기학 복원해설. 풀이 기록은 이 브라우저에만 저장됨.</footer>
+</main>
+
+<script>
+const PART = {"key": "cts-p2", "questions": [{"kind": "tb", "topic": "CPB의 정의와 정맥캐뉼라", "src": "교과서 p.235–236 · 20기출 변형", "hi": "", "stem": "심폐우회술(CPB)에 대한 설명으로 옳은 것은?", "opts": ["체동맥혈을 심폐기로 보내 산소화한 뒤 정맥계로 되돌려 보내는 기법이다.", "통상 두 개의 정맥캐뉼라를 우심방을 통해 상대정맥과 하대정맥에 각각 삽관한다.", "완전 심폐우회술은 체정맥환류 일부는 심폐기로, 나머지는 자연심장으로 환류되는 상태다.", "정맥환류는 주로 펌프 음압으로 흡인한다.", "동맥캐뉼라는 원칙적으로 대퇴동맥에 삽관한다."], "ans": 2, "core": "CPB = 체정맥환류를 심폐기로 보내 산소화 → 기계 펌프로 동맥에 되돌림. 정맥은 중력 배액, 동맥 삽관은 상행대동맥.", "ex": ["방향이 반대임. 체'정맥'환류를 받아 산소화 후 '동맥'으로 돌려보냄.", "교과서 내용 그대로임(bicaval). 우심방부속지로 하나만 넣기도 함.", "그것은 부분(partial) 심폐우회술. 완전은 모든 체정맥환류가 심폐기로 감.", "주로 중력에 의한 배액이고, 경우에 따라 음압을 줄 뿐임.", "상행대동맥이 원칙. 상행대동맥류 수술처럼 마땅한 곳이 없을 때 대퇴동맥 사용."]}, {"kind": "tb", "topic": "혈액저장기(저혈조)", "src": "교과서 p.236 · 15·18·20ま", "hi": "", "stem": "심폐기의 혈액저장기(blood reservoir) 역할로 옳지 않은 것은?", "opts": ["정맥환류량이 과도할 때 일시적으로 저장한다.", "항상 일정 수준 이상 채워 두어 회로 안으로 공기가 들어가지 않게 한다.", "정맥환류가 갑자기 막히는 응급 상황에서 5~10초 동안 관류할 혈액을 공급한다.", "환류된 정맥혈의 산소화와 이산화탄소 제거가 일어난다.", "환류 정맥혈에 섞인 공기를 배출한다."], "ans": 4, "core": "저혈조 = 완충 탱크(저장·공기 차단·5~10초 안전장치). 가스교환은 산화기 몫.", "ex": ["저혈조의 역할임.", "저혈조의 역할임.", "저혈조의 역할임.", "가스교환은 산화기(oxygenator)에서 일어남.", "수업에서 제시한 저혈조 역할임."]}, {"kind": "tb", "topic": "산화기", "src": "교과서 p.236, 525 · 14·18·25Pま", "hi": "수업 강조", "stem": "산화기(oxygenator)에 대한 설명으로 옳은 것은?", "opts": ["막형 산화기는 인체의 가스교환 방식에 더 가까우며 현재 대부분의 개심술에 쓰인다.", "기포형 산화기는 투과성 막을 사이에 두고 가스교환한다.", "막형 산화기는 정맥혈이 산소기포와 직접 접촉해 가스교환한다.", "기포형 산화기는 혈액손상이 적어 장기간 쓰는 ECMO에 선호된다.", "산화기는 관류 혈액을 냉각·가온하는 장치다."], "ans": 1, "core": "막형 = 막을 사이에 둔 가스교환(폐와 닮음) → 현재 표준. 기포형 = 혈액이 기포와 직접 접촉 → 혈액손상.", "ex": ["교과서 내용 그대로임.", "막을 사이에 두는 것은 막형임.", "기포와 직접 접촉하는 것은 기포형임.", "ECMO는 막형만 씀. 기포형은 장기 사용 시 혈액손상·공기색전 위험.", "냉각·가온은 열교환기(heat exchanger)의 일임."]}, {"kind": "tb", "topic": "동맥펌프", "src": "교과서 p.237, 240", "hi": "", "stem": "동맥펌프(arterial pump)에 대한 설명으로 옳은 것은?", "opts": ["임상에서 주로 원심성 펌프가 쓰이고 롤러펌프는 드물다.", "롤러펌프는 빠르게 도는 추진기(impeller)로 혈액을 원심성으로 이동시킨다.", "롤러펌프와 원심성 펌프가 만드는 동맥압 파형은 비박동성이다.", "원심성 펌프는 두 개의 롤러가 튜브를 눌러 혈액을 밀어낸다.", "ECMO에는 롤러펌프를 사용한다."], "ans": 3, "core": "펌프 = 심장 역할. 롤러(주로 사용) vs 원심성(추진기). 둘 다 비박동성 관류인데 수 시간 CPB에선 문제된 증거 없음.", "ex": ["교과서: 임상에서 주로 쓰는 것은 롤러펌프.", "추진기를 쓰는 것은 원심성 펌프.", "교과서 p.240 내용임.", "롤러로 누르는 것은 롤러펌프.", "ECMO 혈액펌프는 원심성 펌프."]}, {"kind": "tb", "topic": "심장내 흡인장치", "src": "교과서 p.237–238 · 13·18Pま, 20기출", "hi": "자주 기출", "stem": "심장내 흡인장치에 대한 설명으로 옳은 것은?", "opts": ["벤트캐뉼라는 좌측 심장의 확장을 막기 위해 넣으며, 우상폐정맥이나 심방중격을 통한 삽입이 가장 많다.", "벤트캐뉼라는 수술 중 심장 밖으로 나온 혈액을 흡입해 심폐기로 보낸다.", "벤트캐뉼라는 좌심실 첨부를 통한 삽입이 가장 많이 이용된다.", "심장절개흡인기는 흡인압이 낮아 체외순환 중 혈액손상이 가장 적은 부분이다.", "흡인량과 관계없이 흡인압을 최대로 유지해야 혈액손상이 줄어든다."], "ans": 1, "core": "벤트 = 좌심 감압(우상폐정맥), 석커 = 수술야 출혈 회수. 흡인장치는 전단력 때문에 혈액손상 1위.", "ex": ["교과서 내용 그대로임.", "그것은 심장절개흡인기(cardiotomy sucker)의 역할.", "20년 기출 오답 선지. 가장 많은 곳은 우상폐정맥·심방중격.", "반대임. 과도한 흡인압에 의한 전단력으로 혈액손상이 가장 많음.", "요구되는 흡인량에 맞게 흡인압을 조절해야 손상이 줄어듦."]}, {"kind": "tb", "topic": "셀세이버", "src": "교과서 p.238", "hi": "", "stem": "셀세이버(cell saver)에 대한 설명으로 옳은 것은?", "opts": ["체외순환 중 회로 안 혈액을 여과해 색전을 막는 장치다.", "보통 10단위 이상의 농축적혈구를 얻을 수 있다.", "헤파린이 충분히 들어간 동안 출혈된 혈액만 처리할 수 있다.", "수술 후 동종혈액을 대신 걸러 수혈하는 장치다.", "헤파린 투여 전이나 프로타민 투여 후에 출혈된 자가혈액을 모아 필요 시 재수혈하기 위한 장치다."], "ans": 5, "core": "헤파린 없는 시간대의 출혈은 심폐기로 못 보냄(회로에서 응고) → 버리지 않고 모아 자가수혈하는 장치.", "ex": ["여과는 동맥선 여과기(filter)의 역할.", "보통 1~5단위 농축적혈구.", "헤파린화된 동안의 출혈은 석커로 심폐기에 바로 보낼 수 있음.", "자가혈액(autotransfusion) 장치임.", "교과서 정의 그대로임."]}, {"kind": "tb", "topic": "심폐기 충전", "src": "교과서 p.238 · 20Pま", "hi": "", "stem": "심폐기 충전(priming)에 대한 설명으로 옳은 것은?", "opts": ["성인도 빈혈 여부와 관계없이 반드시 혈액을 충전액에 섞는다.", "성인에서 필요한 충전액은 보통 약 500 mL이다.", "영아·작은 소아는 체구 대비 충전량이 커서 과도한 희석을 막기 위해 대부분 혈액 첨가가 필요하다.", "충전액으로 교질액만 쓸 수 있고 정질액은 금기이다.", "충전의 가장 중요한 목적은 회로를 미리 냉각하는 것이다."], "ans": 3, "core": "충전 = 회로를 액체로 채워 공기를 빼는 작업(수업: 공기 없게 하는 게 가장 중요). 성인 약 2,000 mL 무혈액, 영아는 혈액 첨가.", "ex": ["성인은 빈혈이 없으면 혈액이 필요 없음.", "보통 2,000 mL.", "교과서 내용 그대로임.", "하트만 등 정질액·알부민/혈장 등 교질액을 단독 또는 병합.", "수업: 공기를 빼고 액체로 채우는 것이 핵심."]}, {"kind": "tb", "topic": "혈희석", "src": "교과서 p.239 · 王Pま 18·21기출", "hi": "자주 기출", "stem": "체외순환 시 혈희석(hemodilution)에 대한 설명으로 옳은 것은?", "opts": ["관류액의 점도를 높여 저체온 시 미세혈관 순환을 돕는다.", "사용 혈액량은 줄이지만 간염·AIDS 감염 위험은 줄이지 못한다.", "요량을 줄여 신장을 보호한다.", "적정 적혈구용적은 정상 산소운반능력의 약 2/3를 제공하는 20~25%이다.", "적정 적혈구용적은 정상과 같은 38~45%이다."], "ans": 4, "core": "혈희석 이점 3가지: 점도↓(저체온 미세순환), 수혈↓(감염·혈액손상↓), 요량↑·신기능. 목표 Hct 20~25%.", "ex": ["점도를 '줄임'.", "감염 위험도 줄임.", "요량을 '증가'시키고 신기능 향상.", "교과서 수치 그대로임.", "정상치를 유지하는 게 아니라 일부러 20~25%로 낮춤."]}, {"kind": "tb", "topic": "헤파린 투여와 중화", "src": "교과서 p.239 · ま18·25Pま, 25기출 1번", "hi": "25 기출", "stem": "체외순환 시 항응고에 대한 설명으로 옳은 것은?", "opts": ["헤파린은 트롬빈을 직접 불활성화하며 antithrombin III와 무관하다.", "헤파린 3 mg/kg 정주 5분 뒤 aPTT가 480초 이상이면 삽관을 시작한다.", "프로타민은 급성 과민반응이나 혈관이완으로 저혈압을 일으킬 수 있어 항상 천천히 주입한다.", "헤파린 효과를 중화하려면 비타민 K를 투여한다.", "ACT가 480초 미만이면 프로타민을 추가 투여한다."], "ans": 3, "core": "헤파린(AT III 작용↑) 3 mg/kg → 5분 뒤 ACT ≥480초면 삽관, 미만이면 1~2 mg/kg 추가. 끝나면 프로타민을 '천천히'.", "ex": ["헤파린은 antithrombin III 작용을 증가시켜 응고를 막음.", "측정 지표는 ACT(activated clotting time)임.", "교과서 내용 그대로임.", "헤파린 중화는 프로타민. 비타민 K는 와파린.", "ACT 부족이면 헤파린을 1~2 mg/kg 더 줌."]}, {"kind": "tb", "topic": "적정 관류속도", "src": "교과서 p.240 · 17·18·19ま", "hi": "자주 기출", "stem": "마취 중인 정상체온(37℃) 환자의 체외순환 관류속도에 대한 설명으로 옳은 것은?", "opts": ["이론상 체표면적 1 m²당 1.5 L/min이면 말초 대사성 산증을 피할 수 있다.", "임상에서는 여유를 두어 2.5 L/min/m²를 많이 쓴다.", "저체온법을 쓰면 관류속도를 더 높여야 한다.", "관류속도는 체외순환 중 외부에서 조절할 수 없는 변수다.", "적정 관류속도는 4.0 L/min/m² 이상이다."], "ans": 2, "core": "이론 2.2 → 실제 2.5 L/min/m². 저체온이면 대사요구↓라 비례해서 더 적게.", "ex": ["이론적 적정값은 2.2 L/min/m².", "교과서 수치 그대로임.", "반대임. 대사요구가 줄어 적은 관류속도로도 됨.", "체외순환의 장점이 이런 변수를 외부에서 조절할 수 있다는 것.", "정상 cardiac index(3.5~4.0)와 혼동한 선지."]}, {"kind": "tb", "topic": "저체온법 분류", "src": "교과서 p.240 · 王ま 18·19·20·25Pま", "hi": "자주 기출", "stem": "비인두(nasopharyngeal) 체온을 기준으로 한 저체온법 분류로 옳은 것은?", "opts": ["경도(mild) – 23~27℃", "중등도(moderate) – 28~35℃", "초저체온(profound) – 15~22℃", "중등도(moderate) – 15℃ 미만", "심도(deep) – 15~22℃"], "ans": 5, "core": "mild 28–35 / moderate 23–27 / deep 15–22 / profound <15℃. mild와 moderate를 번갈아 묻는 경향.", "ex": ["23~27℃는 중등도.", "28~35℃는 경도.", "초저체온은 15℃ 미만.", "15℃ 미만은 초저체온.", "교과서 수치 그대로임."]}, {"kind": "tb", "topic": "저체온법의 목적과 한계", "src": "교과서 p.240", "hi": "교과서 수치 주의", "stem": "체외순환 시 저체온법에 대한 설명으로 옳지 않은 것은?", "opts": ["가장 큰 목적은 신체 대사율(산소소모량)을 낮추는 것이다.", "심도 저체온 이하에서는 시간 제한 없이 완전순환정지를 안전하게 유지할 수 있다.", "냉각 심정지액으로 정지된 심장이 다시 데워지는 속도를 늦춘다.", "수술 편의상 저속관류가 필요할 때 안전성을 유지해 준다.", "기계 고장으로 일시적으로 관류가 끊길 때 안전장치가 된다."], "ans": 2, "core": "저체온 = 대사율↓ → 허혈 허용 시간 벌기. 그래도 완전순환정지 안전 시간은 교과서 기준 약 45분(수업에선 60분 정도로 언급).", "ex": ["교과서 내용임.", "교과서: 보통 약 45분까지의 완전순환정지가 안전. 제한이 있음.", "중등도 저체온법의 장점 a.", "장점 b.", "장점 c."]}, {"kind": "tb", "topic": "심낭절개술후 증후군", "src": "교과서 p.241 · 20·22·23ま, 20기출 변형", "hi": "자주 기출", "stem": "심낭절개술후 증후군(postpericardiotomy syndrome)에 대한 설명으로 옳지 않은 것은?", "opts": ["대부분 자연 치유되지 않아 장기간 스테로이드 치료가 필요하다.", "발열, 흉막염성 흉통, 백혈구 증가가 나타난다.", "심낭삼출액과 심낭막 마찰음이 나타난다.", "수술 후 1주~수개월 사이에 생길 수 있으나 1~2주 안에 잘 생긴다.", "자가면역 기전으로 추정한다."], "ans": 1, "core": "수술 후 1~2주 '원인 모를 발열 + 흉막염성 흉통 + 심낭삼출'. 자가면역 추정, 대부분 자연 치유, 아스피린(NSAIDs)에 잘 반응.", "ex": ["대부분 자연 치유되고 필요 시 아스피린, 조금 심하면 '단기간' 스테로이드.", "교과서 소견임.", "교과서 소견임.", "교과서 발생 시기임.", "교과서 추정 기전임."]}, {"kind": "tb", "topic": "체외순환 후 합병증", "src": "교과서 p.241–242 · 20ま", "hi": "", "stem": "체외순환 후 합병증에 대한 설명으로 옳은 것은?", "opts": ["급성신부전의 가장 흔한 원인은 헤파린에 의한 신장 출혈이다.", "심낭을 봉합하지 않고 흉관을 넣으면 심장압전은 생기지 않는다.", "비외과적 출혈의 원인으로 헤파린 효과 지속, 혈소판 이상, 응고인자 결핍, 섬유소용해 항진, DIC가 있다.", "위장관 합병증이 가장 흔하다.", "대퇴동맥 삽관은 하지 허혈을 일으키지 않는다."], "ans": 3, "core": "출혈 = 외과적(재수술로 지혈) vs 비외과적(혈액제제·약물). 신부전은 대부분 저심박출증 이차성.", "ex": ["가장 흔한 원인은 저심박출증에 이차적으로 오는 것.", "심낭 봉합·흉관 여부와 관계없이 생길 수 있음.", "교과서 나열 그대로임.", "위장관 합병증은 드묾.", "삽관측 하지 허혈이 생길 수 있음."]}, {"kind": "tb", "topic": "심근보호 방법", "src": "교과서 p.242–243 · 15·20·21Pま, 17·20기출", "hi": "자주 기출", "stem": "수술 중 심근보호법에 대한 설명으로 옳은 것은?", "opts": ["무작업성 박동성 심장(empty beating heart)은 대동맥을 차단하고 부분 심폐우회만 시행한다.", "간헐적 대동맥차단법은 대동맥 차단을 일정 간격으로 풀어 지나치게 긴 심근허혈을 막는다.", "저체온 심실세동 심장은 심근이 충분히 이완되어 수술시야가 좋아 가장 많이 쓴다.", "초저체온 심근혈류차단법은 심근손상이 전혀 없어 현재 가장 많이 쓴다.", "심근보호액법은 저농도 칼륨으로 수축기 정지를 유지한다."], "ans": 2, "core": "현재 표준은 고칼륨 심근보호액(확장기 정지). 나머지(지속관류·간헐차단·초저체온 단독)는 시야·보호 문제로 거의 안 씀.", "ex": ["대동맥을 차단하지 않고 완전(total) CPB만 시행함.", "교과서 정의 그대로임(단, 단점이 많아 요즘 거의 안 씀).", "세동 심근은 충분히 이완되지 못해 시야가 나쁘고 심내막하 관류 장애 → 드물게 사용.", "어느 정도 심근손상이 생길 수 있어 잘 안 씀.", "고농도 칼륨(15~30 mEq/L)으로 확장기(diastolic) 정지."]}, {"kind": "tb", "topic": "심정지액 주입법", "src": "교과서 p.243–244", "hi": "", "stem": "심근보호액(cardioplegia) 주입에 대한 설명으로 옳은 것은?", "opts": ["고농도 칼륨으로 지속적인 수축기 정지를 유지한다.", "전방성 주입은 관상정맥동을 통해 주입한다.", "전방성 주입 뒤 대개 20~30분이 지나거나 심장의 기계·전기적 움직임이 보이면 재주입한다.", "역행성 주입은 테베시우스 정맥 덕분에 우심실 보호가 특히 뛰어나다.", "혈성 심근보호액은 산소가 없어 최근 사용이 줄고 있다."], "ans": 3, "core": "전방성 = 대동맥근부로 4℃ 용액, 20~30분마다 재주입. 역행성 = 관상정맥동, 관상동맥 협착 시 유리하나 우심 보호는 약함.", "ex": ["확장기(diastolic) 정지임.", "전방성은 대동맥근부(aortic root). 관상정맥동은 역행성.", "교과서 내용 그대로임.", "테베시우스 체계로의 스틸 현상 때문에 우심 보호가 잘 안 된다는 보고가 있음.", "혈성 심정지액은 산소를 함유해 최근 많이 씀."]}, {"kind": "tb", "topic": "헤파린 vs 와파린 (수업)", "src": "24번 학습부 p.27 표 · 25Pま", "hi": "수업 강조", "stem": "수업에서 정리한 헤파린과 와파린의 비교로 옳은 것은?", "opts": ["헤파린은 경구, 와파린은 정맥으로 투여한다.", "헤파린의 반감기는 약 2일, 와파린은 수 시간이다.", "헤파린 효과는 PT(INR)로, 와파린 효과는 aPTT(ACT)로 측정한다.", "조직판막 치환 후에는 와파린을 평생 복용한다.", "헤파린의 해독제는 프로타민, 와파린의 해독제는 비타민 K이다."], "ans": 5, "core": "헤파린 = IV·수 시간·aPTT(ACT)·프로타민, 급성용. 와파린 = 경구·약 2일·PT(INR)·비타민 K, 장기용.", "ex": ["반대임.", "반대임.", "반대임.", "평생 복용은 기계판막. 조직판막은 초기에만(수업: 약 6개월 후 중단).", "수업 표 그대로임."]}, {"kind": "ud", "topic": "CPB 후 전신염증반응", "src": "25기출 2번 변형 · 교과서 p.241", "hi": "25 기출 변형", "stem": "체외순환 직후 발열, 백혈구 증가, 말초혈관 확장과 모세혈관 누출이 나타났다. 이 전신염증반응의 근본 기전으로 가장 적절한 것은?", "opts": ["저체온으로 대사율이 떨어졌기 때문이다.", "프로타민이 세균 감염을 일으켰기 때문이다.", "헤파린이 직접 발열을 일으켰기 때문이다.", "혈희석으로 산소운반능력이 떨어졌기 때문이다.", "혈액이 산화기·튜브 같은 비생체 표면과 접촉해 보체·백혈구·응고계가 활성화되었기 때문이다."], "ans": 5, "core": "CPB의 '원죄' = 피가 몸 밖 인공 표면을 도는 것. 응고계(→헤파린 필요)도, 염증계(→SIRS)도 같은 원인에서 켜짐.", "ex": ["저체온은 대사를 낮추는 보호 수단이지 염증 원인이 아님.", "프로타민 부작용은 과민반응·저혈압이지 감염이 아님.", "헤파린은 항응고제로 발열 원인이 아님.", "혈희석은 의도한 조작이며 염증 기전과 무관.", "25 기출 정답 논리 그대로임."]}, {"kind": "ud", "topic": "흡인장치와 혈액손상", "src": "교과서 p.238 · 13ま, 20기출", "hi": "", "stem": "체외순환 회로에서 혈액손상(용혈)이 가장 많이 일어나는 곳과 그 이유로 옳은 것은?", "opts": ["산화기 – 고농도 산소의 독성 때문", "심장내 흡인장치 – 공기와 섞이며 과도한 흡인압으로 전단력(shear stress)이 커지기 때문", "저혈조 – 혈액이 고여 정체되기 때문", "동맥캐뉼라 – 끝이 휘어 있기 때문", "열교환기 – 온도 변화 때문"], "ans": 2, "core": "손상 1위 = 석커. 해법은 흡인량에 맞춰 흡인압을 조절하는 것.", "ex": ["산화기(막형)는 손상이 주된 원인이 아님.", "교과서 설명 그대로임.", "저혈조는 완충 탱크임.", "동맥캐뉼라 끝의 모양은 손상 1위 원인이 아님.", "열교환기는 온도 조절 장치로 손상 1위가 아님."]}, {"kind": "ud", "topic": "헤파린 전 출혈을 석커로 받으면?", "src": "교과서 p.238–239", "hi": "", "stem": "헤파린 투여 전 흉골 절개 중 출혈된 혈액을 심장절개흡인기로 심폐기 저혈조에 넣으면 안 되는 이유로 가장 적절한 것은?", "opts": ["산화기의 가스교환 효율이 떨어지기 때문이다.", "헤파린화되지 않은 혈액이 인공물질 표면에 닿으면 응고계가 활성화되어 회로 안에 혈전이 생기기 때문이다.", "적혈구용적이 너무 높아지기 때문이다.", "프로타민과 반응하기 때문이다.", "혈액량이 너무 많아 저혈조가 넘치기 때문이다."], "ans": 2, "core": "헤파린 없는 피 + 인공 표면 = 응고. 그래서 그 시간대(헤파린 전·프로타민 후) 출혈은 셀세이버로 따로 받음.", "ex": ["가스교환 효율과 무관.", "교과서 셀세이버 개발 이유 그대로임.", "핵심 문제가 아님.", "헤파린 투여 전에는 프로타민이 없음.", "핵심 문제가 아님."]}, {"kind": "ud", "topic": "혈희석과 저체온의 짝", "src": "교과서 p.239 · 수업", "hi": "", "stem": "저체온 체외순환에서 혈희석을 함께 쓰는 가장 본질적인 이유는?", "opts": ["저체온에서는 산소 요구량이 늘어 적혈구를 늘려야 하기 때문이다.", "혈희석이 체온을 빨리 떨어뜨리기 때문이다.", "저체온에서 혈액 점도가 높아져 미세순환이 나빠지는데, 혈희석이 점도를 낮춰 이를 상쇄하기 때문이다.", "저체온에서는 헤파린이 작용하지 않기 때문이다.", "혈희석이 관류압을 높이기 때문이다."], "ans": 3, "core": "차가운 피는 끈적함 → 희석으로 점도를 낮춰 낮은 관류압에서도 미세혈관까지 흐르게 함. 대신 산소운반능력 2/3(Hct 20~25%) 선은 지킴.", "ex": ["저체온에선 산소 요구량이 줄어듦.", "희석의 목적이 냉각이 아님.", "교과서: 점도를 줄여 특히 저체온 시 미세혈관 순환을 용이하게 함.", "헤파린 작용과 무관.", "수업: 오히려 낮은 관류압에서 혈류 개선(shear stress↓)."]}, {"kind": "ud", "topic": "대동맥궁 수술과 저체온", "src": "교과서 p.240 · 수업 25검안", "hi": "", "stem": "대동맥궁 수술을 위해 비인두 체온 18℃까지 냉각하였다. 이 상황에 대한 설명으로 가장 적절한 것은?", "opts": ["대사요구가 증가하므로 관류속도를 3.5 L/min/m² 이상으로 올린다.", "초저체온에 해당하므로 시간 제한 없이 완전순환정지가 가능하다.", "중등도 저체온이므로 완전순환정지는 금기다.", "심도 저체온에 해당하며 대사요구가 줄어 저속관류나 일시적 완전순환정지가 가능하다.", "체온을 낮출수록 수술 후 재가온 시간이 짧아진다."], "ans": 4, "core": "18℃ = deep(15~22℃). 대사↓ → 관류 줄이거나 멈출 수 있는 시간을 버는 것. 대가는 긴 재가온 시간과 뇌손상 위험.", "ex": ["저체온에선 관류속도를 줄일 수 있음.", "15℃ 미만이 초저체온이고, 완전순환정지도 약 45분 정도로 시간 제한이 있음.", "18℃는 심도. 심도 이하에서 완전순환정지 가능.", "교과서 논리 그대로임.", "수업 검안: 낮출수록 다시 올리는 데 더 오래 걸림."]}, {"kind": "ud", "topic": "냉각 고칼륨 심정지액의 원리", "src": "25기출 3번 변형 · 교과서 p.243", "hi": "25 기출 변형", "stem": "4℃ 고칼륨 심근보호액을 대동맥근부에 주입하는 목적과 원리로 가장 적절한 것은?", "opts": ["칼륨이 심근을 수축 상태로 굳혀 출혈을 줄이고, 냉각은 관상동맥을 확장시킨다.", "산소를 공급해 허혈 없이 심장 박동을 유지한다.", "재관류 손상을 일부러 유도해 심근을 단련시킨다.", "고칼륨으로 확장기 정지를 일으켜 전기·기계적 일을 없애고, 냉각으로 남은 대사율까지 낮춰 허혈 손상을 줄인다.", "관상동맥 혈류 속도를 높여 심근 에너지 효율을 높인다."], "ans": 4, "core": "심근 산소 소모의 대부분은 수축(일). 칼륨으로 이완 상태 정지 → 일 0, 냉각 → 기초대사까지 ↓. 두 축(high K⁺ + hypothermia).", "ex": ["수축 상태가 아니라 확장기 정지.", "대동맥을 차단하고 심장을 멈추는 방법임.", "25 기출 오답 선지와 같은 함정.", "교과서·수업(안락사 비유) 설명 그대로임.", "혈류 증가와 무관."]}, {"kind": "ud", "topic": "심내막하부가 가장 취약한 이유", "src": "교과서 p.242 · ま", "hi": "", "stem": "개심술 중 심근손상에 가장 취약한 부위가 좌심실 심내막하부인 이유로 옳은 것은?", "opts": ["좌심실 수축 때 강한 압박으로 내부 혈관이 닫혀 확장기에만 혈류를 받기 때문이다.", "관상동맥에서 가장 먼 심외막 쪽에 있기 때문이다.", "우심실과 공유하는 혈관이 없기 때문이다.", "심내막하부에는 미토콘드리아가 없기 때문이다.", "테베시우스 정맥으로 혈류가 빠져나가기 때문이다."], "ans": 1, "core": "수축기엔 벽 안쪽 혈관이 눌려 닫힘 → 심내막하는 확장기에만 관류 → 공급이 흔들리면 가장 먼저 손상. 심실세동 심장이 나쁜 이유도 같은 맥락.", "ex": ["교과서 설명 그대로임.", "심내막하는 심장 '안쪽' 층임.", "핵심이 아님.", "사실이 아님.", "핵심이 아님."]}, {"kind": "ud", "topic": "좌심실 벤트의 필요성", "src": "교과서 p.237–238 · 19·20·25P曰", "hi": "수업 강조", "stem": "대동맥 차단 후 심정지 상태에서 좌심실 벤트(vent)를 넣는 가장 중요한 이유는?", "opts": ["좌심실에 산소를 공급하기 위해서다.", "심근보호액을 관상정맥동으로 주입하기 위해서다.", "우심방 혈액을 배출하기 위해서다.", "기관지정맥·테베시우스 정맥 환류나 대동맥판 역류로 좌심실에 혈액이 차면 심근이 늘어나 손상되므로 좌심을 감압하기 위해서다.", "대동맥캐뉼라 대신 동맥혈을 되돌려 보내기 위해서다."], "ans": 4, "core": "수업: '심근이 늘어나는 게 제일 치명적'. 우심은 정맥캐뉼라·석커로 비우지만, 좌심은 따로 벤트(우상폐정맥 경유)가 필요.", "ex": ["벤트는 배출(outflow) 장치임.", "그것은 역행성 심정지액 주입 경로.", "우심 배액은 정맥캐뉼라와 석커가 담당.", "교과서(좌측 심장 확장 방지)·수업 설명 그대로임.", "수업: inflow는 동맥캐뉼라 1개뿐, 벤트는 outflow."]}, {"kind": "ud", "topic": "정맥환류 불량", "src": "교과서 p.236 · 학습부 p.31", "hi": "", "stem": "체외순환 중 정맥환류가 잘 되지 않을 때 가장 먼저 확인할 것으로 적절한 것은?", "opts": ["환자 심장과 저혈조 사이의 높이 차이(중력 배액)와 정맥캐뉼라의 위치·꺾임을 확인한다.", "동맥펌프 회전수를 올린다.", "산화기 가스 유량을 늘린다.", "헤파린을 중화한다.", "심근보호액을 다시 주입한다."], "ans": 1, "core": "정맥 쪽은 펌프가 아니라 '중력'으로 빠짐(수업: 최소 50 cm 높이 차). 그래서 높이·캐뉼라 문제부터 봄.", "ex": ["교과서(중력 배액, 캐뉼라 폐색 합병증)·수업 설명임.", "동맥펌프는 환자 쪽으로 보내는 장치. 정맥환류를 늘리지 못함.", "가스교환과 무관.", "CPB 중 헤파린 중화는 금물.", "무관."]}, {"kind": "ud", "topic": "ECMO와 CPB의 차이", "src": "교과서 p.524–526 · 수업 25검안", "hi": "수업 강조", "stem": "체외막산소화(ECMO)와 수술장 심폐우회술(CPB)의 차이로 옳은 것은?", "opts": ["ECMO는 주로 우심방과 상행대동맥에 흉곽 내 삽관을 한다.", "ECMO는 대개 1~4시간 정도만 사용한다.", "ECMO는 출혈 예방을 위해 ACT를 480초 이상으로 유지한다.", "ECMO에는 기포형 산화기도 쓸 수 있다.", "ECMO는 말기 심폐부전 환자가 스스로 회복할 때까지 심폐기능을 보조하는 것이 목적이며, 원심성 펌프와 막형 산화기를 쓰는 폐쇄식 회로다."], "ans": 5, "core": "CPB = 수술하는 동안 심폐 '대행'(흉곽 내 삽관, 수 시간, 개방식 저혈조). ECMO = 회복까지 '보조'(경부·대퇴 삽관, 3~14일, 폐쇄식).", "ex": ["ECMO는 보통 경부나 대퇴부 혈관으로 삽관.", "보통 3~14일 장기간 사용.", "출혈이 흔한 합병증이라 ACT를 150~200초로 비교적 낮게 유지.", "장기 사용 시 혈액손상·공기색전 위험으로 기포형은 쓰지 않음.", "교과서 설명 그대로임."]}, {"kind": "ud", "topic": "체외순환 이탈(weaning)", "src": "24번 학습부 p.32, 34 · 수업", "hi": "수업 강조", "stem": "체외순환 이탈(weaning) 과정에 대한 설명으로 가장 적절한 것은?", "opts": ["서서히 재가온하고 심정지액의 칼륨을 씻어 낸 뒤, 박동이 약하면 칼슘을 투여하며 심장이 점차 부담을 넘겨받게 한다.", "심장을 멈출 때처럼 빠르게 재가온하고 바로 관류를 끊는다.", "이탈 직전에 헤파린을 추가해 ACT를 늘린다.", "이탈 후 프로타민은 빠르게 한 번에 주입한다.", "대동맥캐뉼라는 쌈지봉합 없이 그냥 뽑는다."], "ans": 1, "core": "수업: '멈출 때는 팍, 다시 뛸 때는 서서히'. 재가온 + 칼륨 제거 + (필요 시) 칼슘.", "ex": ["수업 설명 그대로임.", "재가온은 서서히 해야 함.", "이탈 후엔 오히려 프로타민으로 헤파린을 중화함.", "급성 저혈압 위험으로 천천히 주입(교과서).", "수업: 쌈지봉합(purse-string) 후 제거."]}]};
+(function(){
+  const KEY = "cts-quiz-" + PART.key;
+  const NUMS = ["①","②","③","④","⑤"];
+  let st = {ans:{}, peek:{}};
+  try{ const raw = localStorage.getItem(KEY); if(raw){ const p = JSON.parse(raw); if(p && p.ans) st = {ans:p.ans||{}, peek:p.peek||{}}; } }catch(e){}
+  const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} };
+
+  let revealAll = false, filter = "all";
+  const qs = PART.questions;
+  let a=0,b=0;
+  qs.forEach((q,i)=>{ q.id = "q"+i; q.label = q.kind==="tb" ? "A"+(++a) : "B"+(++b); q.sec = q.kind==="tb" ? "A":"B"; });
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  function card(q){
+    const el = document.createElement("article");
+    el.className = "q " + q.sec; el.id = q.id;
+    const tags = q.hi ? `<span class="tag${/25|기출|제일/.test(q.hi)?" hot":""}">${esc(q.hi)}</span>` : "";
+    el.innerHTML = `
+      <div class="q-head"><span class="qno">${q.label}</span><span class="topic">${esc(q.topic)}</span>${tags}<span class="state"></span></div>
+      <p class="stem">${esc(q.stem)}</p>
+      <ol class="opts">${q.opts.map((o,i)=>`<li><button class="opt" data-i="${i+1}"><span class="num">${NUMS[i]}</span><span class="txt">${esc(o)}</span></button></li>`).join("")}</ol>
+      <div class="fb" hidden>
+        <p class="verdict" aria-live="polite"></p>
+        <p class="core"><b>본질</b>${esc(q.core)}</p>
+        <ul class="ex">${q.ex.map((e,i)=>`<li class="${i+1===q.ans?"ok":"no"}"><span class="num">${NUMS[i]}</span><span class="lab">${i+1===q.ans?"정답":"오답"}</span><span class="txt">${esc(e)}</span></li>`).join("")}</ul>
+        <p class="src">근거 · ${esc(q.src)}</p>
+      </div>
+      <div class="q-foot"><button class="btn-ghost peek">해설만 보기</button></div>`;
+    el.querySelectorAll(".opt").forEach(btn => btn.addEventListener("click", () => {
+      if(st.ans[q.id]) return;
+      st.ans[q.id] = +btn.dataset.i; save(); paint(q); tally(); applyFilter();
+    }));
+    el.querySelector(".peek").addEventListener("click", () => {
+      st.peek[q.id] = !st.peek[q.id]; save(); paint(q);
+    });
+    q.el = el;
+    return el;
+  }
+
+  function paint(q){
+    const el = q.el, chosen = st.ans[q.id], show = !!chosen || !!st.peek[q.id] || revealAll;
+    const fb = el.querySelector(".fb"), v = el.querySelector(".verdict"), stt = el.querySelector(".state"), peek = el.querySelector(".peek");
+    el.querySelectorAll(".opt").forEach(btn => {
+      const i = +btn.dataset.i;
+      btn.disabled = !!chosen;
+      btn.classList.toggle("is-ans", show && i===q.ans);
+      btn.classList.toggle("is-wrong", !!chosen && i===chosen && chosen!==q.ans);
+      btn.setAttribute("aria-pressed", chosen===i ? "true" : "false");
+    });
+    fb.hidden = !show;
+    if(chosen){
+      const ok = chosen===q.ans;
+      v.className = "verdict " + (ok?"ok":"no");
+      v.textContent = ok ? "정답." : `오답. 고른 답 ${NUMS[chosen-1]}, 정답 ${NUMS[q.ans-1]}.`;
+      stt.className = "state " + (ok?"ok":"no"); stt.textContent = ok ? "맞음" : "틀림";
+      peek.hidden = true;
+    } else {
+      v.className = "verdict peek"; v.textContent = `정답 ${NUMS[q.ans-1]} · 아직 풀지 않은 문항`;
+      stt.className = "state"; stt.textContent = "";
+      peek.hidden = revealAll; peek.textContent = st.peek[q.id] ? "해설 접기" : "해설만 보기";
+    }
+  }
+
+  function tally(){
+    const n = qs.length;
+    let done=0, ok=0;
+    qs.forEach(q => { const c = st.ans[q.id]; if(c){ done++; if(c===q.ans) ok++; } });
+    document.getElementById("score").innerHTML = `정답 <b>${ok}</b> / ${done}문항 · 전체 ${n}` + (done ? ` · ${Math.round(ok/done*100)}%` : "");
+    document.getElementById("mOk").style.width = (ok/n*100)+"%";
+    document.getElementById("mNo").style.width = ((done-ok)/n*100)+"%";
+    const cnt = f => qs.filter(q => match(q,f)).length;
+    ["all","A","B","wrong","todo"].forEach(f => document.getElementById("n-"+f).textContent = cnt(f));
+  }
+  function match(q,f){
+    const c = st.ans[q.id];
+    if(f==="all") return true;
+    if(f==="A"||f==="B") return q.sec===f;
+    if(f==="wrong") return !!c && c!==q.ans;
+    if(f==="todo") return !c;
+    return true;
+  }
+  function applyFilter(){
+    let any=false;
+    ["A","B"].forEach(s => {
+      let secAny=false;
+      qs.filter(q=>q.sec===s).forEach(q => { const m = match(q,filter); q.el.hidden = !m; if(m){secAny=true;any=true;} });
+      document.getElementById("sec"+s).hidden = !secAny;
+    });
+    document.getElementById("empty").hidden = any;
+  }
+
+  const listA = document.getElementById("listA"), listB = document.getElementById("listB");
+  qs.forEach(q => (q.sec==="A"?listA:listB).appendChild(card(q)));
+  qs.forEach(paint); tally(); applyFilter();
+
+  document.querySelectorAll("#seg .chip").forEach(ch => ch.addEventListener("click", () => {
+    filter = ch.dataset.f;
+    document.querySelectorAll("#seg .chip").forEach(x => x.setAttribute("aria-pressed", x===ch ? "true":"false"));
+    applyFilter();
+  }));
+  const br = document.getElementById("btnReveal");
+  br.addEventListener("click", () => {
+    revealAll = !revealAll; br.setAttribute("aria-pressed", revealAll); br.textContent = revealAll ? "해설 모두 접기" : "해설 모두 보기";
+    qs.forEach(paint);
+  });
+  const rs = document.getElementById("btnReset"); let armed=null;
+  rs.addEventListener("click", () => {
+    if(!armed){ rs.textContent = "한 번 더 누르면 초기화"; rs.classList.add("warn"); armed = setTimeout(()=>{armed=null; rs.textContent="다시 풀기"; rs.classList.remove("warn");}, 3000); return; }
+    clearTimeout(armed); armed=null; rs.textContent="다시 풀기"; rs.classList.remove("warn");
+    st = {ans:{}, peek:{}}; save(); qs.forEach(paint); tally(); applyFilter();
+  });
+})();
+</script>

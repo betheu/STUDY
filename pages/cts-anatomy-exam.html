@@ -1,0 +1,341 @@
+<title>심장외과 해부학 예상문제</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700;800&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column; sticky score bar; question cards set off only by a hairline, CPB-line colors (venous blue / arterial ochre) mark the two question styles */
+:root{
+  --bg:#F2F5F4; --surface:#FFFFFF; --sunk:#E8EEEC;
+  --fg:#16201D; --muted:#56635E; --line:#D3DCD8;
+  --accent:#1D4E9E; --accent-soft:#E3EBF8;
+  --ochre:#8A5A0B; --ochre-soft:#F6ECD8;
+  --ok:#17744A; --ok-soft:#E1F2E8;
+  --no:#B02A1F; --no-soft:#FBE6E3;
+  --f-display:"Gothic A1","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1412; --surface:#151D1A; --sunk:#1B2521;
+    --fg:#E3EAE7; --muted:#9AA8A2; --line:#2A3632;
+    --accent:#86A9EE; --accent-soft:#1B2740;
+    --ochre:#E2B45E; --ochre-soft:#2F2615;
+    --ok:#5EC48F; --ok-soft:#14291F;
+    --no:#F08176; --no-soft:#35191A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1412; --surface:#151D1A; --sunk:#1B2521;
+  --fg:#E3EAE7; --muted:#9AA8A2; --line:#2A3632;
+  --accent:#86A9EE; --accent-soft:#1B2740;
+  --ochre:#E2B45E; --ochre-soft:#2F2615;
+  --ok:#5EC48F; --ok-soft:#14291F;
+  --no:#F08176; --no-soft:#35191A;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:780px;margin:0 auto;padding-inline:16px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* masthead */
+.masthead{padding-block:34px 22px;border-bottom:1px solid var(--line);background:var(--surface)}
+.eyebrow{margin:0 0 10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+h1{margin:0;font-family:var(--f-display);font-weight:800;font-size:clamp(26px,5.4vw,36px);line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+h1 .part-no{display:inline-block;font-family:var(--f-mono);font-weight:500;font-size:.5em;vertical-align:.45em;margin-right:10px;padding:2px 8px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.scope{margin:12px 0 0;color:var(--muted);font-size:14px;max-width:64ch}
+.parts{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.parts a,.parts span{font-size:13.5px;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--fg);background:var(--bg)}
+.parts a:hover{border-color:var(--accent);color:var(--accent)}
+.parts .here{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+/* sticky bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;flex-direction:column;gap:10px;padding-block:10px}
+.score-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.score{font-variant-numeric:tabular-nums;font-size:14px;color:var(--muted);white-space:nowrap}
+.score b{font-family:var(--f-display);font-size:20px;color:var(--fg);font-weight:800}
+.meter{flex:1 1 160px;min-width:120px;height:8px;border-radius:99px;background:var(--sunk);overflow:hidden;display:flex}
+.meter i{display:block;height:100%}
+.meter .m-ok{background:var(--ok)}
+.meter .m-no{background:var(--no)}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface);padding:5px 11px;border-radius:999px;font-size:13px;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip .n{font-family:var(--f-mono);font-size:11.5px;margin-left:4px;opacity:.8}
+.act{display:flex;gap:4px}
+.btn-ghost{border:1px solid transparent;background:none;padding:5px 9px;border-radius:8px;font-size:13px;color:var(--muted);cursor:pointer}
+.btn-ghost:hover{color:var(--fg);border-color:var(--line)}
+.btn-ghost.warn{color:var(--no);border-color:var(--no)}
+
+/* brief */
+.brief{margin-top:22px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.brief>summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.brief>summary::-webkit-details-marker{display:none}
+.brief>summary::after{content:"펼치기";font-family:var(--f-mono);font-size:12px;color:var(--muted);font-weight:500}
+.brief[open]>summary::after{content:"접기"}
+.brief .inner{padding:0 16px 16px;display:flex;flex-direction:column;gap:14px}
+.brief h3{margin:4px 0 0;font-family:var(--f-display);font-size:15px}
+.brief ul{margin:0;padding-left:18px}
+.brief li{margin:3px 0}
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:480px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px}
+td.mono{font-family:var(--f-mono);font-size:12px;white-space:nowrap;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted)}
+
+/* sections */
+.sec{margin-top:30px}
+.sec>h2{display:flex;align-items:baseline;gap:10px;margin:0 0 4px;font-family:var(--f-display);font-weight:800;font-size:21px}
+.sec>h2 .k{font-family:var(--f-mono);font-weight:500;font-size:13px;padding:2px 8px;border-radius:6px}
+.sec.A>h2 .k{background:var(--accent-soft);color:var(--accent)}
+.sec.B>h2 .k{background:var(--ochre-soft);color:var(--ochre)}
+.sec>p.lead{margin:0 0 14px;color:var(--muted);font-size:14px;max-width:64ch}
+.list{display:flex;flex-direction:column;gap:14px}
+
+/* question card */
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 16px 14px;border-left-width:3px}
+.q.A{border-left-color:var(--accent)}
+.q.B{border-left-color:var(--ochre)}
+.q-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:8px}
+.qno{font-family:var(--f-mono);font-size:13px;font-weight:500}
+.q.A .qno{color:var(--accent)} .q.B .qno{color:var(--ochre)}
+.topic{font-size:13px;color:var(--muted)}
+.tag{font-size:11.5px;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.tag.hot{border-color:var(--no);color:var(--no)}
+.state{margin-left:auto;font-family:var(--f-mono);font-size:11.5px}
+.state.ok{color:var(--ok)} .state.no{color:var(--no)}
+.stem{margin:0 0 10px;font-weight:600;font-size:16px;line-height:1.6;max-width:66ch}
+.opts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.opt{display:flex;gap:10px;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 12px;cursor:pointer;line-height:1.55;transition:border-color .15s,background-color .15s}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt .num{font-family:var(--f-mono);flex:0 0 auto;color:var(--muted)}
+.opt .txt{min-width:0}
+.opt.is-ans{border-color:var(--ok);background:var(--ok-soft)}
+.opt.is-ans .num{color:var(--ok)}
+.opt.is-wrong{border-color:var(--no);background:var(--no-soft)}
+.opt.is-wrong .num{color:var(--no)}
+.fb{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:10px}
+.verdict{margin:0;font-weight:600}
+.verdict.ok{color:var(--ok)} .verdict.no{color:var(--no)} .verdict.peek{color:var(--muted)}
+.core{margin:0;padding:10px 12px;border-radius:8px;background:var(--sunk);font-size:14.5px}
+.core b{font-family:var(--f-display);font-weight:800;margin-right:6px}
+.ex{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.ex li{display:grid;grid-template-columns:auto auto 1fr;gap:8px;align-items:baseline}
+.ex .num{font-family:var(--f-mono);color:var(--muted)}
+.ex .lab{font-size:11.5px;font-weight:600;padding:0 6px;border-radius:4px;white-space:nowrap}
+.ex .ok .lab{background:var(--ok-soft);color:var(--ok)}
+.ex .no .lab{background:var(--sunk);color:var(--muted)}
+.ex .txt{min-width:0}
+.src{margin:0;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.q-foot{display:flex;justify-content:flex-end;margin-top:8px}
+.empty{padding:22px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--r)}
+footer{margin-block:40px 30px;color:var(--muted);font-size:13px}
+@media (max-width:520px){
+  body{font-size:15px}
+  .score-row{gap:8px 12px}
+  .meter{order:3;flex-basis:100%}
+  .act{margin-left:auto}
+  .seg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
+  .seg::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .q{padding:14px 13px 12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">순환기학 · 이석기 교수님 · 24번 학습부 전반부</p>
+    <h1><span class="part-no">PART 1/3</span>심장외과 해부학 예상문제</h1>
+    <p class="scope">수업(24번 심장외과해부학) + 『의대생을 위한 흉부외과학』 17장 심장의 외과해부학, 18장 심장챔버 분석·위치이상, 42장 관상동맥의 해부학</p>
+    <nav class="parts" aria-label="파트 이동"><span class="here" aria-current="page">① 심장외과 해부학</span><a href="cts-cpb-exam.html">② 인공심폐기 운용</a><a href="cts-congenital-exam.html">③ 선천성 심질환 외과치료</a></nav>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="score-row">
+      <div class="score" id="score" aria-live="polite"></div>
+      <div class="meter" aria-hidden="true"><i class="m-ok" id="mOk"></i><i class="m-no" id="mNo"></i></div>
+      <div class="act">
+        <button class="btn-ghost" id="btnReveal" aria-pressed="false">해설 모두 보기</button>
+        <button class="btn-ghost" id="btnReset">다시 풀기</button>
+      </div>
+    </div>
+    <div class="ctrl">
+      <div class="seg" role="group" aria-label="문항 필터" id="seg">
+        <button class="chip" data-f="all" aria-pressed="true">전체<span class="n" id="n-all"></span></button>
+        <button class="chip" data-f="A" aria-pressed="false">A 교과서·수업<span class="n" id="n-A"></span></button>
+        <button class="chip" data-f="B" aria-pressed="false">B 이해형<span class="n" id="n-B"></span></button>
+        <button class="chip" data-f="wrong" aria-pressed="false">틀린 문제<span class="n" id="n-wrong"></span></button>
+        <button class="chip" data-f="todo" aria-pressed="false">안 푼 문제<span class="n" id="n-todo"></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <details class="brief" id="brief">
+    <summary>출제 범위 · 문항 구성 · 25년 기출 경향</summary>
+    <div class="inner">
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>주제</th><th>교과서</th><th>문항</th></tr></thead>
+        <tbody><tr><td>심장 위치·축, 심낭 내 상호위치</td><td class="mono">p.215–216</td><td class="mono">A1 A2 · B1 B2</td></tr><tr><td>심장골격·중앙섬유체</td><td class="mono">p.216–217</td><td class="mono">A3 · B1</td></tr><tr><td>우심방·좌심방 (표 17-1)</td><td class="mono">p.217–218</td><td class="mono">A4 A5 · B7 B10</td></tr><tr><td>우심실·좌심실 (표 17-2)</td><td class="mono">p.219–221</td><td class="mono">A6 A7 · B3 B6 B9</td></tr><tr><td>대동맥·폐동맥 구분</td><td class="mono">p.221</td><td class="mono">A8</td></tr><tr><td>전도조직 (동결절·코흐 삼각형·히스)</td><td class="mono">p.221–223</td><td class="mono">A9 A10 A11 · B4 B5 B9</td></tr><tr><td>판막 해부 (수업)</td><td class="mono">학습부 p.17–19</td><td class="mono">A16 · B11</td></tr><tr><td>관상동맥 경로·우세성</td><td class="mono">p.437–439</td><td class="mono">A12 · B8</td></tr><tr><td>분절분석·심방위치·우심증</td><td class="mono">p.225–233</td><td class="mono">A13 A14 A15 · B6 B7</td></tr></tbody>
+      </table></div>
+      <div>
+        <h3>25년 기출에서 달라진 점</h3>
+        <ul>
+          <li>이석기 교수님 13문항: 해부 2 · 인공심폐기 3 · 선천성 8.</li>
+          <li>예전: 교과서 문장을 숫자·용어만 바꿔 내는 방식. 25년: <b>"왜 조심하나 · 목적은 · 수술의 두 목표는"</b>처럼 이유·목적·기전을 묻는 방식이 대부분.</li>
+          <li>그래도 정답 근거는 교과서와 학습부 문장에 있음. 25년 퀴즈 21개 항목이 그대로 출제 소재가 됨.</li>
+          <li>25년 문항과의 대응: 25년 해부 2문항(심장골격의 기능, 우심방 안 매끈한 부분과 거친 부분을 가르는 분계릉)은 A3·A4·B10과 같은 개념. 25년 6번(막주위형 VSD 수술 중 코흐 삼각형을 조심하는 이유)은 A10·B4.</li>
+          <li>이 페이지: A 16문항 · B 11문항, 총 27문항</li>
+        </ul>
+      </div>
+      <div class="legend">
+        <span><b style="color:var(--accent)">A</b> 교과서·수업 문장 기반(수치·용어·정의)</span>
+        <span><b style="color:var(--ochre)">B</b> 이해형(이유·목적·기전·상황 적용)</span>
+        <span>태그: 25 기출 · 기출 변형 · 수업 강조 · 교과서만</span>
+      </div>
+    </div>
+  </details>
+
+  <section class="sec A" id="secA">
+    <h2><span class="k">A</span>교과서·수업 기반</h2>
+    <p class="lead">교과서와 학습부 문장을 그대로 확인하는 문항. 수치·용어 말바꾸기에 대비.</p>
+    <div class="list" id="listA"></div>
+  </section>
+  <section class="sec B" id="secB">
+    <h2><span class="k">B</span>이해형</h2>
+    <p class="lead">25년 기출 형식. 구조가 왜 그렇게 생겼는지, 수술을 왜 그렇게 하는지를 묻는 문항.</p>
+    <div class="list" id="listB"></div>
+  </section>
+  <p class="empty" id="empty" hidden>이 필터에 해당하는 문항이 없음.</p>
+
+  <footer>근거: 『의대생을 위한 흉부외과학』(3판) · 순환기학 24·25번 학습부(2025) · 2025 본과 2학년 2학기 순환기학 복원해설. 풀이 기록은 이 브라우저에만 저장됨.</footer>
+</main>
+
+<script>
+const PART = {"key": "cts-p1", "questions": [{"kind": "tb", "topic": "심장의 위치와 축", "src": "교과서 p.215 · 기출 변형", "hi": "", "stem": "심장의 위치와 축에 대한 설명으로 옳은 것은?", "opts": ["심장은 종격동에 위치하며 2/3는 우측, 1/3은 좌측에 존재한다.", "기저부(base)는 심방과 대혈관들로 이루어지는 부위이다.", "장축(long axis)은 방실고랑(atrioventricular sulcus)과 일치하는 선이다.", "단축(short axis)은 비장에서 우측 어깨를 향하는 선이다.", "심첨부(apex)는 우측 어깨 쪽으로 돌출된 심장의 첨부이다."], "ans": 2, "core": "장축 = 비장→우측 어깨, 단축 = 방실고랑. 기저부 = 심방+대혈관, 심첨부 = 위장 하부 쪽 돌출부.", "ex": ["반대임. 1/3이 우측, 2/3가 좌측.", "교과서 정의 그대로임.", "방실고랑과 일치하는 것은 단축임.", "비장→우측 어깨 선은 장축임.", "심첨부는 위장 하부 쪽(좌하방)으로 돌출된 첨부임."]}, {"kind": "tb", "topic": "심낭 내 상호위치 관계", "src": "교과서 p.215–216 · 13·18·19ま", "hi": "자주 기출", "stem": "심낭 내 심방·심실·대혈관의 상호위치 관계에 대한 설명으로 옳은 것은?", "opts": ["상행대동맥은 척추 바로 앞쪽에 얹혀 있는 정중 구조물(midline structure)이다.", "좌심방은 척추 바로 앞에 위치하며 좌우로 납작하고 전후로 길쭉하다.", "우심실 삼각형의 밑변은 횡격막에 접혀 둔각변연(obtuse margin)을 만든다.", "우심실 삼각형의 좌변으로는 우관상동맥이 지나간다.", "폐동맥은 상행대동맥에 비해 오른쪽 뒤쪽에 위치한다."], "ans": 1, "core": "뒤에서 앞으로: 좌심방(척추 앞) → 좌심실 → 상행대동맥(정중) → 앞치마처럼 덮는 우심실 → 왼쪽 앞으로 튀어나온 폐동맥.", "ex": ["교과서 표현 그대로임.", "좌심방은 좌우로 길쭉하고 전후로 납작함.", "밑변은 예각변연(acute margin)을 만들고 예각변연동맥(acute marginal a.)이 지나감.", "좌변은 좌심실과의 경계로 좌전하행동맥(LAD)이 지나감. 우변은 삼첨판륜이 붙은 방실구임.", "폐동맥은 상행대동맥보다 왼쪽 앞쪽으로 튀어나와 있음."]}, {"kind": "tb", "topic": "심장골격", "src": "교과서 p.216–217 · 王ま", "hi": "수업 강조", "stem": "심장골격(cardiac skeleton)에 대한 설명으로 옳은 것은?", "opts": ["폐동맥판막륜과 삼첨판막륜 사이의 섬유연속성이 주성분이다.", "섬유연속성 조직 양쪽 끝의 단단한 비후 부위를 중앙섬유체라 한다.", "중앙섬유체는 좌측 섬유삼각과 막성중격으로 구성된다.", "중앙섬유체는 승모판·삼첨판·대동맥판의 판막륜이 합치는 부분으로 심장골격 중 가장 강한 부위이다.", "판막첨을 지지하지만 판막첨을 심근에 부착시키는 역할은 하지 않는다."], "ans": 4, "core": "심장골격 = 판막첨을 지지하고 심근에 붙여 주는 섬유성 뼈대. 주성분은 대동맥판륜–승모판륜 섬유연속, 가장 강한 곳은 중앙섬유체(우측 섬유삼각 + 막성중격).", "ex": ["주성분은 대동맥판막륜–승모판막륜 사이 섬유연속(aortic-mitral fibrous continuity)임. 삼첨판–폐동맥판은 연속이 없음.", "양쪽 끝 비후 부위는 좌·우 섬유삼각(fibrous trigone)임.", "좌측이 아니라 우측 섬유삼각 + 막성중격임.", "교과서 정의 그대로임.", "판막첨을 지지하면서 심근에 부착시켜 주는 역할을 함."]}, {"kind": "tb", "topic": "우심방의 구조", "src": "교과서 p.217–218", "hi": "", "stem": "우심방에 대한 설명으로 옳은 것은?", "opts": ["부속지(appendage)는 벽이 매끈하며 체정맥 환류가 일어나는 부위이다.", "부속지와 정맥동의 경계를 우심방 외부에서 부르는 이름이 우심방분계릉(crista terminalis)이다.", "상대정맥 입구에는 유스타키오 판막(Eustachian valve)이 있다.", "관상정맥동 입구에는 테베시우스 판막(Thebesian valve)이 있다.", "우심방 쪽 심방중격면은 일차중격(septum primum)으로 이루어진다."], "ans": 4, "core": "우심방 = 육주 많은 부속지 + 매끈한 정맥동. 경계선은 안쪽에서 분계릉, 바깥쪽에서 분계구. 판막은 IVC(유스타키오)·CS(테베시우스)에만 있고 SVC엔 없음.", "ex": ["반대임. 부속지는 육주형성이 잘 되어 있고, 매끈한 벽의 정맥동(sinus venarum)이 체정맥 환류 부위임.", "내부에서 부르면 분계릉(crista), 외부에서 부르면 분계구(sulcus terminalis)임. 크리스탈은 안에, 서커스는 밖에.", "유스타키오 판막은 하대정맥 입구에 있음. 중력 방향으로 들어오는 상대정맥 입구엔 뚜렷한 판막이 없음.", "교과서 내용 그대로임.", "우심방 쪽은 이차중격(septum secundum), 좌심방 쪽이 일차중격임."]}, {"kind": "tb", "topic": "우심방 vs 좌심방 (표 17-1)", "src": "교과서 p.218 표 17-1 · 大王ま", "hi": "제일 중요", "stem": "형태학적 좌심방(morphologic LA)의 특징으로 옳은 것은?", "opts": ["하대정맥이 항상(constant) 유입된다.", "심방중격면이 일차중격(septum primum)으로 이루어진다.", "부속지가 넓고 삼각형(broad, triangular)이다.", "빗살근(pectinate muscle)이 많고 길다.", "동방결절과 방실결절을 가진다."], "ans": 2, "core": "표 17-1은 '우심방 쪽을 기준으로' 외우면 나머지가 좌심방. RA: IVC constant, broad triangular, 빗살근 many·long, 분계릉 present, septum secundum, SA·AV node.", "ex": ["하대정맥 constant는 우심방 특징임. 좌심방은 폐정맥(variable)임.", "좌심방 쪽 중격면은 일차중격임. 교과서 표 그대로.", "넓고 삼각형인 부속지는 우심방임. 좌심방은 좁고 손가락 모양(narrow, finger-like).", "빗살근이 많고 긴 것은 우심방. 좌심방은 few이고 부속지에만 국한됨.", "전도계는 우심방에만 있음. 좌심방은 None."]}, {"kind": "tb", "topic": "우심실 육주 구조", "src": "교과서 p.219 · 王ま 17·18·19ま", "hi": "자주 기출", "stem": "우심실의 육주 구조에 대한 설명으로 옳은 것은?", "opts": ["심실중격 대부분을 차지하는 Y자 육주에서 Y의 기둥은 상심실릉(crista supraventricularis)이다.", "중격연주의 후연장분지(posterior limb)는 전상방으로 뻗어 폐동맥을 지지한다.", "조절대(moderator band)에서는 삼첨판의 후유두근이 기시한다.", "심실누두부주름(VIF)은 삼첨판과 폐동맥판을 이어 섬유연속성을 만든다.", "중격연주의 후연장분지는 삼첨판 내측유두근(muscle of Lancisi)과 중격판막첨의 건삭들을 내고, 삼첨판과 대동맥판을 분리한다."], "ans": 5, "core": "Y자 기둥 = 중격연주(trabecula septomarginalis), Y자 두 가지 = 상심실릉. 전연장분지 → 폐동맥 지지, 후연장분지 → Lancisi 유두근·건삭. 조절대 → 전유두근.", "ex": ["기둥은 중격연주, 두 가지가 상심실릉임. 한글 용어까지 자주 나옴.", "전상방으로 뻗어 폐동맥을 지지하는 것은 전연장분지(anterior limb)임.", "조절대에서는 전유두근(anterior papillary m.)이 기시함.", "VIF는 삼첨판과 폐동맥판을 '분리'하는 근구조물임.", "교과서 내용 그대로임."]}, {"kind": "tb", "topic": "우심실 vs 좌심실 (표 17-2)", "src": "교과서 p.220–221 표 17-2 · 王ま20ま", "hi": "자주 기출", "stem": "형태학적 우심실과 좌심실의 비교로 옳은 것은?", "opts": ["우심실의 육주는 가늘고 많으며 경사져 있다.", "좌심실의 유두근은 중격과 자유벽 모두에서 기시한다.", "방실판막과 반월판막 사이의 섬유연속성은 좌심실에만 존재한다.", "우심실은 두 개의 관상동맥으로부터 혈류를 공급받는다.", "좌심실에는 누두부가 잘 발달되어 있다."], "ans": 3, "core": "우심실: 육주 coarse·few·straight, 유두근 numerous·small·중격+자유벽, 방실판막첨 3개, 누두부 well developed, 섬유연속 없음, 관상동맥 1개. 좌심실은 모두 반대.", "ex": ["가늘고 많고 경사진 육주는 좌심실. 우심실은 굵고 적고 곧음.", "좌심실 유두근은 크고 2개이며 자유벽에서만 기시함.", "좌심실은 승모판–대동맥판 섬유연속이 있고, 우심실은 누두부(VIF)가 끼어 연속이 없음.", "우심실은 단일(우관상동맥), 좌심실이 이중(LAD + LCx)임.", "누두부는 우심실에 잘 발달되어 있고 정상 좌심실엔 없음."]}, {"kind": "tb", "topic": "대동맥과 폐동맥의 구분", "src": "교과서 p.221 · 20·25Pま", "hi": "수업 강조", "stem": "복잡 심기형 수술 중 대동맥과 폐동맥을 구분하는 가장 확실한 근거는?", "opts": ["관상동맥이 기시하는 혈관이 대동맥이다.", "상완두동맥(brachiocephalic arteries)이 기시하는 혈관이 대동맥이다.", "더 굵은 혈관이 대동맥이다.", "더 앞쪽에 있는 혈관이 폐동맥이다.", "판막첨이 세 개인 혈관이 대동맥이다."], "ans": 2, "core": "대동맥의 '확실한' 특징은 상완두동맥 분지. 폐동맥은 어떤 경우에도 상완두동맥을 내지 않음.", "ex": ["드물게 관상동맥이 폐동맥에서 나올 수 있어 확실한 기준이 아님.", "교과서가 명시한 '확실한 특징'임.", "태생 순환 영향으로 소아에선 폐동맥이 더 클 수도 있음(수업).", "완전대혈관전위에선 대동맥이 앞쪽에 있음. 위치로는 판정 불가.", "두 반월판 모두 판막첨이 3개이고, 대동맥판은 이첨판 기형도 있음."]}, {"kind": "tb", "topic": "동결절의 위치", "src": "교과서 p.221–222 · 20Pま", "hi": "", "stem": "동결절(sinus node)에 대한 설명으로 옳은 것은?", "opts": ["우심방분계릉(crista terminalis) 안쪽의 심내막 바로 밑에 위치한다.", "코흐 삼각형 안에 위치한다.", "Waterston's groove 안에 위치한다.", "크기는 약 1 × 0.5 × 0.1 mm로 매우 작다.", "우심방분계구상에서 상대정맥과 우심방부속지 접합부의 전측방, 심외막 바로 밑에 표재성으로 존재한다."], "ans": 5, "core": "동결절 = 분계구(sulcus terminalis) 상단, SVC–우심방부속지 접합부 전측방, 심외막 직하 '표재성'. 그래서 삽관·절개에 잘 다침.", "ex": ["심내막 쪽이 아니라 심외막 바로 밑, 분계'구'(바깥 홈) 위에 있음.", "코흐 삼각형 안에 있는 것은 방실결절임.", "Waterston's groove는 좌·우심방 사이 홈으로 승모판 수술 시 좌심방 접근 경로임. 동결절은 terminal groove에 있음.", "약 15 × 5 × 1.5 mm임.", "교과서 내용 그대로임."]}, {"kind": "tb", "topic": "코흐 삼각형", "src": "교과서 p.222 · 19·20·25Pま", "hi": "수업 강조", "stem": "코흐 삼각형(Koch's triangle)의 세 변으로 옳은 조합은?", "opts": ["삼첨판륜 – 난원와 – 토다로건", "승모판륜 – 관상정맥동 입구 – 토다로건", "삼첨판륜 – 관상정맥동 입구 – 토다로건", "삼첨판륜 – 관상정맥동 입구 – 우심방분계릉", "관상정맥동 입구 – 난원와 – 유스타키오판막"], "ans": 3, "core": "코흐 삼각형 = 삼첨판륜 + 관상정맥동 입구 + 토다로건. 안에 방실결절 → 수술 중 방실결절 위치를 찾는 표지.", "ex": ["난원와는 경계가 아님(기출 오답 단골).", "우심방 구조물이라 승모판륜은 관계없음.", "교과서 정의 그대로임.", "분계릉은 부속지와 정맥동의 경계선임.", "토다로건은 유스타키오·테베시우스 판막 접합부에서 삼첨판 전방-중격 교련까지 뻗은 섬유 구조이고, 판막 자체는 변이 아님."]}, {"kind": "tb", "topic": "히스줄기와 각", "src": "교과서 p.222–223", "hi": "", "stem": "심장 전도조직에 대한 설명으로 옳은 것은?", "opts": ["결절간 경로(internodal pathways)의 해부학적 위치는 명확히 규명되어 있다.", "히스줄기는 중앙섬유체 부근을 관통하며, 심방의 전기활동을 심실로 전달하는 유일한 통로이다.", "우각은 얇은 부채 모양으로 심내막직하층에 넓게 퍼진다.", "좌각은 전·후 두 개의 섬유속으로만 갈라진다.", "히스줄기는 근성심실중격과 맞닿기 전에 이미 우각과 좌각으로 나뉜다."], "ans": 2, "core": "방실 사이는 섬유골격이 절연 → 전기가 넘어가는 길은 중앙섬유체를 뚫는 히스줄기 하나뿐(관통각·무지각).", "ex": ["결절간 경로는 존재 여부·위치가 아직 명확하지 않음.", "교과서 내용 그대로임.", "부채 모양으로 퍼지는 것은 좌각. 우각은 가늘고 긴 코드 같은 구조.", "좌각은 전·중·후 세 섬유속으로 갈라짐.", "근성중격 능선과 맞닿은 뒤에 우각·좌각으로 나뉨. 그 전까지를 무지각(nonbranching bundle)이라 함."]}, {"kind": "tb", "topic": "관상동맥의 우세성", "src": "교과서 p.438–439 (42장)", "hi": "", "stem": "관상동맥의 우세성(dominance)에 대한 설명으로 옳은 것은?", "opts": ["우세성은 좌심실 전벽에 혈류를 공급하는 동맥으로 결정한다.", "좌측 우세성은 좌전하행동맥이 십자부를 넘어 후하행동맥을 낼 때를 말한다.", "균형 순환(balanced circulation)은 후하행동맥이 없는 경우를 말한다.", "방실결절동맥은 약 90%에서 좌회선동맥에서 기시한다.", "우측 우세성은 우관상동맥이 심장 십자부를 지나 후하행동맥과 좌심실분지들을 낼 때이며 약 90%이다."], "ans": 5, "core": "우세성 = 좌심실 후면 + 심실중격 뒤 1/3을 누가 먹이나(= 십자부 넘어 PDA를 누가 내나). 우측 90%, 좌측(LCx) 10%.", "ex": ["전벽·측벽은 항상 좌관상동맥 몫이라 기준이 될 수 없음.", "좌측 우세성은 좌회선동맥(LCx)이 십자부를 넘는 경우임.", "균형 순환은 후하행동맥이 우관상동맥과 좌회선동맥 두 곳에서 오는 경우임.", "방실결절동맥은 약 90%에서 우관상동맥에서 기시함.", "교과서 정의 그대로임."]}, {"kind": "tb", "topic": "심방위치 분석", "src": "교과서 p.225–227", "hi": "", "stem": "심방위치(atrial situs) 분석에 대한 설명으로 옳은 것은?", "opts": ["복부장기 위치 분석이 흉부 기관지 형태 분석보다 정확하다.", "모호위(situs ambiguus)는 정위의 거울상을 말한다.", "무비증(asplenia)에서는 두 심방 모두 좌심방 모양을 보이는 경향이 있다.", "심방위치 확인에 가장 정확한 방법은 수술·부검 시 심방부속지의 형태를 직접 확인하는 것이다.", "심혈관조영술에서 상대정맥이 유입되는 쪽을 우심방으로 정한다."], "ans": 4, "core": "정확도: 복부장기 < 흉부(기관지) < IVC 유입 확인 < 부속지 형태 직접 확인(가장 정확).", "ex": ["비관혈적 방법 중 흉부 기관지 분석이 복부장기보다 정확함.", "정위의 거울상은 역위(inversus). 모호위는 비대칭성을 잃은 상태.", "무비증은 우심방이성(right isomerism), 다비증이 좌심방이성 경향.", "교과서 내용 그대로임.", "하대정맥(IVC)이 유입되는 쪽을 우심방으로 정함."]}, {"kind": "tb", "topic": "우심증", "src": "교과서 p.232–233 · 25Pま", "hi": "수업 강조", "stem": "우심증(dextrocardia)에 대한 설명으로 옳은 것은?", "opts": ["심장이 흉곽 우측에 있으면 심첨부 방향과 관계없이 우심증이다.", "선천성 수정대혈관전위에서는 우심증이 동반되지 않는다.", "거울상 우심증은 반드시 단심실을 동반한다.", "심장이 흉곽 바깥에 있는 것을 중심증(mesocardia)이라 한다.", "정상 심장에서 심첨부만 우측으로 이동한 형태(dextroversion)도 우심증의 한 형태이다."], "ans": 5, "core": "우심증 = 정의상 '심첨부가 우측을 향하는' 심장. 흔한 4형: 거울상, 정상심장의 dextroversion, 수정대혈관전위, 단심실.", "ex": ["위치가 아니라 심첨부 방향으로 정의함.", "수정대혈관전위의 우심증도 흔한 4형에 포함됨.", "거울상 우심증과 단심실 우심증은 별개 형태임.", "흉곽 바깥은 이소심장(ectopia cordis). 중심증은 흉곽 중간에 위치.", "교과서가 제시한 흔한 4형 중 하나임."]}, {"kind": "tb", "topic": "분절분석 부호", "src": "교과서 p.230", "hi": "교과서만", "stem": "Van Praagh 분절분석법에서 {S, D, D}로 표기되는 심장은?", "opts": ["완전대혈관전위(complete TGA)", "정위 상태의 정상심장", "역위 상태의 정상심장(거울상)", "수정대혈관전위(corrected TGA)", "역위 상태의 완전대혈관전위"], "ans": 1, "core": "부호 = {심방위치, 심실루프, 대동맥판의 폐동맥판에 대한 관계}. S 정위, D-loop 정상 심실, 대동맥이 폐동맥 우측 전방(D-transposition) → 완전 TGA.", "ex": ["심방 정위·D-loop에 대동맥이 우측 전방에 있는 D-TGA임.", "정상심장은 {S, D, S}. 셋째가 S(대동맥판이 폐동맥판 우측 후방).", "거울상 정상심장은 {I, L, I}.", "수정대혈관전위는 {S, L, L}.", "역위 상태 완전대혈관전위는 {I, L, L}."]}, {"kind": "tb", "topic": "판막의 해부 (수업)", "src": "24번 학습부 p.17–19 · 25Pま", "hi": "수업 강조", "stem": "수업에서 다룬 판막 해부에 대한 설명으로 옳은 것은?", "opts": ["대동맥판은 정상적으로 2개의 판막첨(cusp)으로 구성된다.", "대동맥판에는 건삭이 있어 나이가 들어도 탄력이 잘 유지된다.", "삼첨판륜은 잘 늘어나지 않아 성형술에서 ring을 거의 쓰지 않는다.", "승모판은 대동맥 쪽(전엽)과 벽 쪽(후엽) 2개의 판막첨으로 구성되고 전엽이 더 크다.", "Sinotubular junction의 모양은 대동맥판 기능과 무관하다."], "ans": 4, "core": "대동맥판 3 cusp(건삭 없음 → 나이 들며 역류), 승모판 2엽(A1–3, P1–3, 전엽 큼), 삼첨판 3엽·잘 늘어남 → annuloplasty ring.", "ex": ["정상은 3개. 이첨판(bicuspid)은 선천 기형이라 교수님이 3개를 강조함.", "대동맥판엔 건삭이 없어 탄력이 떨어지기 쉽고 나이가 들면 경한 역류가 흔함.", "삼첨판은 잘 늘어나 ring으로 판륜을 줄여 주는 성형술(annuloplasty)을 많이 함.", "수업 내용 그대로임.", "Sinotubular junction이 잘 유지되어야 판막이 제대로 닫힘. 여기가 늘어나면 AR이 생김."]}, {"kind": "ud", "topic": "대동맥판–승모판 연속의 의미", "src": "교과서 p.215–216 + 수업", "hi": "", "stem": "대동맥판과 승모판이 섬유성으로 직접 이어져 있는 구조(aorto-mitral continuity)에서 도출되는 의미로 가장 적절한 것은?", "opts": ["좌심실 입·출구가 근성 구조물로 분리되어 낮은 압력으로 혈류를 훑어내기에 적합해진다.", "대동맥판을 떼어 내도 좌심실 골격 유지에는 영향이 없다.", "좌심실에 누두부(infundibulum)가 잘 발달해 있다는 근거가 된다.", "승모판에 생긴 감염성 심내막염이 대동맥판 쪽으로 쉽게 번질 수 있다.", "삼첨판과 폐동맥판 사이에도 같은 연속이 존재함을 뜻한다."], "ans": 4, "core": "좌심실엔 누두부가 없어 두 판막이 섬유로 맞붙음 → '유리컵에 빨대'처럼 유입·유출이 효율적이고, 한 판막의 감염이 옆 판막·섬유골격으로 파급되는 통로도 됨.", "ex": ["근성 구조물(VIF)이 끼어 '구부린 원통'이 되는 것은 우심실 이야기임.", "수업: 감염된 대동맥판을 뜯어내면 연속이 소실돼 골격이 무너지고 심부전 위험.", "연속이 존재한다는 것 자체가 좌심실에 누두부가 없다는 뜻임.", "수업: 약물 남용 환자의 심내막염이 승모판에 생겨도 대동맥판까지 퍼질 수 있음.", "우심실에선 VIF 때문에 삼첨판–폐동맥판이 떨어져 있음(discontinuity)."]}, {"kind": "ud", "topic": "심실누두부주름의 기능", "src": "교과서 p.216, 219", "hi": "", "stem": "우심실에서 심실누두부주름(VIF)이 삼첨판과 폐동맥판 사이에 끼어 두 판막이 떨어져 있는 구조가 갖는 의미로 가장 적절한 것은?", "opts": ["폐동맥이 대동맥의 오른쪽 뒤로 밀려나 대동맥을 보호한다.", "우심실 입·출구가 긴 원통을 구부린 모양이 되어 낮은 압력으로 혈류를 훑어내기에 적합해진다.", "우심실 수축력을 높여 체순환 압력을 감당할 수 있게 한다.", "삼첨판의 감염이 폐동맥판으로 쉽게 번지는 통로가 된다.", "우심실을 혈액 저장보다 강한 박출 펌프에 특화시킨다."], "ans": 2, "core": "좌심실 = 고압 펌프(유리컵+빨대), 우심실 = 저압 도관(구부린 원통). 구조가 기능을 설명한다는 것이 이 단원의 본질.", "ex": ["폐동맥은 오히려 대동맥보다 왼쪽 앞쪽으로 튀어나옴.", "교과서 설명 그대로임.", "우심실은 저압 구조로, 체순환 압력용 설계가 아님.", "판막이 떨어져 있으니 오히려 직접 파급 통로가 아님.", "우심실의 주 역할은 reservoir(수업)이고 강한 펌프는 좌심실임."]}, {"kind": "ud", "topic": "우심실 = reservoir", "src": "수업 24번 + 교과서 p.219", "hi": "수업 강조", "stem": "수업에서 우심실의 주된 역할을 reservoir로 설명하였다. 이 관점과 가장 잘 맞는 설명은?", "opts": ["우심실은 굵은 육주가 발달하고 잘 늘어나 체정맥 환류를 담아 두며, 기능이 떨어지면 부종·간울혈이 먼저 나타난다.", "우심실벽이 좌심실벽보다 3~6배 두껍다.", "우심실은 원추형으로 비틀어 짜는(twisting) 수축을 한다.", "우심실 입구와 출구는 섬유연속되어 혈액이 빠르게 빠져나간다.", "우심실은 크고 두 개뿐인 유두근을 가진다."], "ans": 1, "core": "우심실은 짜내는 펌프보다 '모아 두는 방'. 그래서 벽은 얇고 육주는 굵고, 실패하면 뒤(체정맥)로 밀려 부종·간비대.", "ex": ["수업·교과서 내용을 합친 설명임.", "반대임. 좌심실벽이 우심실벽의 3~6배.", "비틀어 짜서 와류를 만들며 박출하는 것은 좌심실(수업).", "섬유연속이 있는 쪽은 좌심실임.", "크고 두 개뿐인 유두근은 좌심실. 우심실은 작고 많음."]}, {"kind": "ud", "topic": "VSD 봉합 후 방실차단", "src": "교과서 p.222, 273 그림 22-2 · 25기출 변형", "hi": "기출 변형", "stem": "3개월 남아의 막주위형 VSD를 우심방 접근으로 패치 봉합한 직후 완전방실차단이 생겼다. 가장 가능성이 높은 손상 부위와 그 이유로 옳은 것은?", "opts": ["분계구 상단 – 동결절이 있어서", "결손의 전상방 변연 – 좌각이 퍼지는 곳이어서", "결손의 후하측 변연 – 코흐 삼각형 첨부에서 중앙섬유체를 뚫고 내려오는 히스줄기가 지나는 곳이어서", "관상정맥동 입구 – 테베시우스 판막이 있어서", "조절대 – 전유두근이 기시하는 곳이어서"], "ans": 3, "core": "방실결절(코흐 삼각형) → 히스줄기(중앙섬유체 관통) → 막주위형 결손의 후하측 변연. 이 가장자리를 깊게 뜨면 완전방실차단.", "ex": ["동결절 손상은 서맥·동기능부전이지 방실차단의 전형이 아님.", "좌각은 좌심실 쪽 심내막하로 퍼짐. 우심방 접근 패치 봉합 부위가 아님.", "교과서 그림 22-2 설명: 결손 후하측 변연으로 전도로가 통과하므로 조심.", "관상정맥동 입구는 코흐 삼각형의 한 변이지만 방실차단의 직접 원인 부위가 아님.", "조절대 손상은 우각 전도 이상과 관계되며 완전방실차단의 설명이 아님."]}, {"kind": "ud", "topic": "삽관 후 서맥", "src": "교과서 p.221–222 · 수업", "hi": "", "stem": "개심술 중 상대정맥–우심방 접합부 근처에 캐뉼라를 넣고 우심방을 절개한 뒤, 수술 후 동기능부전(서맥)이 생겼다. 손상 구조물과 해부학적 이유로 가장 적절한 것은?", "opts": ["동결절 – 분계구 상단(SVC와 우심방부속지 접합부 전측방)의 심외막 바로 밑에 표재성으로 있어서", "방실결절 – 코흐 삼각형 안에 있어서", "히스줄기 – 막성중격을 관통해서", "좌각 – 심내막하로 넓게 퍼져 있어서", "동결절 – 심근 깊숙이 있어 봉합 바늘이 닿아서"], "ans": 1, "core": "동결절은 '겉에' 있음. SVC 삽관·우심방 절개 선을 잡을 때 피해야 하는 이유(교과서 그림 17-7의 안전 절개 방향).", "ex": ["교과서 위치 설명 그대로임.", "방실결절 손상은 방실차단으로 나타남.", "히스줄기 손상은 방실차단임.", "좌각은 좌심실 쪽 구조로 우심방 조작과 관계없음.", "심외막 직하 표재성이라 오히려 겉에서 다치기 쉬움."]}, {"kind": "ud", "topic": "심실의 형태학적 판정", "src": "교과서 p.220–221, 228 · 수업", "hi": "수업 강조", "stem": "수정대혈관전위처럼 심실 배치가 뒤바뀐 선천성 심기형에서 각 심실이 형태학적으로 어느 심실인지 판정할 때 가장 적절한 근거는?", "opts": ["심실벽이 더 두꺼운 쪽을 좌심실로 판정한다.", "심첨부에 더 가깝게 붙은 방실판막(삼첨판)과 거친 육주가 있는 쪽을 우심실로 판정한다.", "대동맥과 연결된 심실을 좌심실로 판정한다.", "흉곽 오른쪽에 있는 심실을 우심실로 판정한다.", "심장초음파에서 더 크게 보이는 쪽을 좌심실로 판정한다."], "ans": 2, "core": "두께·연결·위치는 병태에 따라 변하는 '기능'. 판정은 변하지 않는 '형태'(방실판막 부착 높이, 육주, 누두부)로 함. 방실판막은 심실을 따라감.", "ex": ["체순환을 맡은 형태학적 우심실은 두꺼워짐. 두께로 판정하면 틀림(수업).", "삼첨판이 승모판보다 심첨부 쪽으로 낮게 붙음(수업), 우심실은 coarse trabeculation.", "수정대혈관전위에선 형태학적 우심실이 대동맥과 연결됨.", "역위·수정전위에선 좌우가 바뀜.", "크기는 병태에 따라 달라짐."]}, {"kind": "ud", "topic": "심방 판정 = 부속지", "src": "교과서 p.217–218, 227 · 25Pま", "hi": "수업 강조", "stem": "심방의 좌우를 판정할 때 부속지(appendage)와 빗살근 분포가 가장 신뢰할 만한 기준이 되는 이유로 가장 적절한 것은?", "opts": ["부속지 모양은 혈류 방향에 따라 쉽게 바뀌기 때문이다.", "부속지는 심장초음파로만 확인할 수 있기 때문이다.", "좌심방에만 부속지가 있기 때문이다.", "부속지 안에 전도계가 있기 때문이다.", "상대정맥·관상정맥동·폐정맥의 연결은 이상연결 등으로 변이(variable)가 있지만, 부속지 모양과 빗살근 분포는 심방 고유의 형태 특징이기 때문이다."], "ans": 5, "core": "정맥 연결은 '어디로 들어오느냐'라서 기형에서 흔히 바뀜. 부속지·빗살근은 심방 자체의 형태라 바뀌지 않음 → 판정 기준.", "ex": ["형태가 고정적이기 때문에 기준이 됨.", "수술·부검 시 직접 확인이 가장 정확한 방법임.", "양쪽 심방 모두 부속지가 있음(넓은 삼각형 vs 좁은 손가락 모양).", "전도계는 부속지가 아니라 분계구·코흐 삼각형에 있음.", "표 17-1에서 SVC·CS·폐정맥은 variable로 표시됨. 교과서도 부속지 확인이 가장 정확하다고 함."]}, {"kind": "ud", "topic": "우세성과 경색 부위", "src": "교과서 p.438–439 · 수업", "hi": "", "stem": "우측 우세성(right dominance) 환자에서 우관상동맥이 심장 십자부(crux) 직전에서 완전히 막혔다. 예상되는 소견으로 가장 적절한 것은?", "opts": ["좌심실 후면과 심실중격 뒤쪽 1/3의 허혈, 그리고 방실차단 가능성", "좌심실 전벽과 심첨부 경색", "좌심실 측벽만의 경색", "동결절 허혈에 의한 동정지만 발생", "우심실 누두부 경색"], "ans": 1, "core": "우측 우세성에선 십자부 이후 RCA가 PDA·방실결절동맥·좌심실 후측방분지를 냄 → 막히면 하후벽·중격 뒤 1/3·방실결절이 함께 위험.", "ex": ["수업: RCA가 막혀도 좌심실 경색이 가능. 방실결절동맥은 십자부에서 기시.", "전벽·심첨부는 LAD 영역임.", "측벽은 LCx(둔각모서리분지) 영역임.", "동결절 분지는 RCA 근위부에서 나와 십자부 직전 폐색으론 보존됨.", "누두부 분지는 RCA 첫 분지라 근위부임."]}, {"kind": "ud", "topic": "조절대의 의미", "src": "교과서 p.219, 223 · 25Pま", "hi": "수업 강조", "stem": "조절대(moderator band)가 임상적으로 중요한 이유로 가장 적절한 것은?", "opts": ["삼첨판 후유두근이 기시해 수축기 역류를 막기 때문이다.", "심장골격의 일부로 판막륜을 지지하기 때문이다.", "우각의 일부가 지나가며, 중격에 도달한 전기자극을 자유벽(전유두근)으로 빠르게 전달하는 지름길이기 때문이다.", "좌심실 유출로를 이루기 때문이다.", "방실결절이 위치하는 곳이기 때문이다."], "ans": 3, "core": "조절대 = 중격연주 → 전유두근으로 건너가는 육주 다리. 우각이 이 다리를 타고 건너가 삼첨판 유두근 수축 타이밍을 맞춤.", "ex": ["조절대에서 기시하는 것은 전유두근임.", "심장골격은 섬유 구조이고 조절대는 근육 육주임.", "교과서·수업 공통 설명임.", "우심실 구조물임.", "방실결절은 우심방 코흐 삼각형 안에 있음."]}, {"kind": "ud", "topic": "진정한 심방중격", "src": "교과서 p.217 · 25기출(분계릉 발생) 연장", "hi": "교과서만", "stem": "심방중격을 절개하거나 천자할 때 난원와(fossa ovalis) 부위를 이용하는 해부학적 이유로 가장 적절한 것은?", "opts": ["난원와 부위에 동결절이 없기 때문이다.", "난원와는 섬유골격의 일부라 봉합이 잘 되기 때문이다.", "이차중격(난원와연 주변)은 심방 지붕이 함입(invagination)되어 생긴 주름이라 뚫으면 심장 바깥이 될 수 있고, 진정한 심방중격은 난원와연 일부와 일차중격으로 이루어진 작은 부위이기 때문이다.", "난원와는 좌심방 쪽에서 이차중격으로 덮여 있기 때문이다.", "난원와에 관상정맥동이 열리기 때문이다."], "ans": 3, "core": "보이는 중격 전체가 '벽'이 아님. 이차중격은 바깥 벽이 접혀 들어온 것이라, 진짜 좌우를 가르는 부분은 난원와(일차중격) 주변의 작은 영역뿐.", "ex": ["동결절이 없는 곳은 많음. 핵심 이유가 아님.", "난원와는 섬유골격이 아니라 얇은 일차중격 판막임.", "교과서 p.217 내용 그대로임.", "좌심방 쪽 중격면은 일차중격임.", "관상정맥동은 코흐 삼각형 쪽에 열림."]}, {"kind": "ud", "topic": "AR의 조기 수술", "src": "24번 학습부 p.17 · 25Pま", "hi": "수업 강조", "stem": "판막질환 수술 적응증은 보통 증상 발현이지만, 수업에서 대동맥판 폐쇄부전(AR)은 증상이 없어도 빨리 수술해야 한다고 강조하였다. 그 근거로 가장 적절한 것은?", "opts": ["관상동맥 관류는 주로 이완기에 일어나는데, AR에서는 이완기 대동맥압이 떨어져 관상동맥 혈류가 줄고 돌연사 위험이 있기 때문이다.", "대동맥판에 건삭이 있어 쉽게 끊어지기 때문이다.", "AR은 우심실 용적과부하를 먼저 일으키기 때문이다.", "대동맥판에는 막성 성분이 없어 석회화가 빠르기 때문이다.", "AR은 대부분 류마티스성이라 재발이 흔하기 때문이다."], "ans": 1, "core": "관상동맥은 이완기에 대동맥 뿌리압으로 채워짐. AR = 이완기 압이 새어 나감 → 심근 관류 저하 → 증상 전에도 돌연사.", "ex": ["수업 검안 추가 설명 그대로임.", "대동맥판엔 건삭이 없음.", "AR은 좌심실 용적과부하임.", "수업: AV·PV는 막성 성분이라 혈류 방해가 적다고 설명함. 이 선지는 근거가 아님.", "수업: 예전엔 류마티스성 승모판 질환이 많았지만 요즘은 대동맥판 질환이 더 흔해지는 추세. 조기 수술 근거와 무관."]}]};
+(function(){
+  const KEY = "cts-quiz-" + PART.key;
+  const NUMS = ["①","②","③","④","⑤"];
+  let st = {ans:{}, peek:{}};
+  try{ const raw = localStorage.getItem(KEY); if(raw){ const p = JSON.parse(raw); if(p && p.ans) st = {ans:p.ans||{}, peek:p.peek||{}}; } }catch(e){}
+  const save = () => { try{ localStorage.setItem(KEY, JSON.stringify(st)); }catch(e){} };
+
+  let revealAll = false, filter = "all";
+  const qs = PART.questions;
+  let a=0,b=0;
+  qs.forEach((q,i)=>{ q.id = "q"+i; q.label = q.kind==="tb" ? "A"+(++a) : "B"+(++b); q.sec = q.kind==="tb" ? "A":"B"; });
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  function card(q){
+    const el = document.createElement("article");
+    el.className = "q " + q.sec; el.id = q.id;
+    const tags = q.hi ? `<span class="tag${/25|기출|제일/.test(q.hi)?" hot":""}">${esc(q.hi)}</span>` : "";
+    el.innerHTML = `
+      <div class="q-head"><span class="qno">${q.label}</span><span class="topic">${esc(q.topic)}</span>${tags}<span class="state"></span></div>
+      <p class="stem">${esc(q.stem)}</p>
+      <ol class="opts">${q.opts.map((o,i)=>`<li><button class="opt" data-i="${i+1}"><span class="num">${NUMS[i]}</span><span class="txt">${esc(o)}</span></button></li>`).join("")}</ol>
+      <div class="fb" hidden>
+        <p class="verdict" aria-live="polite"></p>
+        <p class="core"><b>본질</b>${esc(q.core)}</p>
+        <ul class="ex">${q.ex.map((e,i)=>`<li class="${i+1===q.ans?"ok":"no"}"><span class="num">${NUMS[i]}</span><span class="lab">${i+1===q.ans?"정답":"오답"}</span><span class="txt">${esc(e)}</span></li>`).join("")}</ul>
+        <p class="src">근거 · ${esc(q.src)}</p>
+      </div>
+      <div class="q-foot"><button class="btn-ghost peek">해설만 보기</button></div>`;
+    el.querySelectorAll(".opt").forEach(btn => btn.addEventListener("click", () => {
+      if(st.ans[q.id]) return;
+      st.ans[q.id] = +btn.dataset.i; save(); paint(q); tally(); applyFilter();
+    }));
+    el.querySelector(".peek").addEventListener("click", () => {
+      st.peek[q.id] = !st.peek[q.id]; save(); paint(q);
+    });
+    q.el = el;
+    return el;
+  }
+
+  function paint(q){
+    const el = q.el, chosen = st.ans[q.id], show = !!chosen || !!st.peek[q.id] || revealAll;
+    const fb = el.querySelector(".fb"), v = el.querySelector(".verdict"), stt = el.querySelector(".state"), peek = el.querySelector(".peek");
+    el.querySelectorAll(".opt").forEach(btn => {
+      const i = +btn.dataset.i;
+      btn.disabled = !!chosen;
+      btn.classList.toggle("is-ans", show && i===q.ans);
+      btn.classList.toggle("is-wrong", !!chosen && i===chosen && chosen!==q.ans);
+      btn.setAttribute("aria-pressed", chosen===i ? "true" : "false");
+    });
+    fb.hidden = !show;
+    if(chosen){
+      const ok = chosen===q.ans;
+      v.className = "verdict " + (ok?"ok":"no");
+      v.textContent = ok ? "정답." : `오답. 고른 답 ${NUMS[chosen-1]}, 정답 ${NUMS[q.ans-1]}.`;
+      stt.className = "state " + (ok?"ok":"no"); stt.textContent = ok ? "맞음" : "틀림";
+      peek.hidden = true;
+    } else {
+      v.className = "verdict peek"; v.textContent = `정답 ${NUMS[q.ans-1]} · 아직 풀지 않은 문항`;
+      stt.className = "state"; stt.textContent = "";
+      peek.hidden = revealAll; peek.textContent = st.peek[q.id] ? "해설 접기" : "해설만 보기";
+    }
+  }
+
+  function tally(){
+    const n = qs.length;
+    let done=0, ok=0;
+    qs.forEach(q => { const c = st.ans[q.id]; if(c){ done++; if(c===q.ans) ok++; } });
+    document.getElementById("score").innerHTML = `정답 <b>${ok}</b> / ${done}문항 · 전체 ${n}` + (done ? ` · ${Math.round(ok/done*100)}%` : "");
+    document.getElementById("mOk").style.width = (ok/n*100)+"%";
+    document.getElementById("mNo").style.width = ((done-ok)/n*100)+"%";
+    const cnt = f => qs.filter(q => match(q,f)).length;
+    ["all","A","B","wrong","todo"].forEach(f => document.getElementById("n-"+f).textContent = cnt(f));
+  }
+  function match(q,f){
+    const c = st.ans[q.id];
+    if(f==="all") return true;
+    if(f==="A"||f==="B") return q.sec===f;
+    if(f==="wrong") return !!c && c!==q.ans;
+    if(f==="todo") return !c;
+    return true;
+  }
+  function applyFilter(){
+    let any=false;
+    ["A","B"].forEach(s => {
+      let secAny=false;
+      qs.filter(q=>q.sec===s).forEach(q => { const m = match(q,filter); q.el.hidden = !m; if(m){secAny=true;any=true;} });
+      document.getElementById("sec"+s).hidden = !secAny;
+    });
+    document.getElementById("empty").hidden = any;
+  }
+
+  const listA = document.getElementById("listA"), listB = document.getElementById("listB");
+  qs.forEach(q => (q.sec==="A"?listA:listB).appendChild(card(q)));
+  qs.forEach(paint); tally(); applyFilter();
+
+  document.querySelectorAll("#seg .chip").forEach(ch => ch.addEventListener("click", () => {
+    filter = ch.dataset.f;
+    document.querySelectorAll("#seg .chip").forEach(x => x.setAttribute("aria-pressed", x===ch ? "true":"false"));
+    applyFilter();
+  }));
+  const br = document.getElementById("btnReveal");
+  br.addEventListener("click", () => {
+    revealAll = !revealAll; br.setAttribute("aria-pressed", revealAll); br.textContent = revealAll ? "해설 모두 접기" : "해설 모두 보기";
+    qs.forEach(paint);
+  });
+  const rs = document.getElementById("btnReset"); let armed=null;
+  rs.addEventListener("click", () => {
+    if(!armed){ rs.textContent = "한 번 더 누르면 초기화"; rs.classList.add("warn"); armed = setTimeout(()=>{armed=null; rs.textContent="다시 풀기"; rs.classList.remove("warn");}, 3000); return; }
+    clearTimeout(armed); armed=null; rs.textContent="다시 풀기"; rs.classList.remove("warn");
+    st = {ans:{}, peek:{}}; save(); qs.forEach(paint); tally(); applyFilter();
+  });
+})();
+</script>
