@@ -197,6 +197,21 @@ figcaption{font-size:13px; color:var(--muted); margin-top:8px}
 .checklist li{padding-left:1.6em; position:relative}
 .checklist li::before{content:"☐"; position:absolute; left:0; color:var(--accent)}
 
+
+/* keyword→dx→tx tables: stack on phones */
+@media (max-width:600px){
+  table.kdt{min-width:0}
+  table.kdt thead{display:none}
+  table.kdt tr{display:block; border-bottom:1px solid var(--rule); padding:8px 0}
+  table.kdt tr:last-child{border-bottom:none}
+  table.kdt td{display:block; border:none; padding:3px 12px}
+  table.kdt td::before{display:inline-block; min-width:3.6em; font-family:var(--mono); font-size:11px; color:var(--muted); margin-right:6px}
+  table.kdt td:nth-child(1)::before{content:"단서"}
+  table.kdt td:nth-child(2)::before{content:"진단"; color:var(--art)}
+  table.kdt td:nth-child(3)::before{content:"치료"; color:var(--accent)}
+  table.kdt td:nth-child(2){font-weight:600}
+}
+
 footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:var(--mono)}
 
 </style>

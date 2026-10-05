@@ -197,6 +197,21 @@ figcaption{font-size:13px; color:var(--muted); margin-top:8px}
 .checklist li{padding-left:1.6em; position:relative}
 .checklist li::before{content:"☐"; position:absolute; left:0; color:var(--accent)}
 
+
+/* keyword→dx→tx tables: stack on phones */
+@media (max-width:600px){
+  table.kdt{min-width:0}
+  table.kdt thead{display:none}
+  table.kdt tr{display:block; border-bottom:1px solid var(--rule); padding:8px 0}
+  table.kdt tr:last-child{border-bottom:none}
+  table.kdt td{display:block; border:none; padding:3px 12px}
+  table.kdt td::before{display:inline-block; min-width:3.6em; font-family:var(--mono); font-size:11px; color:var(--muted); margin-right:6px}
+  table.kdt td:nth-child(1)::before{content:"단서"}
+  table.kdt td:nth-child(2)::before{content:"진단"; color:var(--art)}
+  table.kdt td:nth-child(3)::before{content:"치료"; color:var(--accent)}
+  table.kdt td:nth-child(2){font-weight:600}
+}
+
 footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:var(--mono)}
 
 </style>
@@ -256,6 +271,8 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
     <a class="chip" href="#p9">9 진단법·폐절제</a>
     <a class="chip" href="#p10">10 강의 밖 王ま</a>
     <a class="chip" href="#p11">11 기출 6세트</a>
+    <a class="chip" href="#kdt">키워드→진단→치료</a>
+    <a class="chip" href="#nums">숫자 총정리</a>
     <a class="chip" href="#memo">암기 카드</a>
   </div>
 </nav>
@@ -1019,6 +1036,173 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
     <p class="q-stem">폐암의 수술적 원칙으로 맞지 않는 것은?</p>
     <ol><li>폐암은 pneumonectomy, lobectomy로 수술한다.</li><li>Marginal resection은 수술 중 frozen section biopsy로 결정한다.</li><li>주변 조직으로의 침범은 en-bloc dissection한다.</li><li>종격동 림프절은 전이가 될 가능성이 있으므로 가능한 한 절제하지 않는다.</li><li>수술 시 tumor가 다른 조직으로 전이되지 않게 조심한다.</li></ol>
     <details><summary>정답 · 해설</summary><div><span class="ans">④</span> 보이는 종격동 림프절은 가능한 한 모두 제거.</div></details>
+  </div>
+</section>
+
+<!-- ================= KDT ================= -->
+<section class="block" id="kdt">
+  <div class="part">SUMMARY</div>
+  <h2>키워드 → 진단 → 치료 총정리</h2>
+  <p class="sub">지문 단서 → 진단 → 다음 행동. 헷갈리는 것끼리 한 표에 묶고, 아래에 공통점·차이점을 붙임.</p>
+
+  <h3>① 기흉 4형제 — 일차성 · 이차성 · 월경성 · 긴장성</h3>
+  <div class="tbl-wrap">
+    <table class="wide kdt">
+      <thead><tr><th>키워드</th><th>진단</th><th>치료</th></tr></thead>
+      <tbody>
+        <tr><td><b>15–30대 키 크고 마른 남자</b> · 흡연 · 갑자기 흉통·호흡곤란 · 과공명음·호흡음↓ · <b>visceral pleural line</b></td><td><b>일차성 자연기흉</b> (bleb 파열)</td><td>≤20% 무증상 → 관찰+O₂ / ≥20%·증상 → <b>흉관</b> / 3일 공기누출·재발 → <b>VATS wedge</b></td></tr>
+        <tr><td><b>45–65세 COPD·결핵</b> 환자 · 갑자기 심한 호흡곤란</td><td><b>이차성 자연기흉</b></td><td>흉관 1차 → <b>흉막유착술</b>, 14일 지속 시 수술 · 재발 손상이 커서 적극적으로</td></tr>
+        <tr><td><b>20–30대 여자 · 월경 시작 48–72시간 · 우측</b> · 반복</td><td><b>월경성 기흉</b></td><td>기흉 치료 + <b>횡격막 결손 봉합</b>·자궁내막증 제거 + 유착술 + <b>배란억제제</b></td></tr>
+        <tr><td>기흉 + <b>빈맥·저혈압·청색증</b> · 종격동·기관 반대편 이동</td><td><b>긴장성 기흉</b></td><td><b>즉시 흉관</b> · 이후 재발하면 <b>수술 적응</b></td></tr>
+        <tr><td>기흉 + 반대쪽 폐에 폐렴·ILD</td><td>반대측 병변 동반 기흉</td><td>작아도 <b>흉관</b></td></tr>
+        <tr><td>조종사·잠수부·오지 거주 · 첫 기흉</td><td>직업 요인</td><td><b>수술 적응</b></td></tr>
+        <tr><td>X선에 <b>큰 기낭</b></td><td>bulla</td><td><b>수술</b> (보존 X)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">공통</span>모두 “공기를 빼고(흉관) → 다시 안 새게(기포 절제·유착)”. 흉관을 넣을 때는 늘 <b>아래 늑골 위 경계 + 벽측 흉막 마취</b>.</div>
+    <div class="box more"><span class="lbl">차이</span>일차성 = bleb 절제로 끝 · 이차성 = 기저 폐가 약해 <b>유착술까지</b>, 재발 거의 100%(COPD) · 월경성 = <b>횡격막·호르몬</b>까지 손봄, 무배란이면 절대 안 생김 · 긴장성 = 계산 말고 <b>즉시</b>.</div>
+  </div>
+
+  <h3>② 흉관 vs 수술 — 기흉 치료 단계 비교</h3>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>관찰 + 산소</th><th>흉관삽관</th><th>수술 (VATS · 개흉)</th><th>화학적 유착술</th></tr></thead>
+      <tbody><tr>
+        <td>≤20% · 무증상 · 공기누출 X<br>(흡수 하루 1.25%)</td>
+        <td>≥20% · 긴장성 · 증상 · 반대측 병변 · 점점 커짐 · 단기간 치료 필요</td>
+        <td>누출 <b>3일↑</b> · 재팽창 안 됨 · <b>같은 쪽 재발</b> · 양측 · 큰 기낭 · 직업 · 합병증(혈흉·농흉) · <b>긴장성 병력 / 전폐절제 후</b></td>
+        <td>지속·재발인데 <b>전신마취 불가</b>(고령) → 흉관으로 talc / 가능하면 흉강경으로 직접</td>
+      </tr></tbody>
+    </table>
+  </div>
+
+  <h3>③ 흉막강에 “액체”가 찼다 — 물 · 피 · 유미 · 고름</h3>
+  <div class="tbl-wrap">
+    <table class="wide kdt">
+      <thead><tr><th>키워드</th><th>진단</th><th>치료</th></tr></thead>
+      <tbody>
+        <tr><td>심부전·간경변·신증후군 · <b>맑은 밀짚색</b> · 단백 &lt;3 · LDH 비 &lt;0.6</td><td><b>여출성 흉수</b></td><td><b>원인 질환 치료</b> · 증상 있으면 천자 (1회 1000 cc까지)</td></tr>
+        <tr><td>단백 &gt;3 · 단백비 &gt;0.5 · LDH비 &gt;0.6 · 탁함</td><td><b>삼출성 흉수</b></td><td>원인 찾기 (폐렴·결핵·암) → 반복되면 흉관 + talc 유착</td></tr>
+        <tr><td>젊은 · 일측 · 발열·흉막성 흉통 · <b>림프구 ≥50% · ADA ≥70</b> · 중피세포 드묾</td><td><b>결핵성 흉수</b></td><td><b>항결핵제</b>가 기본 · 반복 증상 → 흉관 · 6–12개월 후 비후 ≥1/3 → decortication</td></tr>
+        <tr><td>폐렴 후 흉수 · <b>pH &lt;7.0 · glucose &lt;60 · LDH &gt;1000 · pus</b></td><td>복잡성 parapneumonic → <b>농흉</b></td><td><b>즉시 흉관</b> + 항생제 (pH 7.0–7.2면 반복 천자)</td></tr>
+        <tr><td>기흉 후 <b>air-fluid level</b> · 혈색소↓ · 20대</td><td><b>자연혈흉</b> (feeding vessel)</td><td>수액·혈액 주며 흉관 · <b>첫 1000 cc / 시간당 수백 cc → 개흉</b></td></tr>
+        <tr><td><b>식도·대동맥 수술 후</b> 또는 림프종 · <b>우유빛</b> · 무취 · <b>TG ≥110</b> · Chol/TG &lt;1 · 기름진 식사 후 배액↑</td><td><b>유미흉</b></td><td>흉관 + <b>금식 + TPN</b> → 2주 실패·<b>1500 mL/day↑</b> → 흉관 결찰(mass ligation)</td></tr>
+        <tr><td>오래된 결핵·RA 흉수인데 우유빛 · <b>TG 낮고 콜레스테롤↑</b></td><td><b>가유미흉</b></td><td>원인(만성 흉막염) 치료</td></tr>
+        <tr><td>흉수 <b>호산구↑</b></td><td>흉막강에 공기·피 (기흉·혈흉·잦은 천자), 기생충, 석면</td><td>원인 따라</td></tr>
+        <tr><td>흉수 <b>amylase↑</b></td><td>췌장염·가성낭종·<b>식도 파열</b>·악성</td><td>원인 따라</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">공통</span>네 가지 모두 <b>빼고 → 펴고 → 빈 공간 없애기</b>. 1차는 대부분 흉관.</div>
+    <div class="box more"><span class="lbl">차이</span>혈흉·농흉은 섬유소가 쌓여 <b>peel → 섬유흉</b>으로 감 / 유미는 <b>bacteriostatic, peel X</b>, 대신 영양·면역(림프구) 손실 · 여출은 흉막 탓이 아니라 <b>원인 치료</b> · 수술 기준 숫자가 다 다름(혈흉 1000 cc, 유미 1500 mL/day·2주).</div>
+  </div>
+
+  <h3>④ 농흉 단계별 — 언제 무엇을</h3>
+  <div class="tbl-wrap">
+    <table class="wide kdt">
+      <thead><tr><th>키워드</th><th>진단</th><th>치료</th></tr></thead>
+      <tbody>
+        <tr><td>무균 삼출 · glucose·pH 정상 · 빼면 폐가 다 펴짐</td><td><b>1단계</b> (exudative)</td><td><b>항생제만</b>, 흉관 X</td></tr>
+        <tr><td>혼탁 · 호중구↑ · <b>loculation</b> · pH·glucose↓ LDH↑ · CXR <b>반 D</b>, shifting X</td><td><b>2단계</b> (fibrinopurulent)</td><td>흉관 → urokinase 3일 → 48–72h 무효 시 흉강경 → <b>조기 decortication</b> (수술 최적기)</td></tr>
+        <tr><td>4–6주 · 두꺼운 <b>peel</b> · <b>침전 ≥75%</b> · 빼도 안 펴짐</td><td><b>3단계 = 만성 농흉</b></td><td><b>decortication</b>(최선) · 안 되면 <b>open drainage(Eloesser)</b>·흉관 장기 유치 · thoracoplasty(이제 X)</td></tr>
+        <tr><td>농흉 + <b>악취 객담·지속 기침</b></td><td><b>기관지흉막루(BPF)</b> — 기관지 침범</td><td><b>병변 쪽을 아래로</b> 눕히고 배농 (반대편 질식 방지)</td></tr>
+        <tr><td>농흉 + 흉벽 피하 고름 (5번 늑연골 부근) · 결핵</td><td><b>흉벽천공성 농흉</b></td><td>안쪽 농흉을 확실히 제거</td></tr>
+        <tr><td>흉벽과 둔각 · split pleura sign</td><td>농흉 (흉막강)</td><td>배농</td></tr>
+        <tr><td>둥근 고름집 + 주위 폐렴 · 흉벽과 예각</td><td><b>폐농양</b> (폐실질)</td><td>항생제 위주 (파열되면 농흉 → 수술)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>⑤ 흉막 두꺼워짐 · 종양</h3>
+  <div class="tbl-wrap">
+    <table class="wide kdt">
+      <thead><tr><th>키워드</th><th>진단</th><th>치료</th></tr></thead>
+      <tbody>
+        <tr><td>혈흉·결핵·농흉 후 흉막 완전 유착 · 병변 쪽 딱딱 · 호흡음 소실</td><td><b>섬유흉</b></td><td>폐실질이 괜찮으면 <b>decortication</b> (생기기 전에 수술이 최선)</td></tr>
+        <tr><td>중년 남자 · <b>석면</b> · 서서히 통증·호흡곤란 · 미만성 우둘투둘 흉막비후 + 흉수</td><td><b>악성 중피종(미만형)</b></td><td>확진은 <b>VATS 흉막생검</b> · 실제 치료는 흉막유착술로 흉수 조절</td></tr>
+        <tr><td>유경성 국소 흉막 종괴</td><td>국소형 중피종 (대부분 양성)</td><td>넓게 절제</td></tr>
+        <tr><td>남자 폐암 · 여자 유방암 환자의 흉막 결절·흉수</td><td><b>전이성 흉막종양</b> (95%)</td><td>흉수 조절 (유착술)</td></tr>
+        <tr><td>흉수 중피세포 <b>≥5%</b></td><td>결핵 가능성 거의 0 → 중피종 의심</td><td>흉막생검</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>⑥ 수술 키워드 → 절개 · 술식</h3>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>키워드</th><th>절개 / 검사 / 술식</th></tr></thead>
+      <tbody>
+        <tr><td>대부분의 폐수술 · <b>lobectomy</b> · 우측 식도 · 좌측 하행대동맥</td><td><b>후측방 절개</b> (m/c)</td></tr>
+        <tr><td>심장 수술(OHS) · 흉선 · 전종격 종양 · 양측 기흉</td><td><b>정중흉골절개</b></td></tr>
+        <tr><td><b>양측 폐이식</b> · 양측 전이암</td><td><b>Clamshell</b> (경흉골 양측성)</td></tr>
+        <tr><td><b>하부 식도·위식도 접합부 암</b> · 흉복부 대동맥류</td><td><b>흉복부 절개</b></td></tr>
+        <tr><td><b>심낭삼출·심장눌림증</b> 배액</td><td><b>검상하 절개</b> (또는 전측방·흉강경)</td></tr>
+        <tr><td>과거 기흉 bleb · 다한증 · 흉곽출구증후군</td><td>액와 절개 (지금은 흉강경)</td></tr>
+        <tr><td>폐암 <b>N2 확인 (#2·3·4·7)</b></td><td><b>종격동경</b> → 양성이면 항암 먼저</td></tr>
+        <tr><td><b>#5·6</b> (대동맥 옆)</td><td><b>종격절개술</b> (좌 2번째 늑간) · 전측방</td></tr>
+        <tr><td>만져지는 <b>사각근·쇄골상 LN</b></td><td>사각근 림프절 생검 → <b>N3 = 수술 불가</b></td></tr>
+        <tr><td>원인 미상 <b>미만성 폐질환</b>(ILD) 조직 필요</td><td><b>개흉/VATS 폐생검</b> (wedge)</td></tr>
+        <tr><td>폐암 · 표준</td><td><b>Lobectomy</b> (요즘 VATS) + 종격동 LN 절제</td></tr>
+        <tr><td>폐암인데 <b>폐기능 나쁨</b></td><td>Segmentectomy · wedge</td></tr>
+        <tr><td><b>우상엽 입구</b> 편평세포암 + 전폐절제 하기엔 폐기능 나쁨</td><td><b>Sleeve lobectomy</b></td></tr>
+        <tr><td><b>기관지확장증</b> 국한</td><td><b>Segmentectomy</b> (lingular 최다)</td></tr>
+        <tr><td><b>기흉 bleb · 전이성 폐암</b> · 염증성 소결절</td><td><b>Wedge</b> (가장 많이 하는 술식)</td></tr>
+        <tr><td>완전히 파괴된 결핵폐 + 지속 객혈</td><td>Pneumonectomy</td></tr>
+        <tr><td>폐기종이 너무 심함</td><td>LVRS</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">공통 — 해부학적 절제</span>segmentectomy · lobectomy · pneumonectomy는 그 구역의 혈관·기관지를 다 처리하는 <b>해부학적</b> 절제.</div>
+    <div class="box more"><span class="lbl">차이</span>wedge만 <b>비해부학적</b>(경계 무시, 병변만) · bilobectomy는 <b>우측만</b> · sleeve는 “엽은 자르되 아래 엽은 살리는” 기관지 성형.</div>
+  </div>
+</section>
+
+<!-- ================= NUMBERS ================= -->
+<section class="block" id="nums">
+  <div class="part">NUMBERS</div>
+  <h2>꼭 외울 숫자 총정리</h2>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>항목</th><th>숫자</th><th>맥락</th></tr></thead>
+      <tbody>
+        <tr><th>흉막압</th><td class="num">−3 ~ −9 cmH₂O</td><td>폐첨부 −8 · 기저부 −2 · 흡기 말 최저</td></tr>
+        <tr><th>흉막액 생성 · 흡수</th><td class="num">0.01 · 0.2 mL/kg/hr</td><td>흡수가 <b>20배</b> (벽측 림프관)</td></tr>
+        <tr><th>기흉 관찰 기준</th><td class="num">≤20%</td><td>무증상·공기누출 X · O₂로 하루 <b>1.25%</b> 흡수</td></tr>
+        <tr><th>흉관 기준</th><td class="num">≥20%</td><td>기흉 크기 small ≤20 · moderate 20–40 · large ≥40</td></tr>
+        <tr><th>증상 나타나는 허탈</th><td class="num">≥25%</td><td>&lt;20%는 무증상</td></tr>
+        <tr><th>기흉 재발</th><td class="num">50% · 75% · 2년</td><td>재발 50%, 그중 같은 쪽 75%, 2년 이내 · 3차는 거의 100%</td></tr>
+        <tr><th>수술 적응 (공기누출)</th><td class="num">3일</td><td>3일 이상 지속</td></tr>
+        <tr><th>이차성 기흉</th><td class="num">20% · 45–65세 · 14일</td><td>자연기흉의 20% · 흉관 후 14일 지속 → 수술</td></tr>
+        <tr><th>일차성 기흉</th><td class="num">15–30대 · 9:1</td><td>남:여 · 결핵 원인 2–3% · scarred apex 15–20%</td></tr>
+        <tr><th>월경성 기흉</th><td class="num">우측 90% · 48–72h</td><td>월경 시작 후</td></tr>
+        <tr><th>흉관 위치</th><td class="num">4–6번째 늑간</td><td>아래 늑골의 위 경계</td></tr>
+        <tr><th>늑간동맥 손상</th><td class="num">1000 cc/hr</td><td>한쪽 흉강 4–5 L까지</td></tr>
+        <tr><th>혈흉 개흉 기준</th><td class="num">첫 1000 cc · 시간당 수백 cc</td><td>즉시 개흉</td></tr>
+        <tr><th>흉관(thoracic duct) 흐름</th><td class="num">1500–2400 mL/day</td><td>기름진 식사 후 200 mL/hr↑ · T5–6 기준 좌우</td></tr>
+        <tr><th>유미 판정</th><td class="num">TG ≥110 · ≤50 · Chol/TG &lt;1</td><td>≥110 → 99% 유미 · ≤50 → &lt;5% · 비중 1.012–1.025</td></tr>
+        <tr><th>유미흉 수술</th><td class="num">2주 · 1500 mL/day</td><td>소아: 나이×100 mL가 5일↑ · 사망률 &gt;50%</td></tr>
+        <tr><th>여출 vs 삼출</th><td class="num">3 · 1.016 · 0.5 · 0.6 · ⅔</td><td>단백 g/dL · 비중 · 단백비 · LDH비 · 혈청 LDH 상한의 ⅔</td></tr>
+        <tr><th>CP angle blunting</th><td class="num">≥250 mL</td><td>이 정도 차야 보임</td></tr>
+        <tr><th>1회 배액</th><td class="num">1000 cc</td><td>넘으면 재팽창성 폐부종</td></tr>
+        <tr><th>조기 흉관 (parapneumonic)</th><td class="num">pH &lt;7.0 · glu &lt;60 · LDH &gt;1000</td><td>+ pus · pH 7.0–7.2 → 반복 천자</td></tr>
+        <tr><th>결핵성 흉수</th><td class="num">림프구 ≥50% · ADA ≥70 · 중피세포 ≥5%</td><td>ADA ≤40 아닐 가능성 · 중피세포 ≥5%면 결핵 X · 배양 30% · 생검 배양 90%↑</td></tr>
+        <tr><th>결핵성 흉수 경과</th><td class="num">3–7개월 · 6–8주 · 1/3</td><td>일차감염 3–7개월 후 · 6–8주면 자연 흡수 · 1/3에 폐결핵 동반</td></tr>
+        <tr><th>결핵성 흉수 decortication</th><td class="num">6–12개월 · 1/3–1/4</td><td>치료 후에도 흉강 1/3–1/4 늑막비후</td></tr>
+        <tr><th>농흉 3단계</th><td class="num">1–2주 · 7–10일 · 4–6주</td><td>2단계 1–2주 · 3단계 7–10일 시작, 4–6주 본격</td></tr>
+        <tr><th>농흉 검사</th><td class="num">침전 ≥75% · 혐기균 75% · 배양 &lt;50%</td><td>만성기 pH &lt;7.0, glucose &lt;40</td></tr>
+        <tr><th>urokinase</th><td class="num">3일 · 48–72h</td><td>3일 연속 → 무효면 흉강경</td></tr>
+        <tr><th>중피종 생존</th><td class="num">16 · 9 · 5개월</td><td>병기 I · II · III (외울 필요 X)</td></tr>
+        <tr><th>전이성 흉막종양</th><td class="num">95%</td><td>중피종 5%</td></tr>
+        <tr><th>종격동경</th><td class="num">#2·3·4·7 O / #5·6·8·9 X</td><td>N2 → IIIA · N3 → IIIB</td></tr>
+        <tr><th>VATS</th><td class="num">0.5–1.5 cm · 3 port · ≤3 cm</td><td>절개 크기 · 구멍 수 · 진단 대상 말초 결절</td></tr>
+        <tr><th>폐엽</th><td class="num">우 3 · 좌 2</td><td>lobectomy 5가지 · bilobectomy는 우측만</td></tr>
+        <tr><th>절제 후 사강</th><td class="num">1주 · 3–4주(최대 7개월)</td><td>폐엽절제 후 1주 내 소실 · 전폐절제 후 액체가 채움</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 

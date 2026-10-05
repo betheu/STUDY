@@ -197,6 +197,21 @@ figcaption{font-size:13px; color:var(--muted); margin-top:8px}
 .checklist li{padding-left:1.6em; position:relative}
 .checklist li::before{content:"☐"; position:absolute; left:0; color:var(--accent)}
 
+
+/* keyword→dx→tx tables: stack on phones */
+@media (max-width:600px){
+  table.kdt{min-width:0}
+  table.kdt thead{display:none}
+  table.kdt tr{display:block; border-bottom:1px solid var(--rule); padding:8px 0}
+  table.kdt tr:last-child{border-bottom:none}
+  table.kdt td{display:block; border:none; padding:3px 12px}
+  table.kdt td::before{display:inline-block; min-width:3.6em; font-family:var(--mono); font-size:11px; color:var(--muted); margin-right:6px}
+  table.kdt td:nth-child(1)::before{content:"단서"}
+  table.kdt td:nth-child(2)::before{content:"진단"; color:var(--art)}
+  table.kdt td:nth-child(3)::before{content:"치료"; color:var(--accent)}
+  table.kdt td:nth-child(2){font-weight:600}
+}
+
 footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:var(--mono)}
 
 </style>
@@ -253,6 +268,8 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
     <a class="chip" href="#p7">7 내성결핵</a>
     <a class="chip" href="#p8">8 NTM</a>
     <a class="chip" href="#p9">9 기출 패턴</a>
+    <a class="chip" href="#kdt">키워드→진단→치료</a>
+    <a class="chip" href="#nums">숫자 총정리</a>
     <a class="chip" href="#memo">암기 카드</a>
     <a class="chip" href="#check">강의 체크</a>
   </div>
@@ -1064,6 +1081,132 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
       <li><b>IGRA(+) · AFB(−) · Xpert(−)</b>인 71세 → 치료 선택 (선지: 6HRE / 3HR / 3R / 6H / 6HREZ)</li>
       <li><b>AFB 2+, M. intracellulare</b> → NTM 치료 (선지: azithro+imipenem+amikacin / RIF+INH+EMB / azithro+EMB+RIF / 경과관찰 / RIF+INH+Lfx)</li>
     </ul>
+  </div>
+</section>
+
+<!-- ================= KDT ================= -->
+<section class="block" id="kdt">
+  <div class="part">SUMMARY</div>
+  <h2>키워드 → 진단 → 치료 총정리</h2>
+  <p class="sub">문제 지문에서 단서(키워드)를 보면 진단과 다음 행동이 바로 튀어나오게. 헷갈리는 것끼리 한 표에 묶고, 아래에 공통점·차이점을 붙임.</p>
+
+  <h3>① AFB 양성이 나오는 세 갈래 — 활동성 결핵 · 잠복결핵 · NTM</h3>
+  <div class="tbl-wrap">
+    <table class="wide kdt">
+      <thead><tr><th>키워드</th><th>진단</th><th>치료 · 다음 행동</th></tr></thead>
+      <tbody>
+        <tr><td>2–3주 기침 + 야간발한·체중감소 + <b>상엽 공동</b> · AFB(+) <b>PCR(+)</b></td><td><b>폐결핵</b></td><td><b>2HREZ / 4HR(E)</b> · 격리 · 접촉자 검진</td></tr>
+        <tr><td>AFB(−) 인데 <b>PCR(+)</b></td><td><b>폐결핵</b> (균이 적을 뿐)</td><td>위와 동일</td></tr>
+        <tr><td>CXR로 결핵 의심 (공동·상엽 결절)</td><td>폐결핵 <b>의심</b></td><td><b>객담 AFB 도말 + PCR + 배양</b> (CXR 단독 진단 X)</td></tr>
+        <tr><td>AFB(+) 인데 <b>PCR(−)</b> 지속 · AFB 3+</td><td><b>NTM</b></td><td>배양으로 균 동정 → NTM 기준 확인</td></tr>
+        <tr><td><b>중년 여성</b> · 비흡연·기저질환 X · <b>우중엽·설상엽</b> 소결절 + 기관지확장 · MAC</td><td><b>NTM 결절기관지확장형(NB)</b></td><td>증상 없으면 관찰 / 치료 시 <b>macrolide + EMB + RIF 주 3회</b></td></tr>
+        <tr><td><b>중년 남성</b> · 흡연·COPD·<b>과거 결핵</b> · <b>상엽 얇은 벽 공동</b> · MAC</td><td><b>NTM 섬유공동형(FC)</b></td><td><b>macrolide + EMB + RIF 매일</b> (+ 심하면 amikacin)</td></tr>
+        <tr><td>접촉자 · 무증상 · <b>CXR 정상</b> · IGRA(+)</td><td><b>잠복결핵</b></td><td><b>4R</b> / 3HR / 9H</td></tr>
+        <tr><td>접촉자 · IGRA(+) · <b>CXR·CT 이상</b></td><td>활동성 배제 안 됨</td><td>객담 검사 → <b>활동성 결핵 치료</b> (LTBI 요법 X)</td></tr>
+        <tr><td>CXR에 <b>석회화 결절</b>(과거 치료력 없음) + HIV·이식·TNF 길항제</td><td>자연치유 결핵 병변 = 고위험 LTBI</td><td>검사 결과와 무관하게 <b>LTBI 치료</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">공통</span>세 가지 모두 <b>AFB 염색·IGRA 같은 “간접 증거”</b>만으론 확정 X. 결핵·NTM은 <b>배양</b>, 잠복결핵은 <b>활동성 배제(CXR ± 객담)</b>가 진단의 마지막 관문.</div>
+    <div class="box more"><span class="lbl">차이</span>결핵 = <b>PCR(+)</b>, 사람 간 전염, 진단 = 치료, HREZ · NTM = <b>PCR(−)</b>, 환경균, 전염 X, <b>진단 ≠ 치료</b>, macrolide 중심 · 잠복 = 균 검사·CXR 정상, IGRA(+), 1–2제.</div>
+  </div>
+
+  <h3>② 치료력 있는 환자 · 내성</h3>
+  <div class="tbl-wrap">
+    <table class="wide kdt">
+      <thead><tr><th>키워드</th><th>진단 · 판단</th><th>치료 · 다음 행동</th></tr></thead>
+      <tbody>
+        <tr><td>과거 <b>1개월 이상</b> 치료력 · 다시 균 검출 (재치료)</td><td>내성 가능성↑</td><td><b>Xpert MTB/RIF</b> 먼저</td></tr>
+        <tr><td>Xpert에서 <b>RIF 내성</b></td><td>추정 MDR</td><td><b>MDR에 준해</b> — BPaLM 6개월 / MDR-END 9개월</td></tr>
+        <tr><td>DST에서 <b>INH + RIF</b> 내성</td><td>확진 MDR</td><td>Group A(<b>FQ · bedaquiline · linezolid</b>) 포함, 전면 교체 (약 하나만 추가 X)</td></tr>
+        <tr><td>DST에서 <b>INH만</b> 내성</td><td>INH 단독내성</td><td>INH → <b>레보플록사신</b> 교체: REZ + Lfx 6개월</td></tr>
+        <tr><td>치료 <b>3개월째</b> 배양 양성</td><td>MDR 의심</td><td>감수성검사 다시</td></tr>
+        <tr><td>치료 <b>4개월 이후</b>에도 배양 양성</td><td><b>치료 실패</b> (대개 약을 안 먹음)</td><td>내성 확인 → 처방 재구성</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>③ 치료 중 생긴 문제 — 증상 → 범인 → 대처</h3>
+  <div class="tbl-wrap">
+    <table class="wide kdt">
+      <thead><tr><th>키워드</th><th>원인 (진단)</th><th>대처</th></tr></thead>
+      <tbody>
+        <tr><td>무증상 · ALT <b>&lt;5배</b></td><td>일시적 상승 (20%에서 흔함)</td><td><b>유지</b>하며 관찰</td></tr>
+        <tr><td>ALT <b>≥5배</b> 또는 <b>황달·구역 + ≥3배</b></td><td>약물 간독성 (PZA &gt; INH &gt; RIF)</td><td><b>모두 중단</b> → &lt;2배 되면 <b>RIF → INH</b> 순 재투여 (EMB 유지)</td></tr>
+        <tr><td><b>자반·점상출혈</b> 동반 발진 · 혈소판↓</td><td><b>RIF</b> 과민반응</td><td>RIF 중단, <b>재투여 금지</b></td></tr>
+        <tr><td>손발 저림</td><td><b>INH</b> → B6 결핍</td><td><b>피리독신</b> (당뇨·신장병은 처음부터 같이)</td></tr>
+        <tr><td>시력저하 · <b>적록색맹</b> (대개 2개월 이후)</td><td><b>EMB</b> 시신경병증</td><td>EMB 중단</td></tr>
+        <tr><td>어깨·무릎 관절통</td><td><b>PZA</b> (고요산)</td><td>유지 + <b>NSAID</b></td></tr>
+        <tr><td><b>통풍 발작</b></td><td><b>PZA</b></td><td><b>PZA 중단</b></td></tr>
+        <tr><td>소변·눈물 <b>오렌지색</b></td><td>RIF (무해)</td><td>설명만</td></tr>
+        <tr><td>와파린 INR↓ · 피임 실패 · 스테로이드 효과↓</td><td>RIF의 <b>CYP450 유도</b></td><td>상대 약 증량(와파린 2–3배, 스테로이드 2배) · 다른 피임법 · rifabutin</td></tr>
+        <tr><td>순응도 좋고 균 음성인데 <b>2개월쯤 영상 악화</b>·새 흉수·림프절 커짐</td><td><b>역설반응</b></td><td><b>그대로 유지</b></td></tr>
+        <tr><td>좋아지는 중 반복 발열 (감염·악화 배제)</td><td>약제열</td><td>모두 중단 → 하나씩 재투여</td></tr>
+        <tr><td>식후 메스꺼움 (가장 흔함)</td><td>위장장애</td><td>식후 복용·나눠 복용 · 심하면 간기능 검사</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">공통 — PZA vs RIF 둘 다 “끊는” 상황</span>통풍(PZA)과 혈소판 감소(RIF)는 <b>둘 다 해당 약 중단</b>.</div>
+    <div class="box more"><span class="lbl">차이</span>관절통만이면 PZA <b>유지</b>+NSAID / 통풍이면 PZA <b>중단</b>. 간독성은 원인이 섞여 있어 <b>전부 중단 후 하나씩</b>, 혈소판·시력은 범인이 확실해 <b>그 약만</b>.</div>
+  </div>
+
+  <h3>④ 폐외결핵 — 같은 결핵, 다른 규칙</h3>
+  <div class="tbl-wrap">
+    <table class="wide kdt">
+      <thead><tr><th>키워드</th><th>진단</th><th>치료</th></tr></thead>
+      <tbody>
+        <tr><td>일측 흉수 · <b>삼출 + 림프구 우세 + ADA &gt;40</b> · 흉수 균검사 음성</td><td><b>결핵성 흉막염</b></td><td>6개월 · 배액 필수 X · 스테로이드 X · 객담으로 폐결핵 동반 확인</td></tr>
+        <tr><td>같은 흉수인데 <b>호중구 우세 + pH↓</b></td><td>농흉 의심</td><td>흉관 (→ 늑막질환 예습본)</td></tr>
+        <tr><td><b>젊은 여자</b> · 기침·객혈 · <b>일측 monophonic wheeze</b> · 천식 치료 무반응 · CXR 정상</td><td><b>기관지 결핵</b></td><td>기관지내시경(건락괴사) · 6개월 · 협착 위험 크면 스테로이드 고려</td></tr>
+        <tr><td>두통·의식저하 + 결핵 · CSF</td><td><b>결핵성 수막염</b></td><td><b>9–12개월 + 스테로이드</b></td></tr>
+        <tr><td>경부 림프절 비대 · FNA 건락성 육아종</td><td>림프절 결핵</td><td>6개월 · 치료 중 커지면 역설반응 먼저 생각</td></tr>
+        <tr><td>양폐 <b>1–2 mm 결절 무수히</b></td><td><b>좁쌀결핵</b></td><td>균 증명(AFB) → 6개월</td></tr>
+        <tr><td>복수 단백↑ · SAAG &lt;1.1 · ADA↑</td><td>결핵성 복막염</td><td>복강경 생검 확진 · 6개월</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">공통</span>기본은 <b>폐결핵과 같은 6개월</b>, 균 증명이 어려워 조직·임상으로 진단, 격리 불필요.</div>
+    <div class="box more"><span class="lbl">차이</span><b>수막염만</b> 9–12개월 + 스테로이드 · 기관지 결핵은 스테로이드 “고려” · 흉막염·심낭염은 스테로이드 X.</div>
+  </div>
+</section>
+
+<!-- ================= NUMBERS ================= -->
+<section class="block" id="nums">
+  <div class="part">NUMBERS</div>
+  <h2>꼭 외울 숫자 총정리</h2>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>항목</th><th>숫자</th><th>맥락</th></tr></thead>
+      <tbody>
+        <tr><th>결핵 의심</th><td class="num">2–3주</td><td>원인 없는 기침 지속</td></tr>
+        <tr><th>감염률 · 발병률</th><td class="num">30% · 평생 10%</td><td>밀접접촉자 감염 30%, 감염자 평생 발병 10% (2년 내 5%) · HIV는 <b>매년 10%</b></td></tr>
+        <tr><th>AFB 도말 민감도</th><td class="num">30–50%</td><td>객담 1 mL에 <b>≥10,000개</b> 있어야 양성</td></tr>
+        <tr><th>배양 · PCR 검출 한계</th><td class="num">10–100 · 50–150/mL</td><td>배양이 가장 민감</td></tr>
+        <tr><th>객담 횟수</th><td class="num">2–3회</td><td>양성은 <b>24시간 내</b> 통보</td></tr>
+        <tr><th>배양 기간</th><td class="num">액체 2주 · 고체 4–8주</td><td>신속감수성 1주 · 통상 2–4주</td></tr>
+        <tr><th>표준 초치료</th><td class="num">2 + 4 = 6개월</td><td>2HREZ / 4HR(E) · PZA 불가 시 <b>9</b>HRE</td></tr>
+        <tr><th>치료 평가</th><td class="num">2회 · 3개월 · 4개월</td><td>2회 연속 음성까지 매달 · 3개월 양성 → DST 재검 · 4개월 이후 양성 = 실패</td></tr>
+        <tr><th>역설반응</th><td class="num">치료 약 2개월 후</td><td>유지</td></tr>
+        <tr><th>간독성 중단</th><td class="num">5배 / 3배 / 2배</td><td>무증상 ≥5배, 증상 + ≥3배 → 중단 · &lt;2배 → 재투여</td></tr>
+        <tr><th>피리독신</th><td class="num">10–50 mg/day</td><td>INH + 당뇨·신장병</td></tr>
+        <tr><th>EMB 시력장애</th><td class="num">대개 2개월 이후</td><td>양측 · 적록색맹</td></tr>
+        <tr><th>PZA 관절통</th><td class="num">최대 40%</td><td>첫 2개월</td></tr>
+        <tr><th>치료 중단</th><td class="num">집중기 2주 · 유지기 3개월</td><td>이 이상 끊기면 다시 시작</td></tr>
+        <tr><th>결핵성 흉막염 ADA</th><td class="num">&gt;40 IU/L</td><td>서홍주 강의안은 ≥70 (확신 구간)</td></tr>
+        <tr><th>수막염</th><td class="num">9–12개월 · CSF ≥6 mL</td><td>+ 스테로이드</td></tr>
+        <tr><th>전염력 감소</th><td class="num">2일 1/25 · 2–3주 1/100</td><td>1–2주 후 AFB(−)면 격리 해제</td></tr>
+        <tr><th>접촉자 전염 기간</th><td class="num">3개월 · 4주</td><td>기침·도말·공동 중 하나(+) → 3개월 전부터 / 모두(−) → 4주 전부터</td></tr>
+        <tr><th>TST</th><td class="num">≥10 mm · 48–72시간</td><td>≥15 잠복결핵, 10–15는 BCG면 IGRA · 양전 2–8주 · window 8주</td></tr>
+        <tr><th>IGRA</th><td class="num">4–7주 · 약 10만 원</td><td>노출 후 양전까지</td></tr>
+        <tr><th>LTBI 치료</th><td class="num">4R · 3HR · 9H</td><td>4R 표준</td></tr>
+        <tr><th>MDR 단기요법</th><td class="num">6개월 · 9개월</td><td>BPaLM · MDR-END</td></tr>
+        <tr><th>RIF 단독내성 · INH 단독내성</th><td class="num">&lt;5% · 약 5%</td><td>RIF 내성 = MDR 준해</td></tr>
+        <tr><th>NTM 진단</th><td class="num">객담 2회 · 세척액 1회</td><td>배양 양성 기준 · NB형 결절 ≤5 mm · FC형 1–2년 내 진행</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
