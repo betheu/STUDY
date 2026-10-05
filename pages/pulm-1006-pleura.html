@@ -212,6 +212,30 @@ figcaption{font-size:13px; color:var(--muted); margin-top:8px}
   table.kdt td:nth-child(2){font-weight:600}
 }
 
+
+/* ---------- quiz ---------- */
+.qz-bar{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:10px 14px; margin-top:12px; position:sticky; top:52px; z-index:10}
+.qz-bar .sc{font-size:14px} .qz-bar .sc b{font-family:var(--mono)}
+.qz-bar .track{flex:1 1 120px; height:6px; background:var(--rule); border-radius:3px; overflow:hidden; min-width:80px}
+.qz-bar .track i{display:block; height:100%; width:0; background:var(--ok); transition:width .25s}
+.qz-btn{font:inherit; font-size:13px; padding:4px 12px; border-radius:999px; border:1px solid var(--rule); background:var(--bg); color:var(--ink); cursor:pointer}
+.qz-btn:focus-visible,.opt:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.qz .opts{display:grid; gap:6px; margin-top:10px}
+.opt{display:grid; grid-template-columns:auto 1fr; gap:4px 8px; text-align:left; font:inherit; font-size:14.5px; line-height:1.55; background:var(--bg); color:var(--ink); border:1px solid var(--rule); border-radius:9px; padding:8px 11px; cursor:pointer}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt .k{font-family:var(--mono); color:var(--muted)}
+.opt .why{grid-column:2; font-size:13.5px; color:var(--muted); display:none}
+.qz.done .opt .why{display:block}
+.opt.right{background:var(--ok-bg); border-color:var(--ok)} .opt.right .why{color:var(--ok)}
+.opt.wrong{background:var(--bad-bg); border-color:var(--bad)}
+.qz .verdict{margin-top:10px; font-weight:700; font-size:14px; display:none}
+.qz.done .verdict{display:block}
+.qz .verdict.ok{color:var(--ok)} .qz .verdict.no{color:var(--bad)}
+.qz .ess{display:none; margin-top:8px; background:var(--tint); border-radius:10px; padding:9px 12px; font-size:14px}
+.qz.done .ess{display:block}
+.qz .ess b:first-child{font-family:var(--mono); font-size:12px; color:var(--accent); margin-right:6px}
+
 footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:var(--mono)}
 
 </style>
@@ -271,6 +295,7 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
     <a class="chip" href="#p9">9 진단법·폐절제</a>
     <a class="chip" href="#p10">10 강의 밖 王ま</a>
     <a class="chip" href="#p11">11 기출 6세트</a>
+    <a class="chip" href="#quiz">예상문제 20</a>
     <a class="chip" href="#kdt">키워드→진단→치료</a>
     <a class="chip" href="#nums">숫자 총정리</a>
     <a class="chip" href="#memo">암기 카드</a>
@@ -1039,6 +1064,16 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
   </div>
 </section>
 
+<!-- ================= QUIZ ================= -->
+<section class="block" id="quiz">
+  <div class="part">QUIZ</div>
+  <h2>예상문제 20문항</h2>
+  <p class="sub">서홍주 교수님은 <b>매년 같은 6문항 세트를 선지만 바꿔</b> 내심 → 그 6세트를 새 선지로 바꾼 <b>Pま 변형</b> + 케이스형 <b>기출 스타일</b>. 선지를 누르면 바로 채점되고, 모든 선지의 해설 + 본질 한 줄이 열림.</p>
+  <div class="qz-bar"><span class="sc" id="qz-sc"></span><span class="track"><i id="qz-fill"></i></span><button type="button" class="qz-btn" id="qz-reset">다시 풀기</button></div>
+  <div id="qz-list"></div>
+  <script>window.QZ=[{"src": "Pま 변형 · 매년 ① 흉막 해부", "stem": "흉막의 구조에 대한 설명으로 옳은 것은?", "opts": ["장측 흉막은 수술로 폐에서 벗겨낼 수 있다.", "벽측 흉막 중 횡격막 흉막의 중심부는 횡격막신경이 지배한다.", "장측 흉막의 림프관은 늑간 림프절로 배액된다.", "벽측 흉막은 폐동맥에서 혈류를 받는다.", "흉막액은 주로 장측 흉막의 림프관으로 흡수된다."], "ans": 1, "why": ["벗길 수 있는 건 벽측.", "횡격막 중심부·종격 흉막 = 횡격막신경, 말초부 = 늑간신경.", "장측 → 종격동 림프절.", "폐동맥은 장측 (기관지동맥과 함께).", "흡수는 벽측 림프관 (생성의 20배)."], "core": "벽측 = 흉벽 소속(통증 O, 벗김 O, 늑간·내유동맥) / 장측 = 폐 소속."}, {"src": "Pま 변형 · 흉막 생리", "stem": "흉막강의 생리에 대한 설명으로 옳은 것은?", "opts": ["흉막압은 흡기 말에 가장 높다.", "폐기저부의 흉막압이 폐첨부보다 더 음압이다.", "흉막액 흡수 능력은 생성 능력의 약 20배다.", "정상 흉막강은 수백 mL의 액체로 차 있다.", "흉막압이 양압이 되면 정맥환류가 증가한다."], "ans": 2, "why": ["흡기 말에 가장 낮음(가장 음압).", "첨부 −8, 기저부 −2 — 첨부가 더 음압.", "생성 0.01 vs 흡수 0.2 mL/kg/hr.", "얇은 윤활액뿐, “거의 없는 공간”.", "정맥환류↓ → 심박출량↓ (긴장성 기흉)."], "core": "흡수 여유가 커서, 물이 찼다 = 생성 폭증 or 림프 흡수 고장."}, {"src": "기출 스타일 · 기흉 치료", "stem": "19세 남자, 키 183 cm·체중 58 kg. 갑자기 좌측 흉통과 숨참이 생겼다. 활력징후는 안정적이다. 흉부 X선에서 좌측 기흉 약 30%. 처치는?", "opts": ["산소 투여하며 경과 관찰", "흉강천자로 공기만 뺀다", "흉관삽관", "즉시 개흉술", "화학적 흉막유착술"], "ans": 2, "why": ["관찰은 ≤20% + 무증상 + 누출 없음.", "재팽창이 효과적이지 않아 잘 안 씀.", "≥20% + 증상 → 흉관 (m/c 치료).", "첫 발생, 안정 — 수술 적응 아님.", "지속·재발성에서, 그것도 수술 불가 환자에."], "core": "≤20% 무증상 → 관찰 / ≥20%·증상·긴장성 → 흉관."}, {"src": "기출 스타일 · 수술 적응증", "stem": "위 환자가 흉관을 넣은 지 5일째인데 water-seal 통에 기포가 계속 올라온다. 다음 처치는?", "opts": ["흉관을 빼고 관찰", "흉관을 하나 더 넣는다", "VATS로 기포를 절제한다", "산소 농도를 올린다", "퇴원 후 외래 추적"], "ans": 2, "why": ["공기가 새는 중.", "근본 해결 아님.", "공기누출 3일 이상 지속 → 수술 적응, 근본 치료는 기포 절제.", "흡수 속도 문제가 아님.", "새는 상태로 퇴원 X."], "core": "공기누출 3일↑ · 같은 쪽 재발 · 긴장성 병력 · 큰 기낭 → 수술."}, {"src": "Pま 변형 · 매년 ② 기흉", "stem": "기흉에 대한 설명으로 틀린 것은?", "opts": ["가장 흔한 증상은 흉통과 호흡곤란이다.", "일차성 자연기흉은 재발하면 같은 쪽에 생기는 경우가 많다.", "월경성 기흉은 대부분 우측에 생긴다.", "월경성 기흉은 경구피임약 복용 중에도 흔히 재발한다.", "이차성 자연기흉의 흔한 원인은 COPD와 결핵이다."], "ans": 3, "why": ["매년 정답 문장.", "재발 50% 중 같은 쪽 75%.", "우측 90%.", "무배란(임신·피임약)이면 절대 안 생김 → 그래서 배란억제제가 치료.", "한국에선 결핵도."], "core": "월경성: 20–30대 · 우측 90% · 월경 시작 48–72h · 무배란이면 X."}, {"src": "Pま 변형 · 매년 ③ 기흉 치료", "stem": "기흉 치료에 대한 설명으로 옳은 것은?", "opts": ["20% 이하라도 증상 없으면 흉관을 넣는다.", "증상이 있고 40% 정도면 산소요법을 먼저 한다.", "반대측 폐에 폐렴이 있으면 산소요법을 한다.", "고령 COPD로 전신마취가 어려운 재발성 기흉은 흉관을 통한 talc 유착술을 할 수 있다.", "긴장성 기흉 병력이 있는 환자에게 다시 기흉이 생기면 흉관으로만 치료한다."], "ans": 3, "why": ["무증상 ≤20%는 관찰.", "증상 + 큰 기흉 → 흉관.", "반대측 병변 → 흉관.", "수술 못 하는 지속·재발성 → 화학적 유착술 (전신마취 가능하면 흉강경으로).", "긴장성 병력 → 수술 (매년 단골 함정)."], "core": "유착술 = 흉막강 자체를 없애 다시 터져도 공기가 샐 곳이 없게."}, {"src": "Pま 변형 · 23Pま 흉관삽관 2가지", "stem": "흉관삽관 방법에 대한 설명으로 옳은 것은?", "opts": ["위 늑골의 아래 경계를 따라 절개한다.", "장측 흉막에 국소마취제를 충분히 주입한다.", "아래 늑골의 위 경계에서 절개하고 벽측 흉막을 충분히 마취한다.", "흉관은 대기에 열린 채로 둔다.", "통증이 적도록 가능한 한 낮게, 횡격막 근처로 넣는다."], "ans": 2, "why": ["늑간 신경혈관다발이 늑골 아래 홈으로 지나감.", "감각은 벽측에만.", "교수님이 재강조한 2가지.", "water-seal(closed system) — 열리면 공기가 다시 들어감.", "너무 낮으면 횡격막·복강 장기 손상."], "core": "① 늑골 위 경계 ② 벽측 흉막 마취. 4–6번째 늑간."}, {"src": "Pま 변형 · 긴장성 기흉", "stem": "긴장성 기흉의 소견으로 맞지 않는 것은?", "opts": ["빈맥", "저혈압", "청색증", "종격동이 기흉이 있는 쪽으로 이동", "정맥환류 감소"], "ans": 3, "why": ["맞음.", "맞음.", "맞음.", "양압이 반대편으로 밀어냄 → 종격동은 반대쪽으로.", "양압 → 정맥환류↓ → 심박출량↓."], "core": "흉막압이 양압 → 반대편 밀림 + 심장 압박 → 즉시 흉관."}, {"src": "기출 스타일 · 19Pま 혈흉", "stem": "22세 남자, 자연기흉으로 흉관을 넣자 처음 1,300 mL의 혈액이 배액되었고 이후에도 시간당 250 mL씩 나온다. 처치는?", "opts": ["흉관 유지하며 관찰", "수혈만 하며 관찰", "즉시 개흉하여 지혈", "urokinase 주입", "흉막유착술"], "ans": 2, "why": ["지혈이 안 되는 출혈.", "원인 해결 X.", "처음 1000 cc 이상 또는 시간당 수백 cc → 개흉, 기포도 같이 제거.", "농흉 치료.", "관련 없음."], "core": "feeding vessel은 탄력층이 없어 스스로 수축 못 함 → 지혈 안 됨."}, {"src": "기출 스타일 · 유미흉", "stem": "식도암 수술 5일째, 흉관에서 우유빛 액체가 하루 900 mL 나온다. 흉수 TG 250 mg/dL. 1차 처치는?", "opts": ["즉시 개흉하여 흉관(thoracic duct) 결찰", "금식 + TPN + 흉관 배액 유지", "고지방 식이로 영양 보충", "항생제 투여", "흉막유착술"], "ans": 1, "why": ["보존치료 2주 실패 또는 성인 1500 mL/day 이상일 때.", "유미흉 보존요법 — 먹으면 유미가 늘어남.", "오히려 배액↑ (진단 때나 씀).", "bacteriostatic이라 감염이 잘 안 생김.", "악성 유미흉 등에서."], "core": "TG ≥110 → 유미. 금식+TPN → 2주 실패·1500 mL/day↑ → 결찰."}, {"src": "Pま 변형 · 21·23Pま 가유미흉 감별", "stem": "우유빛 흉수에서 유미흉을 시사하는 소견은?", "opts": ["TG 40 mg/dL", "콜레스테롤/TG 비 1.8", "TG 150 mg/dL, 콜레스테롤/TG 비 0.4", "림프구가 거의 없다", "악취가 난다"], "ans": 2, "why": ["≤50 → 유미 가능성 <5%.", ">1 → 유미 아님 (가유미흉).", "TG ≥110 + 비 <1 → 유미.", "유미는 림프구가 많음.", "유미는 무취."], "core": "유미 = TG↑, Chol/TG <1 / 가유미 = 콜레스테롤↑ (만성 결핵·RA 흉수)."}, {"src": "Pま 변형 · 매년 ④ parapneumonic", "stem": "폐렴 환자의 흉막천자 결과 중 흉관삽관의 적응이 되는 것은?", "opts": ["pH 7.25", "LDH 600 IU/L", "glucose 45 mg/dL", "여출액", "glucose 90 mg/dL"], "ans": 2, "why": ["7.0–7.2 → 반복 천자, 7.25는 기준 밖.", ">1000이어야.", "<60 → 흉관.", "농흉이 아님.", "정상."], "core": "pH <7.0 · glucose <60 · LDH >1000 · pus → 즉시 흉관."}, {"src": "Pま 변형 · 25Pま 여출 vs 삼출", "stem": "흉수/혈청 단백 비 0.3, 흉수/혈청 LDH 비 0.4, 흉수 단백 2.1 g/dL, 맑은 밀짚색. 가장 가능성 높은 원인은?", "opts": ["결핵", "세균성 폐렴", "울혈성 심부전", "폐암 흉막 전이", "림프종"], "ans": 2, "why": ["삼출액.", "삼출액.", "기준 모두 여출 → 압력 균형 문제 → 원인 치료.", "삼출액.", "삼출액(림프관 폐쇄)."], "core": "여출 = 막은 멀쩡, 정수압↑ or 알부민↓ (CHF·간경변·신증) → 원인 치료."}, {"src": "Pま 변형 · 매년 ⑤ 농흉 단계", "stem": "농흉의 진행 단계에 대한 설명으로 옳은 것은?", "opts": ["1단계에서 흉막액 pH와 glucose가 감소한다.", "1단계에서는 흉관삽관이 필요하다.", "2단계에서 섬유소 침착으로 loculation이 생기고 pH·glucose가 감소한다.", "3단계는 침전 비율이 25% 미만이다.", "3단계에서는 항생제만으로 치료된다."], "ans": 2, "why": ["1단계는 glucose·pH 정상.", "1단계는 항생제만, 흉관 X.", "2단계 fibrinopurulent — 수술 최적기.", "≥75%.", "peel 때문에 decortication 등 수술."], "core": "1기 항생제만 / 2기 loculation → 흉관·조기 수술 / 3기 peel → decortication."}, {"src": "Pま 변형 · 23·25Pま decortication", "stem": "만성 농흉에서 decortication에 대한 설명으로 옳은 것은?", "opts": ["가장 중요한 목적은 감염된 조직의 제거다.", "폐를 찌그러뜨려 사강을 만든다.", "급성기 1단계의 1차 치료다.", "늑골을 잘라 흉벽을 무너뜨리는 술식이다.", "피부를 벽측 흉막에 꿰매 창을 만든다."], "ans": 0, "why": ["목적: 폐 재팽창 · 감염조직 제거(가장 중요, 23Pま) · 고름 제거.", "반대 — 재팽창시켜 사강을 없앰.", "1단계는 항생제.", "thoracoplasty.", "Eloesser flap."], "core": "늑막 수술 원칙: 폐를 펴서 빈 공간을 없앤다 → decortication이 최선."}, {"src": "Pま 변형 · 王ま BPF", "stem": "농흉 환자가 악취 나는 가래를 많이 뱉고 기침이 계속된다. 기관지흉막루가 의심될 때 배농 시 환자 자세는?", "opts": ["병변 쪽을 위로 하고 눕힌다", "병변 쪽을 아래로 하고 눕힌다", "엎드린 자세", "앉은 자세에서 고개를 젖힌다", "자세는 상관없다"], "ans": 1, "why": ["고름이 기관지를 타고 반대편 폐로 넘어가 질식 위험.", "반대편 폐 보호.", "—", "—", "질식 위험."], "core": "BPF = 농흉의 “기관지” 침범 (벽측 흉막 침범 X)."}, {"src": "Pま 변형 · 매년 ⑥ 흉부 수술", "stem": "흉부질환의 수술에 대한 설명으로 옳은 것은?", "opts": ["폐엽절제술은 주로 전측방 절개로 한다.", "정중흉골절개를 clamshell incision이라고 한다.", "양측 폐이식에는 경흉골 양측성 개흉술(clamshell)을 쓸 수 있다.", "흉복부 절개는 상부 식도 수술에 주로 쓴다.", "심낭삼출 배액은 후측방 절개가 표준이다."], "ans": 2, "why": ["후측방 (m/c).", "clamshell = trans-sternal bilateral.", "양측 폐이식·양측 전이폐암.", "하부 식도·위식도 접합부.", "검상하·전측방·흉강경."], "core": "후측방 = 폐 / 정중흉골 = 심장 / clamshell = 양측 폐이식 / 흉복부 = 하부 식도 / 검상하 = 심낭."}, {"src": "Pま 변형 · 19·22·23·25Pま 종격 림프절", "stem": "폐암 환자에서 종격동경(mediastinoscopy)으로 생검할 수 있는 림프절은?", "opts": ["#5", "#6", "#7", "#8", "#9"], "ans": 2, "why": ["대동맥 옆 → 종격절개술.", "대동맥 옆 → 종격절개술.", "용골하(subcarinal) — #2·3·4·7 가능.", "식도 주위 — 불가.", "하폐인대 — 불가."], "core": "종격동경 O: 2·3·4·7 / X: 5·6·8·9. N2 양성 → IIIA → 항암 먼저."}, {"src": "Pま 변형 · 15·16ま 폐구역절제", "stem": "폐구역절제술(segmentectomy)에 대한 설명으로 옳은 것은?", "opts": ["폐암 수술의 원칙이다.", "비해부학적 절제다.", "자연기흉의 소기포 절제에 주로 쓴다.", "가장 흔한 적응증은 기관지확장증이고 lingular segmentectomy가 가장 많다.", "과오종·폐농양에는 쓸 수 없다."], "ans": 3, "why": ["폐암 원칙은 lobectomy.", "해부학적 — 비해부학적은 wedge.", "wedge.", "설상엽이 튀어나와 자르기 쉬움.", "적응증에 포함됨."], "core": "해부학적: segment·lobe·pneumonectomy / 비해부학적: wedge."}, {"src": "Pま 변형 · 23·25Pま 중피종", "stem": "석면 노출력이 있는 62세 남자, 미만성 흉막비후와 흉수. 악성 중피종 확진을 위한 검사는?", "opts": ["흉수 세포진 검사", "흉부 CT", "VATS 흉막생검", "흉수 ADA", "PET-CT"], "ans": 2, "why": ["중피세포가 있다고 중피종이라 할 수 없음 — 진단 어려움.", "범위 판단용, 전이와 감별 어려움.", "조직으로 확진 (23·25Pま).", "결핵 감별용.", "확진 X."], "core": "흉막종양의 95%는 전이 → 중피종은 조직(VATS 생검)으로만 확진."}];</script>
+</section>
+
 <!-- ================= KDT ================= -->
 <section class="block" id="kdt">
   <div class="part">SUMMARY</div>
@@ -1270,6 +1305,41 @@ footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:
 </section>
 
 </main>
+<script>
+(function(){
+  const box=document.getElementById('qz-list'); if(!box) return;
+  const Q=window.QZ||[]; const K='①②③④⑤⑥';
+  let answered=0, correct=0;
+  const scEl=document.getElementById('qz-sc'), barEl=document.getElementById('qz-fill');
+  function upd(){ scEl.innerHTML='정답 <b>'+correct+'</b> / 푼 문제 <b>'+answered+'</b> / 전체 <b>'+Q.length+'</b>'; barEl.style.width=(Q.length?answered/Q.length*100:0)+'%'; }
+  function esc(s){return s}
+  function render(){
+    box.innerHTML=''; answered=0; correct=0;
+    Q.forEach((q,i)=>{
+      const d=document.createElement('div'); d.className='q qz';
+      d.innerHTML='<div class="q-head"><span class="q-num mono">Q'+(i+1)+'</span><span class="q-src">'+q.src+'</span></div><p class="q-stem">'+q.stem+'</p><div class="opts" role="group" aria-label="Q'+(i+1)+' 선지"></div><p class="verdict" aria-live="polite"></p><div class="ess"><b>본질</b>'+q.core+'</div>';
+      const ops=d.querySelector('.opts');
+      q.opts.forEach((o,j)=>{
+        const b=document.createElement('button'); b.type='button'; b.className='opt';
+        b.innerHTML='<span class="k">'+K[j]+'</span><span>'+o+'</span><span class="why">'+(q.why[j]||'')+'</span>';
+        b.addEventListener('click',()=>{
+          if(d.classList.contains('done')) return;
+          d.classList.add('done'); answered++;
+          const ok=j===q.ans; if(ok) correct++;
+          ops.querySelectorAll('.opt').forEach((x,k)=>{ x.disabled=true; if(k===q.ans) x.classList.add('right'); else if(k===j) x.classList.add('wrong'); });
+          const v=d.querySelector('.verdict'); v.className='verdict '+(ok?'ok':'no'); v.textContent=ok?'정답':'오답 — 정답은 '+K[q.ans];
+          upd();
+        });
+        ops.appendChild(b);
+      });
+      box.appendChild(d);
+    });
+    upd();
+  }
+  document.getElementById('qz-reset').addEventListener('click',()=>{render(); box.scrollIntoView({behavior:'smooth'});});
+  render();
+})();
+</script>
 <footer class="wrap">betheu/study · STUDY TREE · 호흡기학</footer>
 </body>
 </html>
