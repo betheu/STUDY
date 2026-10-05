@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>10/6(화) - 폐결핵</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap">
+<style>
+:root{
+  --bg:#f3f7f6; --surface:#ffffff; --ink:#14201e; --muted:#566460; --rule:#d8e2df; --tint:#e8f1ef;
+  --accent:#1c6c66; --accent-ink:#ffffff; --art:#b2372d;
+  --ok:#23704a; --ok-bg:#e5f2ea; --bad:#a8261e; --bad-bg:#fbe9e7;
+  --amber:#8a5f00; --amber-bg:#f8efda; --violet:#5d4499; --violet-bg:#eee9f7; --blue:#2c5a98; --blue-bg:#e6edf8;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --serif:"Nanum Myeongjo","AppleMyungjo","Batang",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0c1413; --surface:#131d1c; --ink:#e2ebe8; --muted:#97a8a3; --rule:#24322f; --tint:#172523;
+    --accent:#6cc7bd; --accent-ink:#0c1413; --art:#ea8277;
+    --ok:#74c795; --ok-bg:#132a1e; --bad:#f08b81; --bad-bg:#2f1917;
+    --amber:#dcae4a; --amber-bg:#2b2311; --violet:#b39ae6; --violet-bg:#241d36; --blue:#8fb3ea; --blue-bg:#17233a;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0c1413; --surface:#131d1c; --ink:#e2ebe8; --muted:#97a8a3; --rule:#24322f; --tint:#172523;
+  --accent:#6cc7bd; --accent-ink:#0c1413; --art:#ea8277;
+  --ok:#74c795; --ok-bg:#132a1e; --bad:#f08b81; --bad-bg:#2f1917;
+  --amber:#dcae4a; --amber-bg:#2b2311; --violet:#b39ae6; --violet-bg:#241d36; --blue:#8fb3ea; --blue-bg:#17233a;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:60px}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.72; word-break:keep-all; overflow-wrap:anywhere}
+.wrap{max-width:860px; margin-inline:auto; padding-inline:16px}
+@media (min-width:700px){ .wrap{padding-inline:24px} }
+a{color:var(--accent)}
+h1,h2,h3,h4{text-wrap:balance; margin:0}
+p{margin:0}
+ul,ol{margin:0; padding-left:1.25em}
+li+li{margin-top:3px}
+b.r{color:var(--art)} b.a{color:var(--accent)}
+.mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+.small{font-size:13.5px; color:var(--muted)}
+
+/* ---------- hero ---------- */
+.back{display:inline-block; font-family:var(--mono); font-size:12px; color:var(--muted); text-decoration:none; padding-top:20px}
+.back:hover{color:var(--accent)}
+.hero{padding-block:12px 22px; display:grid; gap:12px}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--muted)}
+.hero h1{font-family:var(--serif); font-weight:800; font-size:clamp(27px,6vw,40px); line-height:1.25}
+.hero h1 .d{color:var(--accent)}
+.lede{color:var(--muted); max-width:66ch}
+.meta{display:flex; flex-wrap:wrap; gap:6px}
+
+/* ---------- badges ---------- */
+.ma,.pma,.chg,.same,.tag{display:inline-flex; align-items:center; font-family:var(--mono); font-size:11px; font-weight:500; padding:1px 8px; border-radius:999px; white-space:nowrap; vertical-align:middle; line-height:1.7}
+.ma{background:var(--bad-bg); color:var(--art)}
+.pma{background:var(--amber-bg); color:var(--amber)}
+.chg{background:var(--violet-bg); color:var(--violet)}
+.same{background:var(--ok-bg); color:var(--ok)}
+.tag{background:var(--tint); color:var(--muted)}
+.meta .chg,.meta .same,.meta .tag{font-size:12px; padding:3px 10px}
+
+/* ---------- legend / strategy ---------- */
+.legend{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px 16px; display:grid; gap:8px}
+.legend h3{font-size:14px; color:var(--muted); font-family:var(--mono); font-weight:500; letter-spacing:.03em}
+.legend dl{display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin:0; font-size:14px; align-items:center}
+.legend dt{margin:0} .legend dd{margin:0; color:var(--muted)}
+.callout{background:var(--amber-bg); border:1px solid color-mix(in srgb, var(--amber) 35%, transparent); border-radius:12px; padding:14px 16px; display:grid; gap:8px}
+.callout h3{font-size:15px; color:var(--amber)}
+.callout ul{font-size:14.5px}
+.callout .src{font-size:12.5px; color:var(--muted)}
+
+/* ---------- toc ---------- */
+.toc{position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--rule)}
+.toc .wrap{display:flex; gap:6px; overflow-x:auto; padding-block:9px; scrollbar-width:thin}
+.chip{flex:0 0 auto; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:999px; padding:4px 12px; font-size:13px}
+.chip:hover{border-color:var(--accent); color:var(--accent)}
+.chip:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------- sections ---------- */
+.block{padding-block:30px; border-top:1px solid var(--rule)}
+.block:first-of-type{border-top:none}
+.part{font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.06em}
+.block > h2{font-family:var(--serif); font-weight:800; font-size:clamp(22px,4.4vw,28px); line-height:1.3; margin-top:2px}
+.sub{color:var(--muted); font-size:14.5px; margin-top:6px}
+.block h3{font-size:17px; font-weight:700; margin-top:26px; margin-bottom:8px; display:flex; flex-wrap:wrap; align-items:center; gap:6px}
+.block h4{font-size:15px; font-weight:700; margin-top:16px; margin-bottom:4px; display:flex; flex-wrap:wrap; align-items:center; gap:6px}
+.block p + p{margin-top:8px}
+.block > p, .block > ul{margin-top:8px}
+
+/* ---------- boxes ---------- */
+.box{border-radius:12px; padding:12px 14px; margin-top:12px; font-size:14.8px}
+.box > .lbl{display:block; font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.04em; margin-bottom:4px}
+.box ul{margin-top:4px}
+.intuit{background:var(--blue-bg); border:1px solid color-mix(in srgb, var(--blue) 25%, transparent)}
+.intuit > .lbl{color:var(--blue)}
+.core{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--art)}
+.core > .lbl{color:var(--art)}
+.trap{background:var(--bad-bg); border:1px solid color-mix(in srgb, var(--bad) 25%, transparent)}
+.trap > .lbl{color:var(--bad)}
+.more{background:var(--violet-bg); border:1px solid color-mix(in srgb, var(--violet) 25%, transparent)}
+.more > .lbl{color:var(--violet)}
+.prof{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--amber)}
+.prof > .lbl{color:var(--amber)}
+.term{background:var(--surface); border:1px dashed color-mix(in srgb, var(--accent) 45%, transparent)}
+.term > .lbl{color:var(--accent)}
+.term dl{margin:4px 0 0; display:grid; gap:6px}
+.term dt{font-weight:700; font-size:14px}
+.term dd{margin:0 0 0 0; color:var(--ink); font-size:14px; padding-left:10px; border-left:2px solid var(--tint)}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px; margin-top:12px}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; margin-top:12px}
+.grid2 > .box,.grid2 > .card{margin-top:0}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto; margin-top:12px; border:1px solid var(--rule); border-radius:12px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:14px}
+table.wide{min-width:600px}
+th,td{padding:9px 11px; text-align:left; vertical-align:top; border-bottom:1px solid var(--rule)}
+tr:last-child td, tr:last-child th{border-bottom:none}
+thead th{background:var(--tint); font-size:13px; font-weight:600; white-space:nowrap}
+tbody th{font-weight:600; background:color-mix(in srgb, var(--tint) 55%, transparent); min-width:6.5em}
+td.c, th.c{text-align:center}
+.num{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+.o{color:var(--ok); font-weight:700} .x{color:var(--bad); font-weight:700}
+
+/* ---------- flowchart ---------- */
+.flow{display:grid; justify-items:center; margin-top:14px}
+.node{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:9px 12px; text-align:center; width:100%; max-width:560px; font-size:14px}
+.node.dq{background:var(--tint); border-color:color-mix(in srgb, var(--accent) 45%, transparent); font-weight:600}
+.node.ok{background:var(--ok-bg); border-color:color-mix(in srgb, var(--ok) 40%, transparent)}
+.node.bad{background:var(--bad-bg); border-color:color-mix(in srgb, var(--bad) 40%, transparent)}
+.node.warnn{background:var(--amber-bg); border-color:color-mix(in srgb, var(--amber) 40%, transparent)}
+.node small{display:block; color:var(--muted); font-size:12.5px; font-weight:400; margin-top:2px}
+.arr{width:2px; height:20px; background:var(--muted); position:relative; margin-bottom:6px}
+.arr::after{content:""; position:absolute; left:-5px; bottom:-6px; border:6px solid transparent; border-top:7px solid var(--muted); border-bottom:0}
+.arr.lab{height:26px}
+.arr .t{position:absolute; left:10px; top:2px; font-size:12px; line-height:1.3; color:var(--muted); width:max-content; max-width:calc(50vw - 30px); font-family:var(--mono)}
+.branch{display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; max-width:560px}
+.branch.three{grid-template-columns:1fr 1fr 1fr}
+.branch > div{display:grid; justify-items:center; align-content:start}
+.blabel{font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:4px}
+@media (max-width:420px){ .branch.three{grid-template-columns:1fr} }
+
+/* ---------- figures ---------- */
+figure{margin:14px 0 0}
+.fig-card{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px}
+figure svg{width:100%; height:auto; display:block; max-width:560px; margin-inline:auto}
+figcaption{font-size:13px; color:var(--muted); margin-top:8px}
+
+/* ---------- bars ---------- */
+.bars{display:grid; gap:10px; margin-top:6px}
+.bar-row{display:grid; grid-template-columns:5.6em 1fr; gap:10px; align-items:center; font-size:13.5px}
+.bar-row .track{background:var(--tint); border-radius:6px; height:26px; position:relative; overflow:hidden}
+.bar-row .fill{position:absolute; inset:0 auto 0 0; background:color-mix(in srgb, var(--accent) 70%, transparent); border-radius:6px}
+.bar-row .val{position:absolute; left:8px; top:3px; font-family:var(--mono); font-size:12px; color:var(--ink)}
+
+/* ---------- 2x2 ---------- */
+.mx{display:grid; grid-template-columns:auto 1fr 1fr; gap:6px; margin-top:12px; font-size:14px}
+.mx .h{font-family:var(--mono); font-size:12px; color:var(--muted); align-self:end; text-align:center; padding:2px}
+.mx .rh{font-family:var(--mono); font-size:12px; color:var(--muted); writing-mode:horizontal-tb; align-self:center; padding-right:4px}
+.mx .cell{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:10px; min-height:84px}
+.mx .cell b{display:block; font-size:15px}
+.mx .cell.tb{background:var(--ok-bg)} .mx .cell.ntm{background:var(--amber-bg)} .mx .cell.cl{background:var(--tint)}
+
+/* ---------- stages / timeline ---------- */
+.stages{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:12px}
+.stage{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px; position:relative}
+.stage .n{font-family:var(--mono); font-size:12px; color:var(--accent)}
+.stage h4{margin-top:2px}
+.stage ul{font-size:13.8px; margin-top:4px}
+.stage .tx{margin-top:8px; font-size:13.5px; background:var(--tint); border-radius:8px; padding:6px 8px}
+
+/* ---------- questions ---------- */
+.q{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px 16px; margin-top:12px}
+.q-head{display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin-bottom:6px}
+.q-src{font-family:var(--mono); font-size:11.5px; padding:1px 8px; border-radius:999px; background:var(--tint); color:var(--muted)}
+.q-stem{font-weight:600; font-size:15px}
+.q ol{margin-top:8px; padding-left:1.4em; font-size:14.5px; display:grid; gap:3px}
+.q details{margin-top:10px; border-top:1px dashed var(--rule); padding-top:8px}
+.q summary{cursor:pointer; font-weight:700; color:var(--accent); font-size:14px}
+.q details > div{margin-top:6px; font-size:14.5px}
+.ans{display:inline-block; font-family:var(--mono); font-weight:600; background:var(--ok-bg); color:var(--ok); padding:0 8px; border-radius:6px}
+
+/* ---------- memo cards ---------- */
+.memo{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px; margin-top:12px}
+.memo > div{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px}
+.memo h4{font-size:13px; font-family:var(--mono); color:var(--accent); font-weight:500; margin:0 0 6px}
+.memo ul{font-size:14px; padding-left:1.1em}
+.checklist{list-style:none; padding-left:0; display:grid; gap:6px; margin-top:8px}
+.checklist li{padding-left:1.6em; position:relative}
+.checklist li::before{content:"☐"; position:absolute; left:0; color:var(--accent)}
+
+footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:var(--mono)}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html#pulm">← STUDY TREE · 호흡기학</a>
+  <header class="hero">
+    <div class="eyebrow">호흡기학 · 10/6(화) 5–6교시 14:00–15:50 · 예습</div>
+    <h1><span class="d">10/6(화)</span> - 폐결핵</h1>
+    <div class="meta">
+      <span class="chg">교수 변경 · 25 나용섭 → 26 정은지</span>
+      <span class="tag">시간표 표기: 윤(정은지)</span>
+      <span class="tag">원자료: 25 학습부 05번 (문용균 초안 · 이상록 검안)</span>
+    </div>
+    <p class="lede">25년 학습부(나용섭 교수님, 2025-09-05 강의) 검안본을 <b>이해 순서로 재배열</b>하고, 흐름도·감별표를 붙인 예습본. 결핵 강의는 <b>결핵 진료지침(2024 개정)</b>을 뼈대로 하는 강의라 교수님이 바뀌어도 큰 줄기는 그대로 갈 가능성이 큼. 다만 25의 <span class="pma">Pま</span>는 “나용섭 교수님이 강조한 것”이라는 점은 감안하고 볼 것.</p>
+
+    <div class="legend">
+      <h3>읽는 방법</h3>
+      <dl>
+        <dt><span class="tag" style="background:var(--blue-bg);color:var(--blue)">직관</span></dt><dd>개념을 일상 언어로. 처음이면 여기부터.</dd>
+        <dt><span class="tag" style="background:var(--bad-bg);color:var(--art)">핵심</span></dt><dd>이것만 알면 나머지가 딸려오는 문장.</dd>
+        <dt><span class="tag" style="background:var(--bad-bg);color:var(--bad)">함정</span></dt><dd>기출에서 오답 선지로 나온 지점.</dd>
+        <dt><span class="tag" style="color:var(--accent)">용어</span></dt><dd>처음 보는 용어 정의.</dd>
+        <dt><span class="tag" style="background:var(--violet-bg);color:var(--violet)">+ 더 알기</span></dt><dd>학습부에 없는 보충 설명 (이해용으로 덧붙인 것).</dd>
+        <dt><span class="pma">25Pま</span></dt><dd>그 해 교수님이 강조한 것 (학습부 표기 그대로).</dd>
+        <dt><span class="ma">23ま</span></dt><dd>그 해 기출된 것. <b>王</b>은 학습부에서 특히 크게 표시한 지점.</dd>
+      </dl>
+    </div>
+
+    <div class="callout">
+      <h3>공부 방향 — 선배들 과목설명회 + 교수 변경 반영</h3>
+      <ul>
+        <li><b>호흡기학은 “진단은?” 다음에 “알고리즘에 따른 치료는?”까지 묻는 과목.</b> 결핵도 똑같음 → 검사 결과 조합을 보고 <b>다음 행동</b>을 고르는 연습이 핵심.</li>
+        <li>25까지 결핵 파트(나용섭 교수님)는 <b>KMLE형 케이스</b>, 야마 변형 + 피마에서 새 문제, 진단 ↔ 치료를 뒤집어서 출제. 선배 4명 모두 “강의는 꼭 들어라” — 학습부 텍스트만으론 잘 안 와닿는 파트라는 평.</li>
+        <li><b>26은 정은지 교수님으로 바뀜 → 출제 스타일 데이터 없음.</b> 그래서 ① 진료지침 핵심 알고리즘(PART 0) ② 해마다 반복된 KMLE형 포인트(PART 9) ③ <b>새 강의에서 강조하는 부분</b> — 이 셋을 겹쳐 보는 게 가장 안전. 강의 들으면서 맨 아래 <a href="#check">체크리스트</a>를 채울 것.</li>
+        <li>야마 해설은 맹신 금지 (선배들: “답 고친 문제 꽤 있었다”). 근거를 강의안에서 다시 확인.</li>
+        <li>시간 없으면: <b>PART 0 → PART 9(기출 패턴) → 암기 카드</b> 순서.</li>
+      </ul>
+      <p class="src">출처: 25 과목설명회 호흡기학 (이민경 · 김혁희 · 하승호 · 이연재)</p>
+    </div>
+  </header>
+</div>
+
+<nav class="toc" aria-label="섹션 목차">
+  <div class="wrap">
+    <a class="chip" href="#p0">0 한눈에</a>
+    <a class="chip" href="#p1">1 정의·자연경과</a>
+    <a class="chip" href="#p2">2 진단</a>
+    <a class="chip" href="#p3">3 초치료</a>
+    <a class="chip" href="#p4">4 부작용</a>
+    <a class="chip" href="#p5">5 폐외결핵</a>
+    <a class="chip" href="#p6">6 잠복결핵</a>
+    <a class="chip" href="#p7">7 내성결핵</a>
+    <a class="chip" href="#p8">8 NTM</a>
+    <a class="chip" href="#p9">9 기출 패턴</a>
+    <a class="chip" href="#memo">암기 카드</a>
+    <a class="chip" href="#check">강의 체크</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= PART 0 ================= -->
+<section class="block" id="p0">
+  <div class="part">PART 0</div>
+  <h2>한눈에 보는 폐결핵</h2>
+  <p class="sub">여기서 지도를 머리에 넣고, PART 1부터 빈칸을 채워 나가면 됨.</p>
+
+  <div class="box core"><span class="lbl">핵심 — 두 문장</span>
+    <p><b>① 결핵은 “균을 증명해야” 진단한다.</b> 사진(CXR·CT)은 의심일 뿐, 객담에서 균을 잡아야 확진.</p>
+    <p><b>② 결핵은 “여러 약을 오래” 써야 낫는다.</b> 한 가지 약이나 짧은 치료는 내성균만 남김.</p>
+  </div>
+
+  <div class="box intuit"><span class="lbl">직관 — 왜 이렇게 까다로운 균인가</span>
+    <p>결핵균은 <b>느리게 자라고</b>(한 번 분열에 하루 가까이, 대장균은 20분), <b>숨어 지내고</b>(휴면 상태로 대식세포 안·괴사 조직 속), <b>세포벽이 기름져서</b> 염료도 약도 잘 안 들어감.</p>
+    <ul>
+      <li>느리게 자람 → 배양이 몇 주 걸림 → 그래서 <b>PCR(Xpert)</b>로 빨리 보완</li>
+      <li>숨어 지냄 → 증상 없이 잠복 가능 → <b>잠복결핵</b>이라는 개념이 생김</li>
+      <li>잘 안 죽음 + 내성 돌연변이 → <b>3–4제 병합 6개월</b></li>
+    </ul>
+  </div>
+
+  <h3>0-1. 노출 ≠ 감염 ≠ 발병 <span class="pma">20·21·22·23·25Pま</span></h3>
+  <div class="flow" aria-label="결핵 자연경과">
+    <div class="node">결핵 환자의 기침 → <b>공기 중 비말핵</b>에 <b>노출</b></div>
+    <div class="arr lab"><span class="t">밀접접촉자의 약 30%</span></div>
+    <div class="node warnn"><b>감염 = 잠복결핵(LTBI)</b><small>균은 몸 안에 있지만 면역이 가둬 둠 · 증상 X · 전염 X · 객담·CXR 정상 · IGRA/TST만 양성</small></div>
+    <div class="arr lab"><span class="t">평생 10% (절반은 2년 내)</span></div>
+    <div class="node bad"><b>발병 = 활동성 결핵</b><small>면역 저하(고령·영양·암·항암·면역억제제·HIV) → 균이 “감옥 문 열고” 나옴 · 증상 · 전염 · 객담·영상에서 보임</small></div>
+  </div>
+  <div class="box intuit"><span class="lbl">직관</span>교수님 비유: 잠복결핵 = <b>결핵균이 감옥에 갇혀 있는 상태</b>. 감옥 안 죄수는 남을 해치지 못함(전염 X). 교도관(면역)이 약해지면 탈옥(발병). 그래서 진단도 치료도 둘이 완전히 다름 — <b>활동성은 균 검사 + 4제</b>, <b>잠복은 면역검사 + 1–2제</b>.</div>
+
+  <h3>0-2. 진단 지도</h3>
+  <div class="flow">
+    <div class="node dq">2–3주 이상 기침 등 호흡기 증상 → 결핵 의심</div>
+    <div class="arr"></div>
+    <div class="node">흉부 X선 (의심 소견: 상엽 침윤·공동·결절) <small>단독 진단 X</small></div>
+    <div class="arr"></div>
+    <div class="node"><b>객담 2–3회 → AFB 도말 + PCR(Xpert MTB/RIF) + 배양</b> <small>세 가지를 “동시에”</small></div>
+    <div class="arr"></div>
+    <div class="node">배양 자라면 → <b>약제감수성검사</b> (신속 + 통상 같이)</div>
+  </div>
+
+  <h3>0-3. 치료 지도</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>상황</th><th>처방</th><th>한 줄 이유</th></tr></thead>
+      <tbody>
+        <tr><th>초치료 (표준)</th><td class="num"><b>2HREZ / 4HR(E)</b></td><td>2개월 4제 집중 → 4개월 2–3제 유지</td></tr>
+        <tr><th>PZA 못 씀 (고령·간질환)</th><td class="num"><b>9HRE</b></td><td>가장 독한 Z를 빼는 대신 9개월</td></tr>
+        <tr><th>RIF 내성 (Xpert)</th><td><b>MDR에 준해 치료</b><br><span class="num">BPaLM 6개월 / MDR-END 9개월</span></td><td>RIF 단독내성은 드물어서 INH 내성도 있다고 봄</td></tr>
+        <tr><th>잠복결핵</th><td class="num"><b>4R</b> / 3HR / 9H</td><td>균 수가 적어 1–2제로 충분</td></tr>
+        <tr><th>NTM (MAC)</th><td><b>Macrolide + EMB + RIF</b></td><td>결핵약(HREZ) 아님 · 진단 ≠ 치료</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>0-4. 반드시 외울 10가지</h3>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>#</th><th>항목</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><th>CXR</th><td><b>CXR 단독으로 진단하지 않는다.</b> 의심되면 객담 결핵균 검사로 확진. <span class="ma">22·23ま</span><span class="pma">19·22·23Pま</span></td></tr>
+        <tr><td class="num">2</td><th>민감도</th><td><b>배양 &gt; PCR &gt; AFB 도말.</b> AFB(+)인데 PCR(−) → <b>NTM</b> 의심. <span class="pma">19·20·21·22·23Pま 王</span></td></tr>
+        <tr><td class="num">3</td><th>Xpert MTB/RIF</th><td>결핵균 + <b>리팜핀 내성</b>을 한 번에. RIF 내성이면 MDR에 준해 치료. <span class="pma">22·23·25Pま</span></td></tr>
+        <tr><td class="num">4</td><th>초치료</th><td>1차약 <b>H·R·E·Z</b>, <b>2HREZ/4HR(E)</b>, Z 불가 시 <b>9HRE</b>. <span class="pma">20·23·25Pま</span></td></tr>
+        <tr><td class="num">5</td><th>간독성</th><td><b>ALT ≥5배</b>(증상 무관) or <b>증상 + ALT ≥3배</b> → 즉시 중단 → ALT &lt;2배 되면 <b>RIF → INH → (PZA)</b> 순 재투여. <span class="ma">20·21·23ま</span><span class="pma">21·22·23·25Pま</span></td></tr>
+        <tr><td class="num">6</td><th>약별 부작용</th><td>INH 말초신경병증(B6) · RIF 혈소판↓·오렌지색 소변·CYP 유도 · EMB 시신경염 · PZA 간독성 최강·고요산/통풍</td></tr>
+        <tr><td class="num">7</td><th>TST/IGRA</th><td>“감염”만 증명 → <b>활동성 vs 잠복 구분 X</b> → 활동성 진단에 쓰지 않음. <span class="pma">19王·21·22·23·25Pま</span></td></tr>
+        <tr><td class="num">8</td><th>잠복결핵 치료</th><td><b>(RIF 4개월) or (INH+RIF 3개월) or (INH 9개월)</b>, 4R이 표준. <span class="pma">25Pま 가장 강력</span></td></tr>
+        <tr><td class="num">9</td><th>결핵성 흉막염</th><td><b>삼출성 + 림프구 우세 + ADA &gt;40</b> → 6개월 표준치료, 배액 필수 X, 스테로이드 X. <span class="ma">19·20·21·22ま</span><span class="pma">22·23·25Pま</span></td></tr>
+        <tr><td class="num">10</td><th>NTM</th><td>MAC m/c · <b>macrolide + EMB + RIF</b> · 공동 없는 NB형 <b>주 3회</b> vs 공동 있는 FC형 <b>매일</b>. <span class="ma">19·20·23ま</span><span class="pma">23·25Pま</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= PART 1 ================= -->
+<section class="block" id="p1">
+  <div class="part">PART 1</div>
+  <h2>정의 · 자연경과 · 증상</h2>
+
+  <h3>1-1. 결핵이란 <span class="pma">22Pま</span></h3>
+  <ul>
+    <li><b>Mycobacterium tuberculosis</b>에 의한 감염병. <b>공기(air-borne)</b>로 전염 → 환자는 <b>음압병실 격리</b>. (코로나는 비말 → 마스크로 충분)</li>
+    <li>폐뿐 아니라 몸 어디든 침범 가능, 그래도 80% 이상이 폐 → 호흡기내과가 담당.</li>
+    <li>침범 위치에 따라 이름이 다름 → <b>“결핵” ≠ “폐결핵”</b>. 교수님: 실습 케이스 발표 때 폐결핵을 그냥 결핵이라고 하지 말 것.</li>
+  </ul>
+  <div class="box term"><span class="lbl">용어</span>
+    <dl>
+      <dt>공기 감염 vs 비말 감염</dt>
+      <dd>비말(&gt;5 μm)은 무거워서 1–2 m 안에 떨어짐 → 마스크·거리두기로 차단. 비말이 말라 생긴 <b>비말핵(&lt;5 μm)</b>은 공기 중에 오래 떠다니며 폐포까지 들어감 → 결핵·홍역·수두. 그래서 결핵은 <b>음압 격리 + N95</b>.</dd>
+    </dl>
+  </div>
+
+  <h3>1-2. 국내 현황 <span class="tag">25 강의안 이미지 변경</span></h3>
+  <ul>
+    <li>신환자 수는 크게 줄었음 (인구 10만 명당 89 → 35명). 그래도 여전히 OECD 상위권.</li>
+    <li><b>65세 이상 비율은 오히려 증가</b> (조선대병원 결핵 환자 85%가 65세 이상) → 어릴 때 감염돼 잠복해 있다가 늙어서 재활성화.</li>
+  </ul>
+
+  <h3>1-3. 왜 상엽인가 <span class="pma">23Pま</span><span class="pma">22Pま</span></h3>
+  <ul>
+    <li>결핵균은 <b>산소를 좋아함</b>(호기성) → 산소 분압이 높은 <b>상엽</b>(+하엽 superior segment)에 잘 생김.</li>
+    <li>22Pま 시험 포인트: <b>상엽에 국한된 cavity</b>가 있는 사진 케이스. Cavity = 오래 진행 + 균 많음 → <b>전염성 매우 높음</b> → 격리 중요.</li>
+  </ul>
+  <div class="box more"><span class="lbl">+ 더 알기 — 상엽 산소 분압이 높은 이유</span>
+    서 있을 때 폐첨부는 중력 때문에 <b>혈류가 적고 환기는 상대적으로 많음</b>(V/Q 높음). 산소를 실어 갈 피가 적으니 폐포에 산소가 남아 폐포 산소분압이 기저부보다 높음 → 호기성 결핵균에게 좋은 환경. 림프 배액도 상대적으로 약해서 균이 덜 치워짐.
+  </div>
+
+  <h3>1-4. 증상과 징후</h3>
+  <ul>
+    <li>요즘은 <b>건강검진에서 우연히</b> 발견되는 경우 많음. 증상이 있다 = 이미 진행.</li>
+    <li>호흡기: <b>기침(m/c)</b>, 객담, 객혈 · 전신: 발열, <b>야간 발한</b><span class="pma">23Pま</span>, 체중감소 · 흉막염이면 흉통</li>
+    <li><b>기관지 결핵: 국소(일측) 천명</b><span class="pma">23Pま</span> — 천식·COPD는 양측성 wheezing. 일측 wheezing이면 암, 그리고 결핵을 생각.</li>
+    <li>물어볼 것: <b>결핵 접촉력</b><span class="pma">22Pま</span>, <b>과거 결핵력</b><span class="pma">22Pま</span>, <b>과거 흉부 X선</b><span class="pma">21·22Pま</span> → 내성 가능성 · 과거 흔적(잠복결핵 치료 대상) 판단 때문.</li>
+  </ul>
+  <div class="box core"><span class="lbl">핵심 — 권고 요약 <span class="pma">22·23Pま</span></span>
+    뚜렷한 원인 없이 <b>2–3주 이상</b> 기침 등 호흡기 증상 → 결핵을 의심하고 검사(먼저 CXR). 의심되면 <b>과거력·접촉력</b>을 물어볼 것.
+  </div>
+</section>
+
+<!-- ================= PART 2 ================= -->
+<section class="block" id="p2">
+  <div class="part">PART 2</div>
+  <h2>진단 — “균을 증명하라” ♥</h2>
+  <p class="sub"><span class="pma">21王·22·23·25Pま</span> 폐결핵은 균 증명이 핵심. 폐외결핵은 균 증명이 어려워 임상 양상도 씀.</p>
+
+  <h3>2-1. 흉부 X선 <span class="ma">22·23ま</span><span class="pma">19·22·23Pま</span></h3>
+  <div class="box core"><span class="lbl">핵심 — 권고 요약 (“꼭!!! 반드시 기억할 것”)</span>
+    <ul>
+      <li>CXR은 유용한 진단 방법이지만, <b>CXR 단독으로 결핵을 진단하지 않는다</b>.</li>
+      <li>결핵 의심 병변이 있으면 <b>과거 CXR과 비교</b>.</li>
+      <li>CXR에서 의심되면 <b>객담 결핵균 검사로 확진</b>하도록 노력. → 23Pま “결핵 의심 시 제일 중요한 검사 = 객담 결핵균 검사”.</li>
+    </ul>
+  </div>
+  <p>결핵을 의심할 소견: 상엽 consolidation · cavity · small nodular opacity · hilar LN 비대 · calcification(과거 결핵 흔적). 단, cavity는 <b>폐농양·괴사성 폐렴·폐암·NTM</b>도 만듦 → “가능성은 높지만 반드시 결핵은 아님”.</p>
+  <div class="box term"><span class="lbl">용어</span>
+    <dl>
+      <dt>opacity / consolidation</dt><dd>opacity = 음영 증가(하얗게 보이는 것) 전반. consolidation = 폐포 공기가 액체·세포로 대체돼 폐가 “굳은” 하얀 음영.</dd>
+      <dt>cavity (공동)</dt><dd>괴사된 조직이 기관지로 배출되고 남은 빈 구멍. 결핵에선 <b>건락괴사</b>가 녹아 빠지며 생김 → 공동 벽에 균이 엄청 많음 → 전염성 ↑.</dd>
+      <dt>건락괴사 (caseous necrosis)</dt><dd>육안으로 치즈(cheese = caseous)처럼 보이는 괴사. 결핵 육아종의 특징.</dd>
+      <dt>좁쌀결핵 (miliary TB)</dt><dd>균이 <b>혈행성</b>으로 퍼져 폐 전체에 좁쌀 같은 1–2 mm 결절이 흩뿌려진 상태. 형성평가 사진. <span class="pma">22·23Pま</span></dd>
+    </dl>
+  </div>
+
+  <h3>2-2. [진단 1] 항산균 도말검사 (AFB smear) <span class="pma">21·22·23Pま</span></h3>
+  <ul>
+    <li>결핵균 세포벽은 지방(mycolic acid)이 많아 염료가 안 들어감 → <b>석탄산(carbolic acid)</b>과 섞은 염료로 염색 → 한번 물들면 <b>산으로도 안 빠짐</b> = 항산균(acid-fast bacilli).</li>
+    <li>장점: <b>빠름</b> → 전염력 높은 환자를 신속하게 찾음.</li>
+    <li><b>문제점 2가지</b>: ① <b>민감도 30–50%</b> — 객담 1 mL에 균이 <b>1만 개 이상</b> 있어야 양성 ② <b>NTM과 감별 불가</b> (NTM도 AFB 양성).</li>
+  </ul>
+  <div class="box intuit"><span class="lbl">직관 — 도말의 양성·음성이 말하는 것</span>
+    <b>음성</b> → 균이 적을 수도 있으니 결핵 배제 못함.<br>
+    <b>양성</b> → 객담에 균이 1만 개 이상 = <b>오래 진행 + 균 많음 + 전염력 높음</b>. 그리고 결핵이라면 더 민감한 PCR·배양도 당연히 양성이어야 함.
+  </div>
+  <h4>검체 수집</h4>
+  <ul>
+    <li><b>객담 최소 2회, 가능하면 3회</b> → 도말 + 배양 <span class="pma">22Pま</span> (민감도가 낮으니 여러 번). 1차는 즉석 채담, 나머지는 집에서 <b>아침 식사 전</b>(밤새 쌓인 가래).</li>
+    <li>가래가 안 나오면: <b>유도객담</b>, <b>기관지내시경</b>, 소아는 <b>위세척</b>.</li>
+    <li>도말 양성 결과는 <b>24시간 이내 통보</b> → 조기 치료 = 전파 차단.</li>
+  </ul>
+
+  <h3>2-3. [진단 2] 분자진단 — PCR · Xpert MTB/RIF</h3>
+  <h4>결핵균 핵산증폭검사 (TB-PCR) <span class="pma">22Pま</span></h4>
+  <ul>
+    <li>결핵균에만 있는 DNA를 증폭 → 민감도·특이도 높고 균이 적어도 됨.</li>
+    <li><b>PCR(+) → 결핵 진단 가능</b> “꼭 기억하세요!!” <span class="pma">21王Pま</span> (도말이 음성이어도)</li>
+    <li><b>PCR(−) → 결핵 배제 불가</b> → 배양 결과를 기다림. (25: PCR 음성 케이스까지는 시험에 안 낸다고 하심)</li>
+  </ul>
+  <h4>Xpert MTB/RIF <span class="ma">19·20ま</span><span class="pma">22·23Pま</span></h4>
+  <ul>
+    <li>DNA 추출 · 증폭 · 판정이 한 카트리지에 자동화된 real-time PCR → <b>약 2시간</b>.</li>
+    <li><b>결핵균 존재 + 리팜핀 내성</b>을 동시에 <span class="pma">21王·23Pま</span> → 결핵 발견 + 다제내성 진단 둘 다.</li>
+    <li><b>재치료처럼 MDR 가능성 높을 때 초기 진단검사</b>로 시행 <span class="ma">20ま</span>. 예: 1년 전 2–3개월 치료하다 끊은 사람 → Xpert.</li>
+    <li><b>RIF 내성 검출 → MDR로 취급</b> <span class="pma">25Pま</span>. 리팜핀 단독내성은 드물고(5% 미만) 대부분 INH 내성을 같이 갖고 있기 때문.</li>
+    <li><span class="tag">25 신규</span> <b>Xpert MTB/RIF Ultra</b> — 더 민감한 차세대.</li>
+  </ul>
+  <div class="box prof"><span class="lbl">교수님 멘트 <span class="pma">25Pま</span></span>결핵이 의심되면 AFB 도말과 배양만 하지 말고 <b>Xpert를 꼭 같이</b>. 민감도 높고, 빠르고, 내성까지 봄. 특히 <b>과거에 치료했던 사람에서 다시 균이 나오면</b> 내성 확인을 위해 매우 중요.</div>
+  <div class="box more"><span class="lbl">+ 더 알기 — RIF 내성은 PCR로 바로 잡히는데 INH는 왜 안 될까</span>
+    리팜핀 내성은 거의 전부 <b>rpoB 유전자의 짧은 한 구간(약 81 bp “hotspot”)</b> 변이에서 생김 → 그 구간만 보면 됨 → PCR로 빠르게 검출. INH 내성은 <b>katG, inhA, ahpC 등 여러 유전자</b>에 흩어져 있어 한 번에 잡기 어려움. 그래서 “RIF 내성 = MDR 대용 지표”로 씀.
+  </div>
+
+  <h3>2-4. [진단 3] 항산균 배양검사 <span class="pma">23·25Pま</span></h3>
+  <ul>
+    <li><b>확진을 위한 가장 중요한 검사, 민감도 가장 높음</b> (균이 매우 적어도 진단).</li>
+    <li>균을 키워야 할 수 있는 두 가지: ① <b>동정</b>(결핵 vs NTM 감별) ② <b>약제감수성검사</b>.</li>
+    <li>단점: <b>오래 걸림</b> — 액체배지(MGIT) 약 2주(빠르지만 오염 잘 됨), 고체배지(Ogawa) 약 4–8주 → <b>둘 다 같이</b>.</li>
+  </ul>
+  <div class="box prof"><span class="lbl">교수님 멘트 <span class="pma">22Pま</span></span>“<b>stain &amp; culture</b>” — 도말할 때 배양도 <b>동시에</b> 보낸다. 몇 번이나 반복 강조.</div>
+
+  <h3>2-5. [진단 4] 약제감수성검사 (DST) <span class="pma">21·23·25Pま</span></h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th></th><th>통상감수성검사 (phenotypic)</th><th>신속감수성검사 (molecular)</th></tr></thead>
+      <tbody>
+        <tr><th>원리</th><td>약 넣은 배지 vs 안 넣은 배지에서 균이 자라는지 비교</td><td>내성을 만드는 <b>유전자 변이</b>를 검출 (LPA 등)</td></tr>
+        <tr><th>시간</th><td>고체 3–4주 / 액체 2주 이내</td><td>약 1주</td></tr>
+        <tr><th>변이 예</th><td>—</td><td>RIF: <b>rpoB</b> · INH: <b>katG, inhA</b> 등</td></tr>
+        <tr><th>한계</th><td>너무 오래 걸림</td><td>모르는 변이는 놓침 → 통상검사도 같이</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box core"><span class="lbl">핵심 — 학생이 알아야 할 것 (25 검안)</span>
+    <ul>
+      <li>배양이 되면 <b>통상 + 신속 감수성검사를 같이</b> 보낸다. (권고 세부 문구는 몰라도 된다고 하심)</li>
+      <li><b>3개월 이상 치료에도 배양 양성</b> → 치료 실패 가능성 → 신속감수성검사 다시 (MDR 의심).</li>
+    </ul>
+  </div>
+
+  <h3>2-6. 세 검사 비교 — 민감도 순서 <span class="ma">21ま</span><span class="pma">21·23Pま</span></h3>
+  <div class="card">
+    <div class="bars" role="img" aria-label="검출에 필요한 균 수 비교">
+      <div class="bar-row"><span>배양</span><div class="track"><div class="fill" style="width:96%"></div><span class="val">10–100개/mL만 있어도 · 가장 민감</span></div></div>
+      <div class="bar-row"><span>PCR·Xpert</span><div class="track"><div class="fill" style="width:72%"></div><span class="val">약 50–150개/mL</span></div></div>
+      <div class="bar-row"><span>AFB 도말</span><div class="track"><div class="fill" style="width:24%"></div><span class="val">≥10,000개/mL</span></div></div>
+    </div>
+    <p class="small" style="margin-top:8px">막대가 길수록 적은 균으로도 잡아냄 (= 민감). 교수님이 검사별 검출 가능 균 수를 다 언급하심.</p>
+  </div>
+
+  <h3>2-7. 폐결핵 진단 과정 — AFB × PCR <span class="pma">19王·20·21·22·23Pま</span></h3>
+  <p class="sub">“시험이나 KMLE에 무조건 나옵니다”</p>
+  <div class="mx" role="table" aria-label="AFB와 PCR 결과 조합 해석">
+    <div></div><div class="h">PCR (+)</div><div class="h">PCR (−)</div>
+    <div class="rh">AFB (+)</div>
+    <div class="cell tb"><b>결핵</b>당연히 결핵</div>
+    <div class="cell ntm"><b>NTM 의심</b> <span class="pma">23·25Pま</span><br>도말 양성이려면 균 1만 개↑인데 더 민감한 PCR이 음성? → 결핵균이 아님</div>
+    <div class="rh">AFB (−)</div>
+    <div class="cell tb"><b>결핵 진단 가능</b> <span class="ma">19·20ま</span><br>균이 적어 도말엔 안 잡히고 PCR만 잡음</div>
+    <div class="cell cl"><b>임상적 판단</b><br>“이런 경우는 시험에 절대 낼 리가 없구요” → 배양 기다림</div>
+  </div>
+  <div class="box trap"><span class="lbl">함정</span>AFB 양성 = 결핵이 아님. <b>AFB는 결핵과 NTM을 구분 못 함</b>. AFB(+)면 반드시 PCR을 확인. <span class="pma">20Pま</span></div>
+
+  <h3>2-8. [진단 5] 조직학적 진단 <span class="tag">권고 변경 · 폐외결핵 관련</span></h3>
+  <p>림프절·뇌척수액 등 폐 밖 결핵은 조직검사로 <b>건락괴사를 동반한 육아종(granuloma)</b> 확인. 결핵성 림프절염이 가장 흔한 대상.</p>
+
+  <h3>2-9. 기타 검사</h3>
+  <h4>흉부 CT</h4>
+  <p>도말음성 폐결핵에서 CXR로 활동성 판단이 어려울 때, 다른 질환과 감별이 어려울 때 고려. 그래도 “<b>X-ray·CT로는 결핵을 판단할 수 없다, 균을 증명해야 한다</b>”(25 검안).</p>
+  <h4>면역학적 진단 — TST · IGRA <span class="pma">21·22·23·25Pま</span></h4>
+  <div class="box core"><span class="lbl">핵심 — 권고 요약</span>
+    <ul>
+      <li>TST·IGRA는 <b>활동성 결핵과 잠복결핵감염을 구별할 수 없다</b> → <b>활동성 결핵 진단 목적으로 권고하지 않음</b>.</li>
+      <li>폐외결핵처럼 임상적으로 의심되는데 균 검사가 음성이고 진단이 어려울 때만 <b>보조적으로</b> 사용 가능.</li>
+      <li><b>절대 TST·IGRA로 결핵을 확진하지 않는다</b> <span class="pma">19王Pま</span> — 감염을 증명할 뿐 균을 검출하지 않음.</li>
+    </ul>
+  </div>
+  <div class="box intuit"><span class="lbl">직관 — 왜 구분이 안 되나</span>
+    IGRA는 “우리 몸의 T세포가 결핵균을 <b>기억하는지</b>”를 봄. 기억은 잠복이든 활동성이든, 심지어 <b>완치된 뒤에도</b> 평생 남음 → 한번 감염되면 계속 양성. 그래서 “지금 균이 날뛰고 있는지”는 말해 주지 못함.
+  </div>
+  <div class="box prof"><span class="lbl">교수님 멘트 <span class="pma">25Pま</span></span>활동성 결핵이 의심되면 이 검사를 할 게 아니라 <b>바로 가래 검사</b>. 10만 원짜리 검사를 활동성 의심 환자에게 처방하면 전공의 혼냄.</div>
+</section>
+
+<!-- ================= PART 3 ================= -->
+<section class="block" id="p3">
+  <div class="part">PART 3</div>
+  <h2>결핵의 초치료 <span class="pma">23Pま</span></h2>
+
+  <h3>3-1. 왜 여러 약을, 오래 쓰는가 <span class="pma">19Pま</span></h3>
+  <ul>
+    <li>항산균이라 <b>느린 성장 · 휴면/간헐적 증식 · 세포 깊숙이</b> 존재 → 잘 안 죽음 → <b>6–9개월</b>. 씨를 말리지 않으면 잠복했다가 나이 들어 재발.</li>
+    <li>건락괴사·공동이 생기면 약이 잘 침투하지 못함.</li>
+    <li>한 가지 약만 쓰면 내성 → <b>항상 조합</b>.</li>
+  </ul>
+  <div class="box more"><span class="lbl">+ 더 알기 — “조합”이 내성을 막는 산수</span>
+    결핵균 집단에는 약을 안 써도 <b>자연 돌연변이로 이미 내성인 균</b>이 일정 비율 섞여 있음 (INH 약 100만 마리 중 1, RIF 약 1억 마리 중 1). 큰 공동 안에는 균이 1억–10억 마리 → 약 하나만 쓰면 그 안의 내성균만 살아남아 증식. 두 약에 <b>동시에</b> 내성일 확률은 곱(10<sup>−6</sup>×10<sup>−8</sup>)이라 사실상 0 → 그래서 최소 3제 병합. 반대로 <b>잠복결핵은 균 수가 적어</b> 1–2제로도 충분.
+  </div>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">치료 목적 5 <span class="pma">23Pま</span></span>① 완치 ② 사망 방지 ③ 재발 방지 ④ 활동성 결핵의 전염 방지 ⑤ 약제 내성 발생과 전파 방지</div>
+    <div class="box core"><span class="lbl">치료 원칙 4 <span class="pma">22·23Pま</span></span>① <b>최소 3제 이상</b> 병합 ② 정확한 용량 ③ <b>1일 1회</b> ④ <b>6개월 이상</b> = 2개월 집중 + 4개월 유지</div>
+  </div>
+
+  <h3>3-2. 1차 항결핵제 4가지 <span class="pma">20·22·23Pま</span><span class="pma">25Pま</span></h3>
+  <p>용량·투여법은 몰라도 됨. <b>이름과 약자</b>는 무조건 — 25 검안: “실습 때 이 정도는 제발 대답해 달라”.</p>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>약 (약자)</th><th>역할 (+ 더 알기)</th><th>대표 부작용 → PART 4</th></tr></thead>
+      <tbody>
+        <tr><th>Isoniazid (INH, <b>H</b>)</th><td>초기 핵심. 빨리 증식하는 균을 가장 빨리 죽임 (초기 살균력 최강)</td><td>말초신경병증(B6), 간독성</td></tr>
+        <tr><th>Rifampin (RIF, <b>R</b>)</th><td>INH와 함께 치료의 근간. 살균 + 가끔 깨어나는 균까지 정리(멸균력)</td><td>혈소판↓, 오렌지색 소변, CYP 유도</td></tr>
+        <tr><th>Ethambutol (EMB, <b>E</b>)</th><td>정균제 — 다른 약에 내성이 생기지 않게 막는 “보험”</td><td>시신경병증</td></tr>
+        <tr><th>Pyrazinamide (PZA, <b>Z</b>)</th><td>산성 환경(대식세포 안·괴사 조직) 속 균을 죽임 → <b>초기 2개월에 가장 강력</b></td><td>간독성 최강, 고요산·통풍, 관절통</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small" style="margin-top:6px">Rifabutin: RIF와 같은 계열, 약물상호작용이 적어 신이식·HIV 약 복용 환자 등에서 대체 (자세히 알 필요 X). 2차약(퀴놀론 등)은 MDR에서 → PART 7.</p>
+  <div class="box more"><span class="lbl">+ 더 알기 — 그래서 처방이 이렇게 생김</span>
+    PZA는 초기 산성 환경 속 균에 가장 세지만 독함 → <b>처음 2개월만</b>. EMB는 “보험”이라 INH·RIF 감수성이 확인되면 <b>빼도 됨</b> → 유지기 <b>HR(E)</b>의 괄호.
+  </div>
+
+  <h3>3-3. 초치료 처방 <span class="pma">20·25Pま</span><span class="ma">23ま</span></h3>
+  <div class="box term"><span class="lbl">용어 — 처방 읽는 법</span>
+    <dl><dt>2HREZ / 4HR(E)</dt><dd>앞 숫자 = 개월, 뒤 글자 = 약. “2개월 동안 H·R·E·Z 매일, 이어서 4개월 동안 H·R(±E)”.</dd>
+    <dt>초치료 vs 재치료</dt><dd>결핵을 “진단”받고 처음 치료 = 초치료. <b>이전에 1개월 이상 치료받은 적</b>이 있으면 재치료 대상 <span class="pma">19Pま</span> → 내성 가능성 ↑ → Xpert.</dd></dl>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>요법</th><th>구성</th><th>언제</th></tr></thead>
+      <tbody>
+        <tr><th>6개월 표준</th><td class="num"><b>2HREZ / 4HR(E)</b></td><td>기본. INH·RIF 감수성 확인 시 2개월 후 E 중단 가능 / 도말음성이거나 감수성 확인이 안 되면 E 유지</td></tr>
+        <tr><th>9개월</th><td class="num"><b>9HRE</b></td><td>PZA를 못 쓸 때 — 고령(교수님은 고령이면 처음부터 9개월), 간질환, 부작용. 9개월 내내 3제</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul style="margin-top:10px">
+    <li>권고: 시작 시 <b>공동</b>이 있고 <b>2개월째 배양 양성</b>이면 유지기 연장 고려.</li>
+    <li><b>고정용량 복합제(FDC)</b>: 알약 수를 줄여 순응도 ↑ + 환자가 골라 먹지 못하게 해 내성 ↓.</li>
+    <li>교수님 원칙: <b>세균학적 진단</b> 후 치료. 임상 진단만으로 치료하면 NTM을 결핵으로 오진 → 내성만 생기고 안 낫는 경우 많음.</li>
+  </ul>
+
+  <h3>3-4. 치료 전 검사 <span class="pma">20Pま</span></h3>
+  <ul>
+    <li>간질환 여부 — <b>ALT</b>가 AST보다 의미 있음 <span class="pma">22·23Pま</span> · B·C형 간염 · 금주·금연</li>
+    <li>CBC · 간기능 · 신기능 · HIV 의심 시 HIV 검사</li>
+    <li><b>시력·색각 검사</b> — EMB 안독성 대비 <span class="pma">23Pま</span></li>
+    <li>청력·균형 — 아미노글리코사이드 쓸 때 (이제 안 씀, 무시)</li>
+  </ul>
+
+  <h3>3-5. 추구검사 — 잘 되고 있나 <span class="pma">22·23Pま</span></h3>
+  <ul>
+    <li>치료 시작 후 <b>매달 객담 도말 + 배양</b> → <b>2회 연속 음성</b>이 나올 때까지, 그리고 치료 종료 시점.</li>
+    <li>첫 배양 양성 균주로 <b>약제감수성검사 필수</b>.</li>
+    <li><b>3개월 후에도 배양 양성</b> or 음전 후 다시 양전 → 감수성검사 반복.</li>
+    <li><b>CXR 단독으로 치료 반응을 평가하지 않는다</b> — 반드시 객담 배양.</li>
+    <li>치료 중 균이 <b>NTM</b>으로 동정되면 → 결핵약 중단 (내성이 아니라 NTM 오염·상재균일 수 있음) <span class="pma">21·22·23Pま</span></li>
+  </ul>
+  <p class="small">2개월 후에도 배양 양성인 이유(암기 X): 약을 안 먹음 · 큰 공동·균이 너무 많음 · 흡수 저하 · 내성균.</p>
+
+  <h3>3-6. 역설반응 (paradoxical reaction) <span class="pma">22·23Pま</span><span class="pma">19Pま</span></h3>
+  <ul>
+    <li>면역반응이 강해지면서 <b>일시적으로</b> 증상·영상이 나빠지는 것. HIV 아니어도 생김.</li>
+    <li>보통 <b>치료 2개월 후</b> — 림프절염 악화, 폐 병변 악화, 새 흉수.</li>
+    <li>임상적으로 큰 문제 없으면 <b>치료 그대로 유지</b> → 저절로 좋아짐.</li>
+  </ul>
+  <div class="box intuit"><span class="lbl">직관</span>약이 균을 죽이면 죽은 균 조각(항원)이 쏟아짐 → 회복되던 면역이 거기에 과하게 반응 → 잠깐 염증이 커짐. <b>치료가 실패한 게 아니라 잘 되고 있다는 반대 방향 신호</b>.</div>
+  <div class="box trap"><span class="lbl">함정 — “시험 출제 가능!!!” <span class="pma">22Pま</span></span>순응도 좋고 AFB(−)·배양(−)·DST 정상인데 갑자기 영상이 나빠짐(흉수 다량 등) → ① 약을 바꾼다 ② <b>그대로 치료</b> ③ 다제내성 치료 → 정답 <b>②</b>.</div>
+
+  <h3>3-7. 치료 중단 · 결과 판정 <span class="ma">21ま</span><span class="pma">23Pま</span></h3>
+  <ul>
+    <li>중단 시(이런 게 있구나 정도): 집중기 <b>2주 이상</b> 중단 → 다시 시작 / 유지기 <b>3개월 이상</b> 중단 → 다시. 초기 2개월이 가장 중요.</li>
+    <li><b>완치</b>: 치료 완료 시점 배양 음성.</li>
+    <li><b>실패: 4개월 이후에도 배양 양성</b> — 대부분 약을 안 먹은 것 <span class="pma">22·23Pま</span></li>
+    <li><b>3개월째 배양 양성 → 다제내성 의심 → 감수성검사 다시</b>.</li>
+  </ul>
+</section>
+
+<!-- ================= PART 4 ================= -->
+<section class="block" id="p4">
+  <div class="part">PART 4</div>
+  <h2>치료 중 부작용과 대처 ♥</h2>
+  <p class="sub"><span class="pma">21王Pま</span><span class="pma">22·23·25Pま</span> 중요 약제 4가지만 기억. 아래 권고 요약 3줄을 교수님이 전부 읽음.</p>
+
+  <div class="box core"><span class="lbl">핵심 — 권고 요약 3줄</span>
+    <ol>
+      <li><b>간</b>: ALT가 정상 상한의 <b>5배 이상</b>(증상 무관) 또는 <b>간염 증상 + 3배 이상</b> → 간독성 의심 약제 즉시 중단.</li>
+      <li><b>혈소판 감소</b> → <b>리팜핀 과민반응</b>이 가장 유력 → RIF 중단, 회복돼도 <b>재투여 금지</b>.</li>
+      <li><b>PZA 관절통</b> → 투약 유지 + NSAID 가능. 단 <b>통풍</b>이 오면 PZA 중단.</li>
+    </ol>
+  </div>
+
+  <h3>4-1. 약별 부작용</h3>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>약</th><th>꼭 알 부작용</th><th>대처 · 포인트</th></tr></thead>
+      <tbody>
+        <tr><th>INH <span class="pma">21王·22·23·25Pま</span></th><td><b>말초신경병증</b>(손발 저림) — 피리독신(B6) 부족 · 간독성(간염 기왕력 주의)</td><td>위험군(<b>당뇨·신장병</b>, 임신·수유)엔 <b>피리독신 10–50 mg/day 같이</b> <span class="pma">25Pま</span></td></tr>
+        <tr><th>RIF <span class="pma">22Pま</span></th><td>소변·눈물 <b>오렌지색</b>(무해, 미리 설명) · <b>혈소판 감소</b>(자반·점상출혈 동반 발진) · <b>CYP450 강력 유도</b> <span class="pma">20王·23Pま</span></td><td>혈소판↓ → 반드시 중단 · 같이 먹는 약 농도↓ → 용량↑ or 대체 (아래)</td></tr>
+        <tr><th>EMB <span class="pma">21·22·23Pま</span><span class="ma">22ま</span></th><td><b>시신경병증</b> — 거의 유일하지만 가장 심각. 대부분 <b>양측</b>, 시력저하, <b>적록색맹</b>, 대부분 <b>투약 2개월 이후</b> (고령·신기능 저하 시 위험)</td><td>외래 올 때마다 “잘 보이세요?” · Q. 시력저하 → <b>EMB 중단</b> · 간과는 무관</td></tr>
+        <tr><th>PZA <span class="pma">22·25Pま</span></th><td>“빌런” — <b>간독성 최다</b> · 관절통(최대 40%) · <b>고요산혈증 → 통풍</b> · 식욕부진·구역</td><td>관절통 → NSAID / 통풍 → <b>바로 중단</b> <span class="pma">23·25Pま</span> · 고령이면 처음부터 9HRE</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box intuit"><span class="lbl">직관 — CYP450 “유도”</span>리팜핀은 간의 <b>약물 분해 공장(CYP450)을 증설</b>시킴 → 같이 먹는 다른 약이 빨리 분해돼 효과가 떨어짐. 그래서 리팜핀과 같이 쓰면 상대 약을 <b>늘리거나 바꿔야</b> 함.</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>RIF와 같이 쓸 때 주의할 약</th><th>대처</th></tr></thead>
+      <tbody>
+        <tr><th>Warfarin <span class="pma">20Pま</span></th><td>PT 보면서 용량 조절, <b>2–3배</b>까지 올려야 할 수도</td></tr>
+        <tr><th>경구피임약 <span class="pma">20Pま</span></th><td>피임 실패 위험 → <b>다른 피임법</b></td></tr>
+        <tr><th>스테로이드</th><td>조직 도달량 약 50%↓ → <b>2배 증량</b></td></tr>
+        <tr><th>항부정맥제·항경련제 (quinidine, phenytoin) <span class="pma">20Pま</span>, 인슐린·SU</th><td>농도↓ 주의</td></tr>
+        <tr><th>대안</th><td>상호작용이 걱정되면 <b>rifabutin</b>으로 교체 (알고만)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box more"><span class="lbl">+ 더 알기 — 부작용의 기전 두 개</span>
+    <b>INH → B6 결핍</b>: INH가 피리독신과 결합해 소변으로 빼내고 활성형(pyridoxal phosphate)의 작용을 방해 → 신경전달물질 합성에 문제 → 말초신경병증.<br>
+    <b>PZA → 고요산혈증</b>: PZA 대사물(pyrazinoic acid)이 신장에서 <b>요산 배설을 억제</b> → 요산이 쌓여 관절통·통풍.
+  </div>
+
+  <h3>4-2. 간독성 — 가장 중요, 가장 위험 <span class="ma">20·21·23ま</span><span class="pma">21·22·23·25Pま</span></h3>
+  <ul>
+    <li>약을 끊거나 바꿔야 하는 <b>가장 흔한</b> 부작용, 간이식까지 갈 수 있음.</li>
+    <li>잘 생기는 순서: <b>PZA &gt; INH+RIF &gt; INH &gt; RIF</b> (EMB는 간과 무관).</li>
+    <li>위험인자: 고령, 알코올 중독, 간염 기왕력.</li>
+    <li>보는 수치: <b>ALT</b> (AST 아님) <span class="pma">22·23Pま</span></li>
+    <li>1차약 치료자의 <b>20%는 무증상 일시 상승</b> 후 저절로 회복 → 무증상 + 5배 미만이면 <b>약 유지하며 관찰</b>.</li>
+  </ul>
+  <div class="flow" aria-label="간독성 대처 흐름">
+    <div class="node dq">항결핵제 복용 중 ALT 상승</div>
+    <div class="arr"></div>
+    <div class="node dq">ALT ≥5배? 또는 (간염 증상 + ALT ≥3배)?</div>
+    <div class="branch">
+      <div>
+        <div class="blabel">아니오</div>
+        <div class="node ok"><b>유지하며 관찰</b><small>임상 소견 + ALT 추적</small></div>
+      </div>
+      <div>
+        <div class="blabel">예</div>
+        <div class="node bad"><b>즉시 중단</b><small>간독성 의심 약제 전부 (EMB는 간과 무관)</small></div>
+        <div class="arr"></div>
+        <div class="node">ALT &lt; 정상 2배로 떨어지면</div>
+        <div class="arr"></div>
+        <div class="node warnn"><b>한 가지씩 재투여</b><small>RIF → INH → (PZA) · 독성 약한 순 · PZA는 거의 재투여 X</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="box intuit"><span class="lbl">숫자 감 잡기 (정상 상한 40 기준)</span>무증상인데 <b>200 넘음</b> → 중단 / 피로·구역·구토 있으면서 <b>120 넘음</b> → 중단 → <b>80 밑</b>으로 떨어지면 하나씩 재투여.</div>
+  <div class="box core"><span class="lbl">꼭 기억할 점 <span class="ma">21ま</span></span>원인 가능성은 <b>PZA &gt; INH &gt; RIF</b>, 재투여는 그 <b>역순</b>(RIF부터). 너무 심해 셋 다 못 쓰면 다른 약제(퀴놀론 등)로 — 이건 전문의 수준.</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>간질환이 있는 결핵 환자</th><th>치료 (조합 암기 X)</th></tr></thead>
+      <tbody>
+        <tr><th>심하지 않은 만성 간질환 (Child-Pugh A)</th><td>간독성 최강인 PZA 빼고 <b>9HRE</b></td></tr>
+        <tr><th>중증 (Child-Pugh B 이상)</th><td>간독성 약 다 중단 → 2차약 조합으로 18–24개월 (전문가 의뢰)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box term"><span class="lbl">용어</span><dl><dt>Child-Pugh</dt><dd>간경변 중증도 점수 (빌리루빈·알부민·PT·복수·뇌증). A가 가장 가벼움, C가 가장 심함.</dd></dl></div>
+
+  <h3>4-3. 증상별 대처 — 나머지 <span class="ma">20ま</span></h3>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>증상</th><th>포인트</th><th>대처</th></tr></thead>
+      <tbody>
+        <tr><th>위장장애</th><td><b>가장 흔함</b>. 복용 후 몇 시간 속 불편·메스꺼움</td><td>가벼우면 <b>식후 30분 복용</b>(원래 공복; 농도는 조금↓지만 결과 영향 적음 · RIF는 고지방식이로 흡수↓ 주의) · 약을 나눠 복용(같은 성분은 동시에) · PZA 중단 · 심하거나 지속되면 <b>간기능 검사</b></td></tr>
+        <tr><th>피부 (가볍게)</th><td>모든 약이 원인 가능 · 가려움·발진·SJS</td><td>항히스타민 · 재투여 RIF → INH → PZA · <b>자반·점상출혈 동반 발진 = RIF 혈소판 감소 → 절대 중단</b> · SJS 의심 → 모두 중단</td></tr>
+        <tr><th>관절통</th><td><b>PZA</b>가 가장 흔한 원인 · 첫 2개월, 어깨·무릎 다발성</td><td>유지 + NSAID · <b>통풍 → PZA 중단</b> <span class="pma">23Pま</span></td></tr>
+        <tr><th>약제열 (드묾)</th><td>결핵 자체 열은 표준치료로 대부분 <b>2주 내</b> 소실</td><td>좋아지는데 반복 발열 → 중복감염·악화 배제 → 모두 중단(24시간 내 해열) → 하나씩 재투여하며 원인 찾기</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box trap"><span class="lbl">함정 — 25 기출 유형 (복원 수합 기준, 지문 일부 소실)</span>
+    치료 중 <b>ALT 82(참고 7–35) + 요산 8.9</b> 상황에서 선지가 <i>INH 중단 / PZA 중단 / NSAID / 모두 중단 후 추적 / RIF 중단</i>. 판단 축 두 개를 나눠서 볼 것:<br>
+    ① 간: ALT 82는 상한 35의 약 2.3배 → <b>중단 기준(5배, 증상 시 3배) 미달</b> → 간 때문에 끊을 상황 아님.<br>
+    ② 관절: <b>관절통만</b>이면 유지 + NSAID / <b>통풍 발작</b>이면 PZA 중단. 지문의 관절 증상이 어느 쪽인지가 답을 가름.
+  </div>
+</section>
+
+<!-- ================= PART 5 ================= -->
+<section class="block" id="p5">
+  <div class="part">PART 5</div>
+  <h2>폐외결핵 ♥ <span class="pma">22Pま</span></h2>
+  <div class="box core"><span class="lbl">핵심 — 공통 규칙</span>
+    <ul>
+      <li>치료는 기본적으로 <b>폐결핵과 동일한 6개월 표준</b>.</li>
+      <li><b>스테로이드는 결핵성 수막염만</b> (기관지 결핵은 “고려해 볼 수는 있다”). 심낭염도 이제 추천 X.</li>
+      <li>균 증명이 어려움 → 조직검사·임상 양상.</li>
+      <li>격리는 필요 없음 (호흡기로 균이 안 나오니까). 단, <b>폐결핵 동반 여부는 꼭 확인</b>.</li>
+    </ul>
+  </div>
+
+  <h3>5-1. 결핵성 흉막염 <span class="ma">19·20·21·22ま</span><span class="pma">22·23·25Pま</span></h3>
+  <p><b>가장 흔한 폐외결핵.</b> 일측성 흉수가 있으면 늘 결핵성 흉막염 가능성을 고려. 22Pま “흉막염은 꼭 알아야 됨”.</p>
+  <div class="box core"><span class="lbl">핵심 — 진단 3종 세트 <span class="pma">20·23·25Pま</span> (25: “꼭 기억해라!”)</span>
+    흉수 천자에서 <b>삼출성(exudate) + 림프구 우세 + ADA &gt; 40 IU/L</b> (+ ADA를 올릴 다른 질환이 없음) → 강력히 의심. ADA만 높다고 진단하는 게 아님.
+  </div>
+  <ul>
+    <li>흉수의 AFB 도말·배양·PCR은 <b>음성인 경우가 흔함</b> <span class="pma">21Pま</span><span class="ma">20ま</span> → 그래서 위 3종 세트를 씀.</li>
+    <li>ADA 40 이상인데 <b>호중구 우세 + pH 낮음</b> → <b>농흉</b> 의심.</li>
+    <li><b>폐결핵이 잘 동반</b> → 객담 도말·배양·PCR 꼭 → 전염성·격리 여부 결정 <span class="pma">19王·22Pま</span></li>
+    <li>치료: <b>6개월 표준</b>, 흉수 배액 필수 아님 <span class="ma">20ま</span>, 스테로이드 권고 X <span class="ma">20ま</span></li>
+  </ul>
+  <div class="box intuit"><span class="lbl">직관 — 왜 흉수에서 균이 안 나오나</span>결핵성 흉막염의 물은 균이 직접 만든 게 아니라, 흉막 밑 결핵 병소가 터지면서 생긴 <b>면역 반응(지연형 과민반응)</b>이 만든 것. 물 속엔 균은 거의 없고 <b>그 반응을 일으키는 T 림프구</b>가 가득 → 그래서 “림프구 우세 + ADA↑”.</div>
+  <div class="box term"><span class="lbl">용어</span><dl>
+    <dt>ADA (adenosine deaminase)</dt><dd>활성화된 T 림프구에서 많이 나오는 효소. 림프구성 염증인 결핵 흉수에서 높음 (농흉·림프종·류마티스에서도 오를 수 있음).</dd>
+    <dt>삼출액 vs 여출액</dt><dd>흉막 자체가 염증으로 새면 단백·LDH가 많은 <b>삼출액</b>, 압력 균형(심부전 등)만 깨지면 맑은 <b>여출액</b>. 기준표는 <a href="pulm-1006-pleura.html#p5">늑막질환 예습본 PART 5</a>.</dd>
+  </dl></div>
+  <div class="box trap"><span class="lbl">함정 — 같은 날 오후 서홍주 교수님 강의안과 숫자가 다름</span>
+    <ul>
+      <li><b>ADA</b>: 결핵 강의 = <b>&gt;40</b>이면 강력 의심 / 서홍주 강의안 = <b>70 이상</b>이면 가능성 높음, <b>40 이하</b>면 아닐 가능성 높음. → 둘은 모순은 아님 (40 = 컷오프, 70 = 확신 구간).</li>
+      <li><b>치료 기간</b>: 결핵 강의(진료지침) = <b>6개월 표준</b> / 서홍주 강의안 = “9개월 단기요법”(오래된 기준).</li>
+      <li><b>TST(PPD)</b>: 결핵 강의 = 활동성 진단에 쓰지 않음 / 서홍주 강의안 = PPD 양성이면 확진 안 된 흉수라도 항결핵제.</li>
+    </ul>
+    → 시험에선 <b>그 문제를 낸 교수님 강의안 기준</b>으로 고를 것.
+  </div>
+
+  <h3>5-2. 기관지 결핵 <span class="ma">23ま</span></h3>
+  <ul>
+    <li>기관·기관지의 활동성 결핵 (폐결핵이 기관지까지 내려온 것). 폐결핵의 <b>10–50%</b>에서 동반, <b>젊은 여자</b>에 많음, 대부분 일측.</li>
+    <li>심한 기침·객혈·호흡곤란·발열인데 <b>CXR 정상인 경우가 많아 천식으로 오진</b>.</li>
+    <li><b>단일음 천명(monophonic wheezing)</b> = 국소 천명, 또는 <b>천식 치료에 반응 없음</b> → 의심 → 객담 AFB 도말·배양 + <b>기관지내시경</b>(건락괴사 확인 → 조직검사).</li>
+    <li>치료: 6개월 표준. 기관지 협착 방지를 위해 조기 진단·치료가 중요. 스테로이드는 권고 X, 단 <b>주기관지 침범 + 협착 위험 높은 내시경 소견</b>(심한 부종·발적, 건락괴사, 용종)이면 경구 스테로이드 고려.</li>
+  </ul>
+  <div class="box term"><span class="lbl">용어</span><dl><dt>monophonic wheezing</dt><dd>한 군데 좁아진 기도에서 나는 한 가지 음높이의 천명. 천식처럼 기도 전체가 좁아지면 여러 음이 섞인 polyphonic wheezing.</dd></dl></div>
+
+  <h3>5-3. 그 밖의 폐외결핵 <span class="tag">림프절·수막염은 25 강의안 신규</span></h3>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>부위</th><th>진단</th><th>치료 · 포인트</th></tr></thead>
+      <tbody>
+        <tr><th>림프절</th><td><b>경부</b>가 가장 흔함 · 세침흡인 → 병리 + 배양 · IGRA로 진단·배제 불가 (접근 어려운 림프절이면 참고)</td><td>6개월 · 치료 중 커지면 <b>역설반응(많음)</b> vs 내성 vs 순응도 감별 · 수술은 제한적</td></tr>
+        <tr><th>수막염</th><td>전체 결핵의 1%, 사망률·신경 후유증 높음 · CSF ≥6 mL 도말·배양 + Xpert</td><td><b>9–12개월</b> <span class="pma">23Pま</span> (2HRZE 후 HR 7–10개월 — BBB 때문에 유지기 길게) · <b>모든 단계에서 전신 스테로이드</b></td></tr>
+        <tr><th>복막</th><td>복수 단백 ≥2.5–3.0 g/dL + SAAG &lt;1.1 → 의심 · 복수 ADA↑ · 확진은 복강경 복막 생검</td><td>6개월</td></tr>
+        <tr><th>좁쌀(속립)결핵 <span class="pma">21·22·23Pま</span></th><td>혈행성 파종 → 1–2 mm 결절 무수히 · 형성평가: CT 보고 다음 검사 → <b>항산균 도말검사</b></td><td>6개월</td></tr>
+        <tr><th>골·관절</th><td>폐결핵과 같음</td><td>6–9개월 · 약에 반응 없거나 신경 손상 → 수술</td></tr>
+        <tr><th>비뇨생식기</th><td>아침 첫 소변 농축 AFB 도말·배양 3–6회</td><td>6개월</td></tr>
+        <tr><th>심낭염</th><td>심낭액·생검 AFB·배양·병리 · 심낭액 PCR·ADA 민감도·특이도 높음</td><td>6개월 · <b>스테로이드 보조요법 더 이상 추천 X</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box term"><span class="lbl">용어</span><dl><dt>SAAG (혈청–복수 알부민 차)</dt><dd>혈청 알부민 − 복수 알부민. ≥1.1이면 문맥압 상승(간경변·심부전), &lt;1.1이면 복막 자체 문제(결핵·암).</dd></dl></div>
+</section>
+
+<!-- ================= PART 6 ================= -->
+<section class="block" id="p6">
+  <div class="part">PART 6</div>
+  <h2>환자 관리와 잠복결핵 ♥ <span class="pma">21·22·23Pま</span></h2>
+
+  <h3>6-1. 전염성과 격리</h3>
+  <ul>
+    <li>전염성이 큰 환자: <b>공동성 결핵</b>(균 많음·오래됨), <b>객담 도말 양성</b>(PCR만 양성이면 가능성 낮음), 기침.</li>
+    <li>약을 먹으면 전염력 급감 — <b>2일 내 1/25</b>, 이후 <b>2–3주에 1/100</b>. → 1–2주 지나 AFB(−)면 퇴원 가능, 격리 불필요. (“6개월 내내 격리해야 하냐” 걱정하는 환자에게 설명)</li>
+  </ul>
+
+  <h3>6-2. 접촉자 검진 — 언제부터 전염됐다고 볼까</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>지표 환자 소견</th><th>전염성이 있었다고 보는 시점</th></tr></thead>
+      <tbody>
+        <tr><th>기침(+) 또는 객담도말(+) 또는 공동(+)</th><td>최초 관찰 시점에서 <b>3개월 전</b>부터</td></tr>
+        <tr><th>기침(−), 도말(−), 공동(−)</th><td><b>4주 전</b>부터</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:8px">밀접 접촉자 = 밀폐 공간에서 장시간 (가족, 의대 동기 수준. 2–3시간으로는 X) / 일상 접촉자 = 자주 시간을 보내지는 않음.</p>
+
+  <h3>6-3. 감염되면 발병 위험은</h3>
+  <ul>
+    <li>정상 면역: <b>평생 10%</b> · 소아·면역억제: 빨리, 심하게(속립결핵) · <b>HIV: 매년 10%</b></li>
+    <li>최근 감염(1년 내 IGRA 양전) 약 13배 · 섬유성 병변(자연치유 흔적) 2–20배 · 규폐증, 당뇨, 투석, 이식, 흡연, 과음도 ↑</li>
+    <li><b>면역억제 치료 전에는 반드시 잠복결핵 확인</b> (23). 25 검안: 간이식 앞둔 환자가 LTBI 양성 → 급하지 않으면 결핵 치료 먼저.</li>
+  </ul>
+
+  <h3>6-4. 잠복결핵 (LTBI) 정의 <span class="tag">2024 진료지침</span></h3>
+  <div class="box core"><span class="lbl">핵심</span>결핵균에 감염돼 몸 안에 <b>소수의 살아있는 균</b>이 있으나 <b>밖으로 배출되지 않아 전파 X</b>, <b>증상 X</b>, <b>항산균 검사·CXR 정상</b>.</div>
+  <ul style="margin-top:8px">
+    <li>60대 40%, 20대 5%가 잠복결핵. 밀접접촉자 100명 중 30명 감염, 그중 10%가 평생 발병 → <b>잠복결핵은 치료한다</b> (활동성으로 넘어가는 걸 막기 위해).</li>
+    <li>LTBI 검사 대상: 전염성 결핵 접촉자, 발병 고위험군, 의료인. 저위험군은 권고 X. <b>이미 치료했거나 이전에 양성</b>이었던 사람은 다시 검사 X (계속 양성이라 의미 없음).</li>
+  </ul>
+
+  <h3>6-5. TST vs IGRA <span class="pma">21·22Pま</span></h3>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th></th><th>TST (투베르쿨린 피부반응)</th><th>IGRA (인터페론감마 분비검사)</th></tr></thead>
+      <tbody>
+        <tr><th>방법</th><td>PPD를 전박 피내주사 → <b>48–72시간</b> 후 경결 측정 (2회 방문)</td><td>채혈 → T세포를 결핵 특이항원(ESAT-6, CFP-10)에 노출 → IFN-γ 측정 (QFT가 T-SPOT보다 흔함)</td></tr>
+        <tr><th>양성</th><td><b>≥10 mm</b></td><td>기준치 이상 IFN-γ</td></tr>
+        <tr><th>BCG 영향</th><td><b>위양성</b> (BCG·NTM) → 한국에선 특이도↓</td><td><b>BCG 무관</b> → 특이도↑</td></tr>
+        <tr><th>단점</th><td>2회 방문, 10 mm 애매, <b>boosting</b>, 체내검사 이상반응, 면역저하 위음성</td><td>비쌈(약 10만 원), 노출 후 <b>4–7주</b> 지나야 양전, 5세 미만 민감도↓, 면역저하자 재현성 문제</td></tr>
+        <tr><th>공통</th><td colspan="2"><b>활동성 vs 잠복 구분 못 함</b> <span class="pma">21·22Pま</span> · 요즘 TST는 거의 안 씀 → <b>IGRA가 훨씬 편함</b> (23)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box term"><span class="lbl">용어</span><dl>
+    <dt>PPD</dt><dd>결핵균 배양액에서 뽑은 단백질 침전물 (purified protein derivative). TST의 주사액.</dd>
+    <dt>window period</dt><dd>감염돼도 면역 반응이 생기기까지(TST 2–8주) 검사가 음성인 기간 → 접촉 직후 TST 음성이면 <b>마지막 접촉 8주 후 재검</b>.</dd>
+    <dt>boosting</dt><dd>오래전 감염(또는 BCG)으로 희미해진 면역 기억을 첫 TST가 깨워서, 두 번째 TST가 커지는 현상 → 새 감염으로 오인.</dd>
+    <dt>ESAT-6 · CFP-10</dt><dd>결핵균에는 있고 <b>BCG 균주와 대부분의 NTM에는 없는</b> 항원 → IGRA가 BCG 영향을 안 받는 이유.</dd>
+  </dl></div>
+
+  <h4>성인 접촉자 검진 순서 <span class="pma">22Pま</span></h4>
+  <div class="flow">
+    <div class="node">접촉자 → <b>먼저 CXR</b> (활동성 결핵인지부터)</div>
+    <div class="branch">
+      <div><div class="blabel">활동성 의심</div><div class="node bad">객담검사 → 활동성 결핵 진단·치료</div></div>
+      <div><div class="blabel">정상</div><div class="node">TST / IGRA</div><div class="arr"></div><div class="node ok">양성 → LTBI 치료<small>음성 → 추후 검사</small></div></div>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">TST 해석 (정상 면역) <span class="pma">22Pま</span></span>&lt;10 mm 관찰 · <b>≥15 mm 잠복결핵</b> · 10–15 mm 애매 → <b>BCG 접종했으면 IGRA</b>로 결정 (양성 → LTBI, 음성 → 관찰). TST는 잘 안 하지만 “10 mm 넘으면 양성”과 “BCG에 따라 결정”은 알 것.</div>
+    <div class="box core"><span class="lbl">면역저하자 <span class="pma">21·22·23Pま</span></span>어떤 항원에도 반응이 약해 <b>위음성 많음</b> → TST든 IGRA든 <b>하나가 음성이면 다른 검사도 교차로</b>. 면역저하 성인은 TST보다 IGRA (25 검안).</div>
+  </div>
+
+  <h3>6-6. 잠복결핵 치료 대상 <span class="ma">20ま</span><span class="pma">21·22·23Pま</span></h3>
+  <div class="box core"><span class="lbl">핵심 — “반드시 치료” 5가지 <span class="pma">22·23Pま</span><span class="ma">19·20ま</span></span>
+    <ol>
+      <li><b>HIV</b> 감염인</li>
+      <li><b>장기이식</b>으로 면역억제제 복용 중 or 예정</li>
+      <li><b>TNF 길항제</b> 사용 중 or 예정 (강직성척추염, 류마티스관절염 등)</li>
+      <li>흉부 X선에 <b>과거 치료력 없이 자연 치유된 결핵 병변</b></li>
+      <li>최근 2년 내 감염 확인 (<b>TST/IGRA 양전</b>) — 모든 연령</li>
+    </ol>
+  </div>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>구분</th><th>검사 결과와 <u>무관하게</u> 치료</th><th>LTBI <u>양성이면</u> 치료</th></tr></thead>
+      <tbody>
+        <tr><th>접촉자</th><td>HIV (첫 TST 음성이어도 잠정 치료 → 접촉 종료 8주 후 TST로 지속 결정) · 장기이식 면역억제 · TNF 길항제</td><td>65세 이하 · 집단시설(학교·군대·요양·교정) 발병 · 규폐증 · 장기 스테로이드 · 투석 · 당뇨 · 두경부암·혈액암 · 위절제·공회장우회술 → “접촉자가 양성이면 거의 다 치료”</td></tr>
+        <tr><th>비접촉자</th><td>HIV · 장기이식 · TNF 길항제인데 CXR에 자연치유 병변 (“흔적만 있어도 치료, 어차피 숨어 있을 가능성 큼”)</td><td>위 “반드시 치료 5가지”에 해당하면서 LTBI 판명</td></tr>
+        <tr><th>의료기관 종사자</th><td colspan="2">주기 검사에서 양전, 최근 2년 내 밀접접촉 후 양전 → 치료 (인턴 들어가면 바로 검사함)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>6-7. 잠복결핵 치료요법 <span class="ma">21·22ま</span><span class="pma">25Pま 가장 강력</span></h3>
+  <div class="box core"><span class="lbl">핵심 — 25 학습부 맨 앞에 박아둔 “강력한 피마”</span>
+    <p style="font-size:16px"><b>(리팜핀 4개월) or (이소니아지드 + 리팜핀 3개월) or (이소니아지드 9개월)</b></p>
+    <p>세 개 중 선택, 하지만 <b>리팜핀 4개월(4R)이 표준치료</b>. 표 마지막 줄(rifapentine 요법)은 무시. 부작용 중 특히 <b>혈소판 감소</b> 조심.</p>
+  </div>
+  <div class="box intuit"><span class="lbl">직관 — 왜 잠복결핵은 1–2제로 되나</span>잠복결핵은 균이 아주 적어서 내성 돌연변이가 섞여 있을 확률이 낮음 → 1–2제로 충분. 대신 <b>활동성 결핵을 잠복결핵으로 착각해 1–2제만 주면 내성이 생김</b> → 그래서 LTBI 진단 전에 <b>활동성 배제(CXR ± 객담)</b>가 먼저.</div>
+  <div class="box trap"><span class="lbl">함정 — 23 기출이 판을 바꿈</span>
+    <ul>
+      <li><b>21·22</b>: 접촉자 + IGRA(+) + <b>CXR 정상</b> → LTBI 치료 (21 정답 리팜핀 4개월, 22 정답 INH 9개월 — 선지에 있는 LTBI 요법 고르기).</li>
+      <li><b>23</b>: 접촉자 + IGRA(+)인데 <b>CXR·CT에 결핵 의심 소견</b> → 활동성 배제가 안 됨 → LTBI가 아님 → <b>활동성 결핵 치료</b> (그 해 선지 중 INH+RIF+EMB 9개월).</li>
+    </ul>
+  </div>
+
+  <h3>6-8. 특수 상황 <span class="tag">25 슬라이드 삭제 · 참고</span></h3>
+  <ul>
+    <li>임신·수유: 치료 미루지 않음, 같은 치료(2HREZ/4HRE 또는 9HRE), <b>모유 수유 중단 X</b>, INH 쓰면 피리독신 같이.</li>
+    <li>신부전(CCr &lt;30·투석): INH·RIF는 신장 배설이 아니라 <b>매일 그대로</b> / <b>EMB·PZA는 주 3회</b> · 투석 환자는 투석 직후 투여.</li>
+  </ul>
+</section>
+
+<!-- ================= PART 7 ================= -->
+<section class="block" id="p7">
+  <div class="part">PART 7</div>
+  <h2>약제내성결핵 <span class="tag">25 슬라이드 대폭 개편 · 정의 위주</span></h2>
+
+  <h3>7-1. 정의 <span class="pma">25Pま</span></h3>
+  <div class="box core"><span class="lbl">핵심</span><b>다제내성결핵(MDR-TB) = 이소니아지드 + 리팜핀 둘 다 내성.</b> 임상에선 <b>RIF 내성만 확인돼도 MDR에 “준해서”</b> 치료 (정의와 치료 원칙을 구분할 것).</div>
+  <ul style="margin-top:8px">
+    <li>RIF 단독내성은 거의 없음 → RIF 내성이면 나중에 INH 내성도 나올 가능성 높음.</li>
+    <li><b>INH 단독내성</b>은 약 5% (간혹) → MDR처럼 치료하지 않고 <b>INH를 레보플록사신으로 교체</b>: RIF + EMB + PZA + Lfx 6개월.</li>
+    <li>확진 MDR = 신속·통상 감수성검사로 INH+RIF 내성 확인 / 추정 MDR = <b>Xpert에서 RIF 내성만</b>, 확진 MDR 환자의 밀접접촉자, <b>표준치료 실패</b>(4개월 이상 배양 양성) (23)</li>
+  </ul>
+
+  <h3>7-2. MDR 치료 — 약 이름만 <span class="ma">23ま</span><span class="pma">25Pま</span></h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>단기요법</th><th>구성</th><th>기간</th></tr></thead>
+      <tbody>
+        <tr><th>BPaLM</th><td><b>B</b>edaquiline · <b>Pa</b> = Pretomanid · <b>L</b>inezolid · <b>M</b>oxifloxacin</td><td class="num">6개월</td></tr>
+        <tr><th>MDR-END</th><td>Levofloxacin · Delamanid · Linezolid · Pyrazinamide</td><td class="num">9개월</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul style="margin-top:8px">
+    <li>둘 중 선택, 부작용 매우 심함. 단기요법 실패 → 장기요법(과거 18–20개월).</li>
+    <li><b>Group A 3가지</b> (꼭 암기 <span class="pma">22·23Pま</span>): <b>퀴놀론(Lfx/Mfx) · bedaquiline · linezolid</b> → 23 기출 “MDR 초치료에 포함해야 할 약” = <b>리네졸리드</b>.</li>
+  </ul>
+  <div class="box more"><span class="lbl">+ 더 알기 — 광범위 내성 (알 필요 없다고 하심)</span>현재 WHO 정의: <b>pre-XDR</b> = MDR + 퀴놀론 내성 / <b>XDR</b> = pre-XDR + bedaquiline 또는 linezolid 내성. 그래서 MDR 치료의 핵심이 퀴놀론·bedaquiline·linezolid(Group A)인 것.</div>
+  <div class="box trap"><span class="lbl">함정 — 22 기출</span>4년 전 완치된 재치료 환자, 4제 2개월째 배양에서 INH+RIF 내성 → ① RIF만 퀴놀론으로 대체 ② <b>다제내성결핵에 준해 전면 교체</b> ③ 퀴놀론 추가 ④ 유지 ⑤ NTM처럼 교체 → 정답 <b>②</b>. 실패한 처방에 약 하나만 얹으면 사실상 단독요법 → 그 약에도 내성.</div>
+</section>
+
+<!-- ================= PART 8 ================= -->
+<section class="block" id="p8">
+  <div class="part">PART 8</div>
+  <h2>비결핵항산균(NTM) 폐질환 ♥ <span class="pma">25Pま</span></h2>
+  <div class="box core"><span class="lbl">핵심 — 한 문장</span>AFB 염색에선 결핵처럼 보이지만 <b>흙·물에 사는 환경균</b>이라 <b>사람 사이 전염 X</b>, 그리고 <b>진단 ≠ 치료</b>.</div>
+  <ul style="margin-top:8px">
+    <li>결핵인 줄 알고 열심히 치료했는데 NTM인 경우 많음 → <b>PCR 꼭</b>. 공동 있고 아무리 전형적인 결핵 같아도 <b>AFB 3+ 이상인데 PCR(−)가 지속되면 NTM</b>.</li>
+    <li>사망·전염은 거의 없지만 기침·가래가 심하고 폐렴이 잘 옴. 고령화로 급증 → “앞으로 국시에도 나올 것”.</li>
+    <li>자연계 상재균이라 검체 오염(contaminant)일 수도 → 증상·종류에 따라 치료할 수도 안 할 수도.</li>
+  </ul>
+
+  <h3>8-1. 분류 · TB vs NTM</h3>
+  <p>Mycobacteria = 결핵균 복합체 / 나균 / NTM. NTM 중 <b>MAC(M. avium complex = M. avium + M. intracellulare)가 가장 흔함</b> → MAC만 알기. 신속성장균(M. abscessus)은 몰라도 됨. NTM 감염의 90% 이상이 폐질환.</p>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th></th><th>결핵 (TB)</th><th>NTM 폐질환</th></tr></thead>
+      <tbody>
+        <tr><th>감염원</th><td>사람 → 사람 (공기)</td><td>환경 (흙·물), 사람 간 전염 X</td></tr>
+        <tr><th>격리</th><td>필요</td><td>불필요</td></tr>
+        <tr><th>호발 부위</th><td>상엽</td><td>중엽·하엽 (23 검안) · 단, 섬유공동형은 상엽 공동</td></tr>
+        <tr><th>AFB 도말 / PCR</th><td>(+) / TB-PCR (+)</td><td>(+) 가능 / TB-PCR (−)</td></tr>
+        <tr><th>진단 후</th><td>진단 = 치료</td><td><b>진단 ≠ 치료</b> (득실 따져 결정)</td></tr>
+        <tr><th>약</th><td>HREZ</td><td>Macrolide + EMB + RIF</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>8-2. 진단 기준 <span class="pma">21Pま</span> (“기억하는 것이 좋겠다”)</h3>
+  <div class="grid2">
+    <div class="box core"><span class="lbl">임상 기준 (둘 다)</span>① 호흡기 증상 + CXR 결절·공동 or HRCT에서 <b>다발성 기관지확장증 + 다발성 결절</b> (CT로는 결핵과 구분 안 됨)<br>② 다른 질환 배제</div>
+    <div class="box core"><span class="lbl">미생물 기준 (하나)</span>① <b>객담 2회 이상</b> 배양 양성 (오염 위험 때문에 2회)<br>② <b>기관지세척액 1회</b> 배양 양성<br>③ 조직에서 <b>육아종</b> 등 + 객담/세척액 1회 이상 배양 양성</div>
+  </div>
+  <ul style="margin-top:8px">
+    <li>기준 미충족인데 의심 → 확실해지거나 배제될 때까지 <b>추적관찰</b> (느리게 자라므로 기본은 지켜봄).</li>
+    <li><b>진단 자체가 항생제 치료를 의미하지 않음</b> → 개별적으로 득실 판단.</li>
+  </ul>
+
+  <h3>8-3. 두 가지 형태 <span class="ma">20·21ま</span><span class="ma">22ま</span></h3>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th></th><th>섬유공동형 (fibrocavitary, FC)</th><th>결절기관지확장형 (nodular bronchiectatic, NB)</th></tr></thead>
+      <tbody>
+        <tr><th>빈도</th><td>—</td><td><b>가장 흔함</b> <span class="ma">22ま</span></td></tr>
+        <tr><th>환자</th><td><b>중년 이상 남성</b> · 흡연·음주·<b>COPD·과거 결핵</b>·진폐증</td><td><b>중년 이상 여성</b> · 기저질환 없음</td></tr>
+        <tr><th>영상</th><td><b>상엽</b>에 얇은 벽 <b>공동</b> + 주위 늑막비후 (결핵 같지만 결핵 아님)</td><td><b>우중엽 · 좌상엽 설상엽</b>에 ≤5 mm 다발 소결절 + 기관지확장증</td></tr>
+        <tr><th>경과</th><td>치료 안 하면 <b>1–2년 내 진행</b> → 광범위 파괴·사망</td><td>치료 안 해도 <b>매우 느리게</b> 진행</td></tr>
+        <tr><th>치료 방향 <span class="pma">23Pま</span></th><td>공동 있으면 위험 → <b>빠르게 치료</b></td><td>증상 없고 소결절만 → 굳이 치료 X</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box term"><span class="lbl">용어</span><dl>
+    <dt>기관지확장증 (bronchiectasis)</dt><dd>반복 감염·염증으로 기관지 벽이 망가져 영구적으로 늘어난 상태 → 가래가 고이고 감염이 반복.</dd>
+    <dt>설상엽 (lingula)</dt><dd>좌상엽의 아래쪽 혀처럼 튀어나온 부분. 우중엽에 해당하는 왼쪽 자리.</dd>
+  </dl></div>
+
+  <h3>8-4. 치료 (MAC) <span class="ma">19·20·22·23ま</span><span class="pma">19·23·25Pま</span></h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>형태</th><th>처방</th></tr></thead>
+      <tbody>
+        <tr><th>공동 없는 NB형</th><td><b>Macrolide(azithro/clarithro) + EMB + RIF, 주 3회</b></td></tr>
+        <tr><th>공동 있는 FC형</th><td><b>Macrolide + EMB + RIF, 매일</b> (+ 심하면 <b>aminoglycoside 주사</b>(amikacin))</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul style="margin-top:8px">
+    <li>Macrolide는 요즘 <b>azithromycin</b>을 많이 씀 (clarithromycin은 뒤로 밀림).</li>
+    <li>23 검안: “<b>모든 환자를 치료하는 게 아니다</b> + <b>중증도에 따른 치료 방향</b>”이 포인트. M. abscessus는 너무 어려워 넘어감.</li>
+  </ul>
+  <div class="box more"><span class="lbl">+ 더 알기 — 왜 macrolide가 중심이고, 왜 EMB를 꼭 같이 쓰나</span>MAC 치료의 성패는 <b>macrolide 감수성</b>이 좌우함. macrolide 하나만 쓰면 금방 내성이 생겨 핵심 무기를 잃음 → 반드시 EMB(+RIF)를 묶어서 macrolide를 보호.</div>
+</section>
+
+<!-- ================= PART 9 ================= -->
+<section class="block" id="p9">
+  <div class="part">PART 9</div>
+  <h2>기출 패턴 — 풀어 보고 열어 보기</h2>
+  <p class="sub">25까지 나용섭 교수님 문제. 교수님이 바뀌어도 “진단 → 다음 행동”을 묻는 KMLE형 틀은 유지될 가능성이 큼. 선지는 학습부 복원 그대로.</p>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">23 · 22 기출 (거의 동일)</span></div>
+    <p class="q-stem">46세 여자, 10일 전부터 기침할 때마다 티스푼 한 개 정도 객혈. 비흡연자. (22: 3개월 전부터 새벽 식은땀, 화농성 객담, 좌상부 거품 소리) CXR상 좌상엽 공동. 다음 검사는?</p>
+    <ol><li>기관지내시경</li><li>가래세균배양</li><li>피부경유 폐생검</li><li>소변 폐렴알균항원검사</li><li>가래 항산막대균펴바른표본</li></ol>
+    <details><summary>정답 · 해설</summary><div><span class="ans">⑤</span> 객혈 + 기침 + 상엽 공동 → 폐결핵 의심. CXR로 의심되면 <b>객담 결핵균 검사(AFB 도말)</b>로 확진. “의심”과 “진단”은 다르다.</div></details>
+  </div>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">형성평가</span></div>
+    <p class="q-stem">CT에서 양폐에 작은 결절(micronodule)이 무수히 흩뿌려져 있음 (+공동). 의심 질환과 확진을 위한 검사는?</p>
+    <ol><li>기관지내시경</li><li>가슴 CT</li><li>메타콜린기관지유발검사</li><li>항산균도말검사</li><li>가래세균배양</li></ol>
+    <details><summary>정답 · 해설</summary><div><span class="ans">④</span> 좁쌀결핵. 사진만 보고 확진할 수 없고 <b>결핵균을 증명하는 검사</b>를 해야 함.</div></details>
+  </div>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">23 기출</span><span class="pma">간독성</span></div>
+    <p class="q-stem">54세 남자, 2개월 전 진단받고 HREZ 4제 중 피로 호소. 빌리루빈 1.3, AST 100 (참고 6–40), <b>ALT 95 (참고 7–35)</b>. 처치는? (시험 중 “효소 수치가 3배는 안 되는 거”라는 힌트)</p>
+    <ol><li>모든 항결핵제 중단 후 혈액 추적</li><li>PZA 중단</li><li>EMB 중단</li><li>목시플록사신·이미페넴·EMB·스트렙토마이신으로 변경</li><li>경과 관찰하며 간효소 변화 관찰</li></ol>
+    <details><summary>정답 · 해설</summary><div><span class="ans">⑤</span> 간독성은 <b>ALT</b>로 봄. 상한 35의 3배 = 105 → 95는 미달, 5배(175)도 미달 → 즉시 중단 기준이 아님 → 유지하며 관찰.</div></details>
+  </div>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">21 · 20 기출</span><span class="pma">간독성</span></div>
+    <p class="q-stem">47세 여자, 결핵 치료 2개월 후 소화불량·오심. <b>황달</b>, 간종대, 빌리루빈 4.3/3.4, <b>AST/ALT 480/423</b>, ALP 85. 다음 조치는?</p>
+    <ol><li>피라진아미드 중단</li><li>모든 항결핵제 투여 중단</li><li>간장약 투여</li><li>목시플록사신 등으로 변경</li><li>그대로 쓰며 관찰</li></ol>
+    <details><summary>정답 · 해설</summary><div><span class="ans">②</span> 증상(황달·오심) + ALT 10배 이상 → 즉시 중단. (18 기출: 증상 + ALT 110도 “모든 항결핵제 중단”)</div></details>
+  </div>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">23 기출</span><span class="pma">MDR</span></div>
+    <p class="q-stem">25세 남자, 4년 전 폐결핵 완치, 2개월 전 다시 진단받고 복용 중. 배양 + 신속내성검사에서 INH·RIF 내성. 치료에 포함해야 하는 약물은?</p>
+    <ol><li>리팜핀</li><li>에탐부톨</li><li>리네졸리드</li><li>이소니아지드</li><li>스트렙토마이신</li></ol>
+    <details><summary>정답 · 해설</summary><div><span class="ans">③</span> MDR → Group A(퀴놀론·bedaquiline·<b>linezolid</b>)를 꼭 포함.</div></details>
+  </div>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">23 기출</span><span class="pma">접촉자</span></div>
+    <p class="q-stem">21세 남자, 같이 사는 어머니가 폐결핵 진단 → 접촉자 검진. IGRA 양성. <b>CXR·CT에 결핵 의심 소견</b>. 치료는?</p>
+    <ol><li>리팜핀 3개월</li><li>이소니아지드 9개월</li><li>이소니아지드·리팜핀 2개월</li><li>리팜핀·피라진아미드·에탐부톨 6개월</li><li>이소니아지드·리팜핀·에탐부톨 9개월</li></ol>
+    <details><summary>정답 · 해설</summary><div><span class="ans">⑤</span> 영상 이상 → 활동성 배제가 안 됨 → 잠복결핵이 아니라 <b>활동성 결핵 치료</b>(2HREZ/4HR 또는 9HRE). 21·22는 CXR 정상이라 LTBI 치료가 정답이었음.</div></details>
+  </div>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">23 기출</span><span class="pma">기관지 결핵</span></div>
+    <p class="q-stem">68세 여자, 호흡곤란 + 밤에 식은땀. 기관지내시경 사진에서 기관지 점막의 치즈 같은 괴사. 진단은?</p>
+    <ol><li>폐렴</li><li>폐암</li><li>진균증</li><li>기관지 결핵</li><li>사르코이드</li></ol>
+    <details><summary>정답 · 해설</summary><div><span class="ans">④</span> 건락괴사 동반 육아종성 병변 → 기관지 결핵. 치료는 폐결핵과 동일.</div></details>
+  </div>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">20 · 19 기출</span><span class="pma">NTM</span></div>
+    <p class="q-stem">52세 남자, 2개월 화농성 객담·기침. CT 양측 폐첨부 <b>공동</b>. 기관지세척액: AFB 3+, NTM PCR(+), 배양 M. avium complex. 치료는?</p>
+    <ol><li>아지스로마이신 + EMB + RIF (매일)</li><li>아지스로마이신 + EMB + RIF (주 3회)</li><li>INH + EMB + RIF + PZA (매일)</li><li>INH + EMB + 목시플록사신 (매일)</li><li>아지스로마이신 + 이미페넴 + 아미카신 (매일)</li></ol>
+    <details><summary>정답 · 해설</summary><div><span class="ans">①</span> MAC + <b>공동(FC형)</b> → macrolide + EMB + RIF <b>매일</b>.</div></details>
+  </div>
+
+  <div class="q">
+    <div class="q-head"><span class="q-src">23 기출 · 정답 논란</span><span class="pma">NTM</span></div>
+    <p class="q-stem">52세 여자, 3년 전부터 기침·화농성 객담. 비흡연·기저질환 없음. CT(결절·기관지확장 양상). 기관지세척액: AFB(−), NTM PCR(−), <b>배양 MAC</b>. 치료는?</p>
+    <ol><li>경과 관찰</li><li>azithro + EMB + RIF + PZA (매일)</li><li>azithro + EMB + RIF (주 3회)</li><li>azithro + EMB + RIF (매일)</li><li>azithro + imipenem + amikacin (매일)</li></ol>
+    <details><summary>정답 · 해설</summary><div>학습부 초안 <span class="ans">①</span> vs 25 검안 <span class="ans">③</span>. 세척액 1회 배양 양성 → 진단기준은 충족. 갈리는 지점은 “치료할 만한가”: 초안은 뚜렷한 소견 없음 → 관찰, 검안은 <b>3년간 지속된 증상</b>이 있으니 치료, 공동 없는 NB형이라 <b>주 3회</b>. → 진단 ≠ 치료, <b>증상·진행 여부</b>가 결정한다는 걸 묻는 문제.</div></details>
+  </div>
+
+  <div class="card">
+    <h4 style="margin-top:0">25 기출에 나온 결핵 토픽 <span class="tag">25 복원 수합 기준 · 지문 소실 많음</span></h4>
+    <ul>
+      <li><b>Xpert MTB/RIF 결과</b>(MTB 검출 + RIF 결과) 제시 → <b>MDR 치료 선택</b>: 선지에 BPaLM(베다퀼린·프레토마니드·리네졸리드·목시플록사신) 등장</li>
+      <li>치료 중 <b>ALT·요산 상승</b> → INH/PZA/RIF 중단 vs NSAID vs 모두 중단 (위 PART 4 함정 참고)</li>
+      <li>다음 검사 고르기: 세침흡인 / <b>Xpert MTB/RIF Ultra</b> / IGRA / 조영 CT / 가래세균배양</li>
+      <li><b>IGRA(+) · AFB(−) · Xpert(−)</b>인 71세 → 치료 선택 (선지: 6HRE / 3HR / 3R / 6H / 6HREZ)</li>
+      <li><b>AFB 2+, M. intracellulare</b> → NTM 치료 (선지: azithro+imipenem+amikacin / RIF+INH+EMB / azithro+EMB+RIF / 경과관찰 / RIF+INH+Lfx)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= MEMO ================= -->
+<section class="block" id="memo">
+  <div class="part">MEMO</div>
+  <h2>시험 직전 암기 카드</h2>
+  <div class="memo">
+    <div><h4>진단 숫자</h4><ul>
+      <li>2–3주 이상 기침 → 의심</li>
+      <li>AFB 민감도 30–50%, ≥10,000/mL</li>
+      <li>배양 10–100/mL (최고 민감)</li>
+      <li>객담 2–3회, 양성 24시간 내 통보</li>
+      <li>배양 액체 2주 / 고체 4–8주</li>
+      <li>신속 DST 1주 / 통상 2–4주</li>
+    </ul></div>
+    <div><h4>조합 해석</h4><ul>
+      <li>AFB+ PCR+ → 결핵</li>
+      <li>AFB+ PCR− → NTM</li>
+      <li>AFB− PCR+ → 결핵</li>
+      <li>Xpert RIF 내성 → MDR 준해</li>
+      <li>TST·IGRA → 감염만 (확진 X)</li>
+    </ul></div>
+    <div><h4>치료</h4><ul>
+      <li>2HREZ / 4HR(E) · 9HRE</li>
+      <li>3제 이상 · 1일 1회 · 6개월 이상</li>
+      <li>매달 객담, 2회 연속 음성까지</li>
+      <li>3개월 양성 → DST 재검 · 4개월 이후 양성 = 실패</li>
+      <li>역설반응 → 그대로 유지</li>
+    </ul></div>
+    <div><h4>부작용</h4><ul>
+      <li>ALT ≥5배 or 증상+≥3배 → 중단</li>
+      <li>&lt;2배 → RIF → INH → (PZA)</li>
+      <li>INH B6 · RIF 혈소판·CYP · EMB 눈 · PZA 간·요산</li>
+      <li>통풍 → PZA 중단 / 관절통 → NSAID</li>
+    </ul></div>
+    <div><h4>폐외결핵</h4><ul>
+      <li>흉막염: 삼출 + 림프구 + ADA&gt;40</li>
+      <li>흉막염 6개월, 배액·스테로이드 X</li>
+      <li>수막염 9–12개월 + 스테로이드</li>
+      <li>기관지 결핵: 젊은 여자, 일측 천명</li>
+    </ul></div>
+    <div><h4>잠복결핵</h4><ul>
+      <li>4R / 3HR / 9H (4R 표준)</li>
+      <li>반드시 치료 5: HIV·이식·TNF·자연치유 병변·2년 내 양전</li>
+      <li>TST ≥10 mm, BCG면 IGRA</li>
+      <li>평생 10% · HIV 매년 10%</li>
+      <li>접촉: 3개월 전 / 4주 전</li>
+      <li>전염력: 2일 1/25 · 2–3주 1/100</li>
+    </ul></div>
+    <div><h4>내성 · NTM</h4><ul>
+      <li>MDR = INH + RIF 내성</li>
+      <li>BPaLM 6개월 · MDR-END 9개월</li>
+      <li>Group A: FQ · BDQ · LZD</li>
+      <li>INH 단독내성 → REZ + Lfx 6개월</li>
+      <li>NTM: MAC · macrolide+EMB+RIF</li>
+      <li>NB 주 3회 · FC 매일(+amikacin)</li>
+      <li>NTM 진단: 객담 2회 or 세척액 1회 배양</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= CHECK ================= -->
+<section class="block" id="check">
+  <div class="part">CHECK</div>
+  <h2>정은지 교수님 강의에서 확인할 것</h2>
+  <p class="sub">교수님이 바뀌었으니 25 피마가 그대로일지는 모름. 강의 들으면서 아래만 체크해 두면 시험 대비 방향이 바로 잡힘.</p>
+  <ul class="checklist">
+    <li>강의안 기준 지침이 그대로 <b>2024 결핵 진료지침</b>인지, 바뀐 슬라이드는 어디인지</li>
+    <li>잠복결핵 표준요법을 무엇으로 말하는지 (<b>4R</b> vs 3HR) · rifapentine 요법 언급 여부</li>
+    <li>결핵성 흉막염 <b>ADA 기준</b>(40)과 치료 기간(6개월) 표현</li>
+    <li>간독성 중단 기준(5배 / 증상+3배)과 <b>재투여 순서</b> 언급</li>
+    <li>MDR 단기요법(BPaLM · MDR-END) 비중 — 약 이름만인지 더 깊게인지</li>
+    <li><b>NTM 파트 분량</b> (25에선 Pま) · NB형 치료 여부 판단 기준</li>
+    <li>“시험에 낸다/안 낸다” 직접 언급한 부분 · 형성평가 문제</li>
+  </ul>
+  <p class="small" style="margin-top:12px">원자료: 05번 호흡기학 250905 나용섭P 문용균 (폐결핵) 검안본 · 2025 본과 2학년 2학기 호흡기 복원 수합 · 25 과목설명회 호흡기학. 세부 수치·기준은 26 강의안으로 다시 확인할 것.</p>
+</section>
+
+</main>
+<footer class="wrap">betheu/study · STUDY TREE · 호흡기학</footer>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>호흡기학 공략 가이드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap">
+<style>
+:root{
+  --bg:#f3f7f6; --surface:#ffffff; --ink:#14201e; --muted:#566460; --rule:#d8e2df; --tint:#e8f1ef;
+  --accent:#1c6c66; --accent-ink:#ffffff; --art:#b2372d;
+  --ok:#23704a; --ok-bg:#e5f2ea; --bad:#a8261e; --bad-bg:#fbe9e7;
+  --amber:#8a5f00; --amber-bg:#f8efda; --violet:#5d4499; --violet-bg:#eee9f7; --blue:#2c5a98; --blue-bg:#e6edf8;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --serif:"Nanum Myeongjo","AppleMyungjo","Batang",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0c1413; --surface:#131d1c; --ink:#e2ebe8; --muted:#97a8a3; --rule:#24322f; --tint:#172523;
+    --accent:#6cc7bd; --accent-ink:#0c1413; --art:#ea8277;
+    --ok:#74c795; --ok-bg:#132a1e; --bad:#f08b81; --bad-bg:#2f1917;
+    --amber:#dcae4a; --amber-bg:#2b2311; --violet:#b39ae6; --violet-bg:#241d36; --blue:#8fb3ea; --blue-bg:#17233a;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0c1413; --surface:#131d1c; --ink:#e2ebe8; --muted:#97a8a3; --rule:#24322f; --tint:#172523;
+  --accent:#6cc7bd; --accent-ink:#0c1413; --art:#ea8277;
+  --ok:#74c795; --ok-bg:#132a1e; --bad:#f08b81; --bad-bg:#2f1917;
+  --amber:#dcae4a; --amber-bg:#2b2311; --violet:#b39ae6; --violet-bg:#241d36; --blue:#8fb3ea; --blue-bg:#17233a;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:60px}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.72; word-break:keep-all; overflow-wrap:anywhere}
+.wrap{max-width:860px; margin-inline:auto; padding-inline:16px}
+@media (min-width:700px){ .wrap{padding-inline:24px} }
+a{color:var(--accent)}
+h1,h2,h3,h4{text-wrap:balance; margin:0}
+p{margin:0}
+ul,ol{margin:0; padding-left:1.25em}
+li+li{margin-top:3px}
+b.r{color:var(--art)} b.a{color:var(--accent)}
+.mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+.small{font-size:13.5px; color:var(--muted)}
+
+/* ---------- hero ---------- */
+.back{display:inline-block; font-family:var(--mono); font-size:12px; color:var(--muted); text-decoration:none; padding-top:20px}
+.back:hover{color:var(--accent)}
+.hero{padding-block:12px 22px; display:grid; gap:12px}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--muted)}
+.hero h1{font-family:var(--serif); font-weight:800; font-size:clamp(27px,6vw,40px); line-height:1.25}
+.hero h1 .d{color:var(--accent)}
+.lede{color:var(--muted); max-width:66ch}
+.meta{display:flex; flex-wrap:wrap; gap:6px}
+
+/* ---------- badges ---------- */
+.ma,.pma,.chg,.same,.tag{display:inline-flex; align-items:center; font-family:var(--mono); font-size:11px; font-weight:500; padding:1px 8px; border-radius:999px; white-space:nowrap; vertical-align:middle; line-height:1.7}
+.ma{background:var(--bad-bg); color:var(--art)}
+.pma{background:var(--amber-bg); color:var(--amber)}
+.chg{background:var(--violet-bg); color:var(--violet)}
+.same{background:var(--ok-bg); color:var(--ok)}
+.tag{background:var(--tint); color:var(--muted)}
+.meta .chg,.meta .same,.meta .tag{font-size:12px; padding:3px 10px}
+
+/* ---------- legend / strategy ---------- */
+.legend{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px 16px; display:grid; gap:8px}
+.legend h3{font-size:14px; color:var(--muted); font-family:var(--mono); font-weight:500; letter-spacing:.03em}
+.legend dl{display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin:0; font-size:14px; align-items:center}
+.legend dt{margin:0} .legend dd{margin:0; color:var(--muted)}
+.callout{background:var(--amber-bg); border:1px solid color-mix(in srgb, var(--amber) 35%, transparent); border-radius:12px; padding:14px 16px; display:grid; gap:8px}
+.callout h3{font-size:15px; color:var(--amber)}
+.callout ul{font-size:14.5px}
+.callout .src{font-size:12.5px; color:var(--muted)}
+
+/* ---------- toc ---------- */
+.toc{position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--rule)}
+.toc .wrap{display:flex; gap:6px; overflow-x:auto; padding-block:9px; scrollbar-width:thin}
+.chip{flex:0 0 auto; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:999px; padding:4px 12px; font-size:13px}
+.chip:hover{border-color:var(--accent); color:var(--accent)}
+.chip:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------- sections ---------- */
+.block{padding-block:30px; border-top:1px solid var(--rule)}
+.block:first-of-type{border-top:none}
+.part{font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.06em}
+.block > h2{font-family:var(--serif); font-weight:800; font-size:clamp(22px,4.4vw,28px); line-height:1.3; margin-top:2px}
+.sub{color:var(--muted); font-size:14.5px; margin-top:6px}
+.block h3{font-size:17px; font-weight:700; margin-top:26px; margin-bottom:8px; display:flex; flex-wrap:wrap; align-items:center; gap:6px}
+.block h4{font-size:15px; font-weight:700; margin-top:16px; margin-bottom:4px; display:flex; flex-wrap:wrap; align-items:center; gap:6px}
+.block p + p{margin-top:8px}
+.block > p, .block > ul{margin-top:8px}
+
+/* ---------- boxes ---------- */
+.box{border-radius:12px; padding:12px 14px; margin-top:12px; font-size:14.8px}
+.box > .lbl{display:block; font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.04em; margin-bottom:4px}
+.box ul{margin-top:4px}
+.intuit{background:var(--blue-bg); border:1px solid color-mix(in srgb, var(--blue) 25%, transparent)}
+.intuit > .lbl{color:var(--blue)}
+.core{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--art)}
+.core > .lbl{color:var(--art)}
+.trap{background:var(--bad-bg); border:1px solid color-mix(in srgb, var(--bad) 25%, transparent)}
+.trap > .lbl{color:var(--bad)}
+.more{background:var(--violet-bg); border:1px solid color-mix(in srgb, var(--violet) 25%, transparent)}
+.more > .lbl{color:var(--violet)}
+.prof{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--amber)}
+.prof > .lbl{color:var(--amber)}
+.term{background:var(--surface); border:1px dashed color-mix(in srgb, var(--accent) 45%, transparent)}
+.term > .lbl{color:var(--accent)}
+.term dl{margin:4px 0 0; display:grid; gap:6px}
+.term dt{font-weight:700; font-size:14px}
+.term dd{margin:0 0 0 0; color:var(--ink); font-size:14px; padding-left:10px; border-left:2px solid var(--tint)}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px; margin-top:12px}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; margin-top:12px}
+.grid2 > .box,.grid2 > .card{margin-top:0}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto; margin-top:12px; border:1px solid var(--rule); border-radius:12px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:14px}
+table.wide{min-width:600px}
+th,td{padding:9px 11px; text-align:left; vertical-align:top; border-bottom:1px solid var(--rule)}
+tr:last-child td, tr:last-child th{border-bottom:none}
+thead th{background:var(--tint); font-size:13px; font-weight:600; white-space:nowrap}
+tbody th{font-weight:600; background:color-mix(in srgb, var(--tint) 55%, transparent); min-width:6.5em}
+td.c, th.c{text-align:center}
+.num{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+.o{color:var(--ok); font-weight:700} .x{color:var(--bad); font-weight:700}
+
+/* ---------- flowchart ---------- */
+.flow{display:grid; justify-items:center; margin-top:14px}
+.node{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:9px 12px; text-align:center; width:100%; max-width:560px; font-size:14px}
+.node.dq{background:var(--tint); border-color:color-mix(in srgb, var(--accent) 45%, transparent); font-weight:600}
+.node.ok{background:var(--ok-bg); border-color:color-mix(in srgb, var(--ok) 40%, transparent)}
+.node.bad{background:var(--bad-bg); border-color:color-mix(in srgb, var(--bad) 40%, transparent)}
+.node.warnn{background:var(--amber-bg); border-color:color-mix(in srgb, var(--amber) 40%, transparent)}
+.node small{display:block; color:var(--muted); font-size:12.5px; font-weight:400; margin-top:2px}
+.arr{width:2px; height:20px; background:var(--muted); position:relative; margin-bottom:6px}
+.arr::after{content:""; position:absolute; left:-5px; bottom:-6px; border:6px solid transparent; border-top:7px solid var(--muted); border-bottom:0}
+.arr.lab{height:26px}
+.arr .t{position:absolute; left:10px; top:2px; font-size:12px; line-height:1.3; color:var(--muted); width:max-content; max-width:calc(50vw - 30px); font-family:var(--mono)}
+.branch{display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; max-width:560px}
+.branch.three{grid-template-columns:1fr 1fr 1fr}
+.branch > div{display:grid; justify-items:center; align-content:start}
+.blabel{font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:4px}
+@media (max-width:420px){ .branch.three{grid-template-columns:1fr} }
+
+/* ---------- figures ---------- */
+figure{margin:14px 0 0}
+.fig-card{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px}
+figure svg{width:100%; height:auto; display:block; max-width:560px; margin-inline:auto}
+figcaption{font-size:13px; color:var(--muted); margin-top:8px}
+
+/* ---------- bars ---------- */
+.bars{display:grid; gap:10px; margin-top:6px}
+.bar-row{display:grid; grid-template-columns:5.6em 1fr; gap:10px; align-items:center; font-size:13.5px}
+.bar-row .track{background:var(--tint); border-radius:6px; height:26px; position:relative; overflow:hidden}
+.bar-row .fill{position:absolute; inset:0 auto 0 0; background:color-mix(in srgb, var(--accent) 70%, transparent); border-radius:6px}
+.bar-row .val{position:absolute; left:8px; top:3px; font-family:var(--mono); font-size:12px; color:var(--ink)}
+
+/* ---------- 2x2 ---------- */
+.mx{display:grid; grid-template-columns:auto 1fr 1fr; gap:6px; margin-top:12px; font-size:14px}
+.mx .h{font-family:var(--mono); font-size:12px; color:var(--muted); align-self:end; text-align:center; padding:2px}
+.mx .rh{font-family:var(--mono); font-size:12px; color:var(--muted); writing-mode:horizontal-tb; align-self:center; padding-right:4px}
+.mx .cell{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:10px; min-height:84px}
+.mx .cell b{display:block; font-size:15px}
+.mx .cell.tb{background:var(--ok-bg)} .mx .cell.ntm{background:var(--amber-bg)} .mx .cell.cl{background:var(--tint)}
+
+/* ---------- stages / timeline ---------- */
+.stages{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:12px}
+.stage{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px; position:relative}
+.stage .n{font-family:var(--mono); font-size:12px; color:var(--accent)}
+.stage h4{margin-top:2px}
+.stage ul{font-size:13.8px; margin-top:4px}
+.stage .tx{margin-top:8px; font-size:13.5px; background:var(--tint); border-radius:8px; padding:6px 8px}
+
+/* ---------- questions ---------- */
+.q{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px 16px; margin-top:12px}
+.q-head{display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin-bottom:6px}
+.q-src{font-family:var(--mono); font-size:11.5px; padding:1px 8px; border-radius:999px; background:var(--tint); color:var(--muted)}
+.q-stem{font-weight:600; font-size:15px}
+.q ol{margin-top:8px; padding-left:1.4em; font-size:14.5px; display:grid; gap:3px}
+.q details{margin-top:10px; border-top:1px dashed var(--rule); padding-top:8px}
+.q summary{cursor:pointer; font-weight:700; color:var(--accent); font-size:14px}
+.q details > div{margin-top:6px; font-size:14.5px}
+.ans{display:inline-block; font-family:var(--mono); font-weight:600; background:var(--ok-bg); color:var(--ok); padding:0 8px; border-radius:6px}
+
+/* ---------- memo cards ---------- */
+.memo{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px; margin-top:12px}
+.memo > div{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px}
+.memo h4{font-size:13px; font-family:var(--mono); color:var(--accent); font-weight:500; margin:0 0 6px}
+.memo ul{font-size:14px; padding-left:1.1em}
+.checklist{list-style:none; padding-left:0; display:grid; gap:6px; margin-top:8px}
+.checklist li{padding-left:1.6em; position:relative}
+.checklist li::before{content:"☐"; position:absolute; left:0; color:var(--accent)}
+
+footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:var(--mono)}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html#pulm">← STUDY TREE · 호흡기학</a>
+  <header class="hero">
+    <div class="eyebrow">호흡기학 · 예습 시작 전에 한 번</div>
+    <h1>호흡기학 공략 가이드</h1>
+    <div class="meta">
+      <span class="tag">25 과목설명회 4명 종합</span>
+      <span class="tag">26 시간표 ↔ 25 학습부 매칭</span>
+    </div>
+    <p class="lede">선배들 과목설명회(이민경 · 김혁희 · 하승호 · 이연재)를 한 장으로 합치고, 26 시간표와 25 학습부를 맞대어 <b>교수님이 바뀐 강의</b>를 표시함. 날짜별 예습본은 이 표의 “25 학습부” 칸을 원자료로 만듦.</p>
+  </header>
+</div>
+
+<nav class="toc" aria-label="섹션 목차">
+  <div class="wrap">
+    <a class="chip" href="#overview">과목 총평</a>
+    <a class="chip" href="#strategy">공통 전략</a>
+    <a class="chip" href="#prof">교수님별</a>
+    <a class="chip" href="#map">26 ↔ 25 매칭</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section class="block" id="overview">
+  <div class="part">OVERVIEW</div>
+  <h2>과목 총평 — “2학점짜리 최종 보스”</h2>
+  <div class="tbl-wrap">
+    <table>
+      <tbody>
+        <tr><th>학점 · 책임교수</th><td>2학점 · 윤성호 교수님</td></tr>
+        <tr><th>난이도</th><td>★★★★★ (4명 모두 만점 별, 한 명은 별 8개)</td></tr>
+        <tr><th>25 시험</th><td>단축학기로 1–2주에 몰아서 진행 · <b>111문항 / 120분</b>(복원 수합 기준) · 대부분 교수님이 탈마 · 시간이 모자랐다는 평</td></tr>
+        <tr><th>재시</th><td>25: 60점 미만 재시 공지 → 번복(일괄 최하점 처리). 23에도 재시가 있었다고 하니 “있다”고 생각하고 준비</td></tr>
+        <tr><th>과목 성격</th><td>“진단은?”에서 끝나지 않고 <b>“알고리즘에 따른 치료는?”</b>까지 묻는 과목 · 병태생리 + 영상 소견을 이해해야 풀림 · 교수님끼리 주제가 겹쳐 <b>시험장에서 어느 교수님 문제인지 헷갈림</b> (“그것만 알아도 반은 성공”)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box intuit"><span class="lbl">선배 한마디</span>“단순 암기라기보다 이해 위주라, 한 번 제대로 이해해 두면 잘 안 까먹음. 임상표현·임종평 때 가장 많이 남아 있던 과목.” · “몰아서 할 생각 말고 학습부를 꾸준히 돌려야 함. 버티면 이김.”</div>
+</section>
+
+<section class="block" id="strategy">
+  <div class="part">STRATEGY</div>
+  <h2>공통 전략 — 4명이 겹치게 말한 것</h2>
+  <ol style="display:grid; gap:10px; margin-top:12px">
+    <li><b>강의는 듣는다</b> — 특히 호흡기내과 파트. 자습만으로 소화하기 어려운 과목이고, 강의력 좋은 교수님이 많음. 수업으로 1회독을 끝낸다는 마음.</li>
+    <li><b>큰 알고리즘 + 기초 개념부터</b> — 예: 천식 vs COPD 구분. 그 위에 지엽을 쌓기. 처음부터 지엽까지 다 잡으면 뒤죽박죽.</li>
+    <li><b>야마 해설 맹신 금지</b> — 답을 고친 문제가 꽤 있었음. 특히 문도식 교수님 파트는 “기출 답을 절대 믿지 말 것”. <b>그 해 강의안</b>을 근거로 판단하고 동기들과 토의.</li>
+    <li><b>답치기 X, 선지 분석 O</b> — 선지를 바꿔 내는 교수님이 대부분. 기출 선지 + 관련 이론을 같이.</li>
+    <li><b>시간 배분</b> — 야마를 타는 교수님(서홍주 · 양은석)에서 시간을 아끼고, 참공이 통하는 교수님(윤성호 · 문도식 · 나용섭)에 투자.</li>
+    <li><b>산소 공급 문제</b>는 여러 교수님이 냄(25: 문도식 · 나용섭) → 기구별 FiO₂·적응을 미리 정리해 두고 시험장에선 풀이 전략대로.</li>
+    <li>최소 목표(유급 회피): <b>피마 + 기출 선지 완벽 분석</b>. 안정적으로 넘기려면 위 참공 교수님 중 골라서 깊게.</li>
+  </ol>
+</section>
+
+<section class="block" id="prof">
+  <div class="part">PROFESSORS</div>
+  <h2>교수님별 — 25 출제 성향과 공부법</h2>
+  <p class="sub">문항 수는 25 기준 선배 집계. 26에 새로 오신 교수님은 데이터 없음.</p>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>교수님</th><th>26 담당 (시간표)</th><th>25 출제 성향</th><th>공부법</th></tr></thead>
+      <tbody>
+        <tr><th>윤성호<br><span class="small">호흡기내과</span></th><td>호흡기생리검사 · 감염성폐질환 · <b>COPD</b> <span class="chg">26 신규</span> · 폐종양 · 호흡곤란</td><td>19문항 · 기출 주제를 번갈아 묻고 선지 변형 · 피마에서 탈마 2문항 · 생리 파트 2년 연속 탈마(그래프 인덱스 암기형)</td><td>기출 + 관련 이론 꼼꼼히, 생리검사는 참공. 지루해도 참공할 거면 수업 듣기</td></tr>
+        <tr><th>문도식<br><span class="small">호흡기내과</span></th><td>천식 · 호흡부전집중치료 · 기계호흡/수면무호흡 · 객혈 · <b>폐혈관질환</b> <span class="chg">26 신규</span></td><td>18문항 · 거의 다 변형 · 고민해야 풀리는 최고 난도 · 강조한 내용으로 귀결</td><td><b>수업 필수</b>(학습부보다 수업량이 훨씬 적어 볼륨이 줄어듦) → 개념·알고리즘 암기 → 학습부 → 기출 → 강의안으로 마무리. 야마 답 불신, 언급 안 한 부분은 과감히 생략</td></tr>
+        <tr><th>나용섭<br><span class="small">호흡기내과</span></th><td><b>간질성폐질환</b>만 (25: 결핵 · COPD · 폐혈관 · ILD)</td><td>25문항(최다) · KMLE형 케이스 · 새 문제는 전부 피마 · 진단 ↔ 치료 뒤집기</td><td>수업 필수(강의력 최고 평) → 진단 기준·알고리즘 → 야마로 적용 연습</td></tr>
+        <tr><th>정은지 <span class="chg">26 신규</span></th><td>폐결핵</td><td>데이터 없음</td><td>진료지침 핵심 + 25 반복 포인트 + 새 강의 강조점 → <a href="pulm-1006-tb.html">10/6 예습본</a></td></tr>
+        <tr><th>도남용 <span class="chg">26 신규</span></th><td>인후두질환 (25: 오정현)</td><td>데이터 없음 · 참고로 25 오정현 교수님은 거의 탈마, 사진 + 한글 용어로 출제</td><td>질환명–사진–치료 매칭, 감각계 야마와 연계</td></tr>
+        <tr><th>최지윤<br><span class="small">이비인후과</span></th><td>상기도질환</td><td>6문항 중 3 탈마(수업 중 다룬 코로나 등) · 나머지는 야마 선지 섞기</td><td>기출(14년 고대기출까지) → 학습부 → 교과서. 고득점 노리면 수업을 끝까지</td></tr>
+        <tr><th>양은석<br><span class="small">소아청소년과</span></th><td>소아호흡기질환 1 · 2</td><td>25엔 야마를 거의 그대로 (“유급을 막아주는 수호신”) · 그 전엔 신규 강의안·피마 내 탈마</td><td>기출 선지 전부 + 관련 이론. 개정으로 바뀐 강의안 확인</td></tr>
+        <tr><th>홍준형<br><span class="small">영상의학과</span></th><td>호흡기영상진단 1 · 2</td><td>12문항 · 형성평가 그대로 3 · 강의안에 없는 사진 2 · 강조 3</td><td><b>형성평가 + 강조 부분</b> 무조건. 1학기 영상의학을 들었으니 25보다 수월할 것</td></tr>
+        <tr><th>이석기<br><span class="small">흉부외과</span></th><td>종격동 및 흉벽질환</td><td>6문항, 25엔 전부 새로 출제 · 쪽지시험·과제는 시험과 거리 멂</td><td>기출 + 관련 이론 (Haller index 등). 그 이상은 가성비 낮음</td></tr>
+        <tr><th>서홍주<br><span class="small">흉부외과</span></th><td>늑막질환의 외과적 처치</td><td>기출 그대로 + 선지 변형, 처음 보는 건 고대 기출</td><td><b>기출 선지 분석만으로 충분</b>, 시간 아끼기 → <a href="pulm-1006-pleura.html">10/6 예습본</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="block" id="map">
+  <div class="part">MAP</div>
+  <h2>26 시간표 ↔ 25 학습부 매칭</h2>
+  <p class="sub">드라이브 「25학습부 › 그룹3 › 호흡기학 › 검안」 파일 번호 기준. 시간표 이미지가 7주차까지라 8주차 이후는 받으면 추가.</p>
+  <div class="tbl-wrap">
+    <table class="wide">
+      <thead><tr><th>날짜</th><th>26 강의 (교수님)</th><th>25 학습부</th><th>변경</th></tr></thead>
+      <tbody>
+        <tr><td class="num">10/6 화</td><td><a href="pulm-1006-tb.html">폐결핵</a> (윤(정은지))</td><td>05번 · 나용섭</td><td><span class="chg">교수 변경</span></td></tr>
+        <tr><td class="num">10/6 화</td><td><a href="pulm-1006-pleura.html">늑막질환의 외과적 처치</a> (서홍주)</td><td>11번 · 서홍주</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/7 수</td><td>천식 (문도식)</td><td>03번 · 문도식</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/7 수</td><td>호흡기생리검사법 (윤성호)</td><td>01번 · 윤성호</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/7 수</td><td>인후두질환 (도남용)</td><td>06번 · 오정현</td><td><span class="chg">교수 변경</span></td></tr>
+        <tr><td class="num">10/8 목</td><td>호흡부전집중치료 (문도식)</td><td>10번 · 문도식</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/8 목</td><td>호흡기영상진단 1 (홍준형)</td><td>09번 · 홍준형</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/8 목</td><td>감염성폐질환 (윤성호)</td><td>04번 · 윤성호</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/8 목</td><td>만성폐쇄성폐질환 (윤성호)</td><td>12번 · 나용섭</td><td><span class="chg">교수 변경</span></td></tr>
+        <tr><td class="num">10/12 월</td><td>폐종양 (윤성호)</td><td>15번 · 윤성호</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/12 월</td><td>소아호흡기질환 1 · 2 (양은석)</td><td>07번 · 14번 · 양은석</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/13 화</td><td>기계호흡 / 수면무호흡 (문도식)</td><td>17번(수면무호흡) · 기계호흡은 25엔 별도 강의 없음 (10번 호흡부전집중치료 참고)</td><td><span class="tag">구성 변경 가능</span></td></tr>
+        <tr><td class="num">10/13 화</td><td>객혈 (문도식)</td><td>17번 · 문도식</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/13 화</td><td>폐혈관질환 (문도식)</td><td>16번 · 나용섭</td><td><span class="chg">교수 변경</span></td></tr>
+        <tr><td class="num">10/13 화</td><td>종격동 및 흉벽질환 (이석기)</td><td>08번 · 이석기</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/13 화</td><td>호흡기영상진단 2 (홍준형)</td><td>13번 · 홍준형</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/14 수</td><td>간질성폐질환 (나용섭)</td><td>18번 · 나용섭</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/14 수</td><td>호흡곤란 (윤성호)</td><td>19번 · 윤성호</td><td><span class="same">동일</span></td></tr>
+        <tr><td class="num">10/14 수</td><td>상기도질환 (최지윤)</td><td>02번 · 최지윤</td><td><span class="same">동일</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box core"><span class="lbl">핵심 — 교수님이 바뀐 4강의</span><b>폐결핵</b>(나용섭 → 정은지) · <b>인후두질환</b>(오정현 → 도남용) · <b>COPD</b>(나용섭 → 윤성호) · <b>폐혈관질환</b>(나용섭 → 문도식). 이 강의들은 25 피마·야마가 그대로 통하지 않을 수 있음 → 내용은 25 학습부로 예습하되, 강의에서 새로 강조하는 부분을 꼭 따로 표시.</div>
+  <p class="small" style="margin-top:12px">출처: 본2 과목설명회 호흡기학 (이민경 · 김혁희 · 하승호 · 이연재) · 26 호흡기학 시간표 · 25학습부 그룹3 호흡기학 검안 폴더.</p>
+</section>
+
+</main>
+<footer class="wrap">betheu/study · STUDY TREE · 호흡기학</footer>
+</body>
+</html>
