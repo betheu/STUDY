@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>10/8(목) - 호흡부전 집중치료</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@700;800&display=swap">
+<style>
+:root{
+  --bg:#f3f7f6; --surface:#ffffff; --ink:#14201e; --muted:#566460; --rule:#d8e2df; --tint:#e8f1ef;
+  --accent:#1c6c66; --accent-ink:#ffffff; --art:#b2372d;
+  --ok:#23704a; --ok-bg:#e5f2ea; --bad:#a8261e; --bad-bg:#fbe9e7;
+  --amber:#8a5f00; --amber-bg:#f8efda; --violet:#5d4499; --violet-bg:#eee9f7; --blue:#2c5a98; --blue-bg:#e6edf8;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;
+  --serif:"Nanum Myeongjo","AppleMyungjo","Batang",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0c1413; --surface:#131d1c; --ink:#e2ebe8; --muted:#97a8a3; --rule:#24322f; --tint:#172523;
+    --accent:#6cc7bd; --accent-ink:#0c1413; --art:#ea8277;
+    --ok:#74c795; --ok-bg:#132a1e; --bad:#f08b81; --bad-bg:#2f1917;
+    --amber:#dcae4a; --amber-bg:#2b2311; --violet:#b39ae6; --violet-bg:#241d36; --blue:#8fb3ea; --blue-bg:#17233a;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0c1413; --surface:#131d1c; --ink:#e2ebe8; --muted:#97a8a3; --rule:#24322f; --tint:#172523;
+  --accent:#6cc7bd; --accent-ink:#0c1413; --art:#ea8277;
+  --ok:#74c795; --ok-bg:#132a1e; --bad:#f08b81; --bad-bg:#2f1917;
+  --amber:#dcae4a; --amber-bg:#2b2311; --violet:#b39ae6; --violet-bg:#241d36; --blue:#8fb3ea; --blue-bg:#17233a;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:60px}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15.5px; line-height:1.72; word-break:keep-all; overflow-wrap:anywhere}
+.wrap{max-width:860px; margin-inline:auto; padding-inline:16px}
+@media (min-width:700px){ .wrap{padding-inline:24px} }
+a{color:var(--accent)}
+h1,h2,h3,h4{text-wrap:balance; margin:0}
+p{margin:0}
+ul,ol{margin:0; padding-left:1.25em}
+li+li{margin-top:3px}
+b.r{color:var(--art)} b.a{color:var(--accent)}
+.mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+.small{font-size:13.5px; color:var(--muted)}
+
+/* ---------- hero ---------- */
+.back{display:inline-block; font-family:var(--mono); font-size:12px; color:var(--muted); text-decoration:none; padding-top:20px}
+.back:hover{color:var(--accent)}
+.hero{padding-block:12px 22px; display:grid; gap:12px}
+.eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--muted)}
+.hero h1{font-family:var(--serif); font-weight:800; font-size:clamp(27px,6vw,40px); line-height:1.25}
+.hero h1 .d{color:var(--accent)}
+.lede{color:var(--muted); max-width:66ch}
+.meta{display:flex; flex-wrap:wrap; gap:6px}
+
+/* ---------- badges ---------- */
+.ma,.pma,.chg,.same,.tag{display:inline-flex; align-items:center; font-family:var(--mono); font-size:11px; font-weight:500; padding:1px 8px; border-radius:999px; white-space:nowrap; vertical-align:middle; line-height:1.7}
+.ma{background:var(--bad-bg); color:var(--art)}
+.pma{background:var(--amber-bg); color:var(--amber)}
+.chg{background:var(--violet-bg); color:var(--violet)}
+.same{background:var(--ok-bg); color:var(--ok)}
+.tag{background:var(--tint); color:var(--muted)}
+.meta .chg,.meta .same,.meta .tag{font-size:12px; padding:3px 10px}
+
+/* ---------- legend / strategy ---------- */
+.legend{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px 16px; display:grid; gap:8px}
+.legend h3{font-size:14px; color:var(--muted); font-family:var(--mono); font-weight:500; letter-spacing:.03em}
+.legend dl{display:grid; grid-template-columns:auto 1fr; gap:6px 12px; margin:0; font-size:14px; align-items:center}
+.legend dt{margin:0} .legend dd{margin:0; color:var(--muted)}
+.callout{background:var(--amber-bg); border:1px solid color-mix(in srgb, var(--amber) 35%, transparent); border-radius:12px; padding:14px 16px; display:grid; gap:8px}
+.callout h3{font-size:15px; color:var(--amber)}
+.callout ul{font-size:14.5px}
+.callout .src{font-size:12.5px; color:var(--muted)}
+
+/* ---------- toc ---------- */
+.toc{position:sticky; top:0; z-index:20; background:var(--bg); border-bottom:1px solid var(--rule)}
+.toc .wrap{display:flex; gap:6px; overflow-x:auto; padding-block:9px; scrollbar-width:thin}
+.chip{flex:0 0 auto; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:999px; padding:4px 12px; font-size:13px}
+.chip:hover{border-color:var(--accent); color:var(--accent)}
+.chip:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* ---------- sections ---------- */
+.block{padding-block:30px; border-top:1px solid var(--rule)}
+.block:first-of-type{border-top:none}
+.part{font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.06em}
+.block > h2{font-family:var(--serif); font-weight:800; font-size:clamp(22px,4.4vw,28px); line-height:1.3; margin-top:2px}
+.sub{color:var(--muted); font-size:14.5px; margin-top:6px}
+.block h3{font-size:17px; font-weight:700; margin-top:26px; margin-bottom:8px; display:flex; flex-wrap:wrap; align-items:center; gap:6px}
+.block h4{font-size:15px; font-weight:700; margin-top:16px; margin-bottom:4px; display:flex; flex-wrap:wrap; align-items:center; gap:6px}
+.block p + p{margin-top:8px}
+.block > p, .block > ul{margin-top:8px}
+
+/* ---------- boxes ---------- */
+.box{border-radius:12px; padding:12px 14px; margin-top:12px; font-size:14.8px}
+.box > .lbl{display:block; font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.04em; margin-bottom:4px}
+.box ul{margin-top:4px}
+.intuit{background:var(--blue-bg); border:1px solid color-mix(in srgb, var(--blue) 25%, transparent)}
+.intuit > .lbl{color:var(--blue)}
+.core{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--art)}
+.core > .lbl{color:var(--art)}
+.trap{background:var(--bad-bg); border:1px solid color-mix(in srgb, var(--bad) 25%, transparent)}
+.trap > .lbl{color:var(--bad)}
+.more{background:var(--violet-bg); border:1px solid color-mix(in srgb, var(--violet) 25%, transparent)}
+.more > .lbl{color:var(--violet)}
+.prof{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--amber)}
+.prof > .lbl{color:var(--amber)}
+.term{background:var(--surface); border:1px dashed color-mix(in srgb, var(--accent) 45%, transparent)}
+.term > .lbl{color:var(--accent)}
+.term dl{margin:4px 0 0; display:grid; gap:6px}
+.term dt{font-weight:700; font-size:14px}
+.term dd{margin:0 0 0 0; color:var(--ink); font-size:14px; padding-left:10px; border-left:2px solid var(--tint)}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px; margin-top:12px}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px; margin-top:12px}
+.grid2 > .box,.grid2 > .card{margin-top:0}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto; margin-top:12px; border:1px solid var(--rule); border-radius:12px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:14px}
+table.wide{min-width:600px}
+th,td{padding:9px 11px; text-align:left; vertical-align:top; border-bottom:1px solid var(--rule)}
+tr:last-child td, tr:last-child th{border-bottom:none}
+thead th{background:var(--tint); font-size:13px; font-weight:600; white-space:nowrap}
+tbody th{font-weight:600; background:color-mix(in srgb, var(--tint) 55%, transparent); min-width:6.5em}
+td.c, th.c{text-align:center}
+.num{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+.o{color:var(--ok); font-weight:700} .x{color:var(--bad); font-weight:700}
+
+/* ---------- flowchart ---------- */
+.flow{display:grid; justify-items:center; margin-top:14px}
+.node{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:9px 12px; text-align:center; width:100%; max-width:560px; font-size:14px}
+.node.dq{background:var(--tint); border-color:color-mix(in srgb, var(--accent) 45%, transparent); font-weight:600}
+.node.ok{background:var(--ok-bg); border-color:color-mix(in srgb, var(--ok) 40%, transparent)}
+.node.bad{background:var(--bad-bg); border-color:color-mix(in srgb, var(--bad) 40%, transparent)}
+.node.warnn{background:var(--amber-bg); border-color:color-mix(in srgb, var(--amber) 40%, transparent)}
+.node small{display:block; color:var(--muted); font-size:12.5px; font-weight:400; margin-top:2px}
+.arr{width:2px; height:20px; background:var(--muted); position:relative; margin-bottom:6px}
+.arr::after{content:""; position:absolute; left:-5px; bottom:-6px; border:6px solid transparent; border-top:7px solid var(--muted); border-bottom:0}
+.arr.lab{height:26px}
+.arr .t{position:absolute; left:10px; top:2px; font-size:12px; line-height:1.3; color:var(--muted); width:max-content; max-width:calc(50vw - 30px); font-family:var(--mono)}
+.branch{display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; max-width:560px}
+.branch.three{grid-template-columns:1fr 1fr 1fr}
+.branch > div{display:grid; justify-items:center; align-content:start}
+.blabel{font-family:var(--mono); font-size:12px; color:var(--muted); margin-bottom:4px}
+@media (max-width:420px){ .branch.three{grid-template-columns:1fr} }
+
+/* ---------- figures ---------- */
+figure{margin:14px 0 0}
+.fig-card{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px}
+figure svg{width:100%; height:auto; display:block; max-width:560px; margin-inline:auto}
+figcaption{font-size:13px; color:var(--muted); margin-top:8px}
+
+/* ---------- bars ---------- */
+.bars{display:grid; gap:10px; margin-top:6px}
+.bar-row{display:grid; grid-template-columns:5.6em 1fr; gap:10px; align-items:center; font-size:13.5px}
+.bar-row .track{background:var(--tint); border-radius:6px; height:26px; position:relative; overflow:hidden}
+.bar-row .fill{position:absolute; inset:0 auto 0 0; background:color-mix(in srgb, var(--accent) 70%, transparent); border-radius:6px}
+.bar-row .val{position:absolute; left:8px; top:3px; font-family:var(--mono); font-size:12px; color:var(--ink)}
+
+/* ---------- 2x2 ---------- */
+.mx{display:grid; grid-template-columns:auto 1fr 1fr; gap:6px; margin-top:12px; font-size:14px}
+.mx .h{font-family:var(--mono); font-size:12px; color:var(--muted); align-self:end; text-align:center; padding:2px}
+.mx .rh{font-family:var(--mono); font-size:12px; color:var(--muted); writing-mode:horizontal-tb; align-self:center; padding-right:4px}
+.mx .cell{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:10px; min-height:84px}
+.mx .cell b{display:block; font-size:15px}
+.mx .cell.tb{background:var(--ok-bg)} .mx .cell.ntm{background:var(--amber-bg)} .mx .cell.cl{background:var(--tint)}
+
+/* ---------- stages / timeline ---------- */
+.stages{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:12px}
+.stage{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px; position:relative}
+.stage .n{font-family:var(--mono); font-size:12px; color:var(--accent)}
+.stage h4{margin-top:2px}
+.stage ul{font-size:13.8px; margin-top:4px}
+.stage .tx{margin-top:8px; font-size:13.5px; background:var(--tint); border-radius:8px; padding:6px 8px}
+
+/* ---------- questions ---------- */
+.q{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:14px 16px; margin-top:12px}
+.q-head{display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin-bottom:6px}
+.q-src{font-family:var(--mono); font-size:11.5px; padding:1px 8px; border-radius:999px; background:var(--tint); color:var(--muted)}
+.q-stem{font-weight:600; font-size:15px}
+.q ol{margin-top:8px; padding-left:1.4em; font-size:14.5px; display:grid; gap:3px}
+.q details{margin-top:10px; border-top:1px dashed var(--rule); padding-top:8px}
+.q summary{cursor:pointer; font-weight:700; color:var(--accent); font-size:14px}
+.q details > div{margin-top:6px; font-size:14.5px}
+.ans{display:inline-block; font-family:var(--mono); font-weight:600; background:var(--ok-bg); color:var(--ok); padding:0 8px; border-radius:6px}
+
+/* ---------- memo cards ---------- */
+.memo{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px; margin-top:12px}
+.memo > div{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:12px 14px}
+.memo h4{font-size:13px; font-family:var(--mono); color:var(--accent); font-weight:500; margin:0 0 6px}
+.memo ul{font-size:14px; padding-left:1.1em}
+.checklist{list-style:none; padding-left:0; display:grid; gap:6px; margin-top:8px}
+.checklist li{padding-left:1.6em; position:relative}
+.checklist li::before{content:"☐"; position:absolute; left:0; color:var(--accent)}
+
+
+/* keyword→dx→tx tables: stack on phones */
+@media (max-width:600px){
+  table.kdt{min-width:0}
+  table.kdt thead{display:none}
+  table.kdt tr{display:block; border-bottom:1px solid var(--rule); padding:8px 0}
+  table.kdt tr:last-child{border-bottom:none}
+  table.kdt td{display:block; border:none; padding:3px 12px}
+  table.kdt td::before{display:inline-block; min-width:3.6em; font-family:var(--mono); font-size:11px; color:var(--muted); margin-right:6px}
+  table.kdt td:nth-child(1)::before{content:"단서"}
+  table.kdt td:nth-child(2)::before{content:"진단"; color:var(--art)}
+  table.kdt td:nth-child(3)::before{content:"치료"; color:var(--accent)}
+  table.kdt td:nth-child(2){font-weight:600}
+}
+
+
+/* ---------- quiz ---------- */
+.qz-bar{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:10px 14px; margin-top:12px; position:sticky; top:52px; z-index:10}
+.qz-bar .sc{font-size:14px} .qz-bar .sc b{font-family:var(--mono)}
+.qz-bar .track{flex:1 1 120px; height:6px; background:var(--rule); border-radius:3px; overflow:hidden; min-width:80px}
+.qz-bar .track i{display:block; height:100%; width:0; background:var(--ok); transition:width .25s}
+.qz-btn{font:inherit; font-size:13px; padding:4px 12px; border-radius:999px; border:1px solid var(--rule); background:var(--bg); color:var(--ink); cursor:pointer}
+.qz-btn:focus-visible,.opt:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.qz .opts{display:grid; gap:6px; margin-top:10px}
+.opt{display:grid; grid-template-columns:auto 1fr; gap:4px 8px; text-align:left; font:inherit; font-size:14.5px; line-height:1.55; background:var(--bg); color:var(--ink); border:1px solid var(--rule); border-radius:9px; padding:8px 11px; cursor:pointer}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt[disabled]{cursor:default}
+.opt .k{font-family:var(--mono); color:var(--muted)}
+.opt .why{grid-column:2; font-size:13.5px; color:var(--muted); display:none}
+.qz.done .opt .why{display:block}
+.opt.right{background:var(--ok-bg); border-color:var(--ok)} .opt.right .why{color:var(--ok)}
+.opt.wrong{background:var(--bad-bg); border-color:var(--bad)}
+.qz .verdict{margin-top:10px; font-weight:700; font-size:14px; display:none}
+.qz.done .verdict{display:block}
+.qz .verdict.ok{color:var(--ok)} .qz .verdict.no{color:var(--bad)}
+.qz .ess{display:none; margin-top:8px; background:var(--tint); border-radius:10px; padding:9px 12px; font-size:14px}
+.qz.done .ess{display:block}
+.qz .ess b:first-child{font-family:var(--mono); font-size:12px; color:var(--accent); margin-right:6px}
+
+footer{padding-block:30px 60px; color:var(--muted); font-size:12px; font-family:var(--mono)}
+
+</style>
+<style>
+.md h2{font-family:var(--serif); font-size:24px; margin:34px 0 10px; padding-top:14px; border-top:1px solid var(--rule)}
+.md h3{font-size:18px; margin:26px 0 8px; color:var(--accent)}
+.md p{margin:8px 0}
+.md ul,.md ol{margin:6px 0}
+.md blockquote{margin:12px 0; padding:10px 14px; background:var(--tint); border-left:4px solid var(--accent); border-radius:8px}
+.md table{border-collapse:collapse; width:100%; font-size:14px; margin:10px 0; display:block; overflow-x:auto}
+.md th,.md td{border:1px solid var(--rule); padding:6px 9px; vertical-align:top; text-align:left}
+.md th{background:var(--tint)}
+.md pre{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:12px; overflow-x:auto; font-family:var(--mono); font-size:13px; line-height:1.5}
+.md details{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:8px 12px; margin:8px 0 18px}
+.md details summary{cursor:pointer; font-weight:600; color:var(--accent)}
+.md details[open] summary{margin-bottom:6px}
+.md code{font-family:var(--mono); font-size:.92em}
+.md input[type=checkbox]{margin-right:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html#pulm">← STUDY TREE · 호흡기학</a>
+  <header class="hero">
+    <div class="eyebrow">호흡기학 · 10/8(목) · 예습 (D-1)</div>
+    <h1><span class="d">10/8(목)</span> - 호흡부전 집중치료</h1>
+    <div class="meta"><span class="tag">문도식 (탈마러)</span><span class="tag">원자료: 25 학습부·25 복원해설 (26 강의안 공개 전)</span></div>
+  </header>
+  <main class="md">
+<blockquote>
+<p>표기: 🔴 ま(현 교수 기출) · 🩶 다른 교수 ま · 🔵 25Pま(25 수업 강조) · ⚠️ 26 변경 가능 지점<br />
+26 강의안·녹음은 아직 없어서, 25 학습부·기출 기준입니다. 수업 들으며 <strong>바뀐 것·강조한 것만 ✓</strong> 해주세요.</p>
+<p><strong>출제 방식(25 학습부 '25시험' 메모)</strong>: ① 호흡부전 <strong>type</strong> 묻기(족보) ② 임상 상황에서 <strong>어떤 flow system / 삽관</strong>할지 ③ ARDS 임상 세팅에서 <strong>evidence 강한 처치</strong> 고르기 ④ (기계환기) auto-PEEP<br />
+→ 탈마러지만 <strong>문제 틀(케이스 → 결정)은 매년 같고 수치·조건만 바뀜</strong>. 오늘은 '결정 규칙'을 잡고 들어가기.<br />
+※ 기계환기 모드·PEEP 생리·auto-PEEP은 10/7 '천식, 기계환기'에서 다룸 → 여기선 연결만.</p>
+</blockquote>
+<h3>1-1. [호흡부전 &gt; 분류 &gt; Type I–IV]</h3>
+<ul>
+<li><strong>본질</strong>: 무엇이 실패했나 — 산소화(I) / 환기(II) / 수술 후 무기폐(III) / 관류·쇼크(IV)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>핵심</th>
+<th>기준·원인</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I hypoxemic</td>
+<td>oxygenation 실패</td>
+<td>PaO2 &lt; 60 또는 SpO2 &lt; 90. 폐렴, ARDS, 폐부종. 기전 V/Q mismatch(m/c)·shunt</td>
+</tr>
+<tr>
+<td>II hypercapnic</td>
+<td>ventilation 실패</td>
+<td>PaCO2 &gt; 45 + pH &lt; 7.35. CNS 억제(마약·프로포폴), 신경근(GBS, MG, ALS), COPD·천식, 횡격막</td>
+</tr>
+<tr>
+<td>III perioperative</td>
+<td>수술 후 <strong>무기폐</strong></td>
+<td>객담 배출 실패 → atelectasis → shunt</td>
+</tr>
+<tr>
+<td>IV shock</td>
+<td>hypoperfusion</td>
+<td>sepsis, 출혈, MI → O2 demand↑ (폐·심장 정상이어도 숨참)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>공·차 (Type I 내부)</strong>: V/Q mismatch는 <strong>산소 주면 교정 O</strong>, shunt(완전 무기폐)는 <strong>교정 X</strong>. A-a gradient↑ = 폐 실질 문제, 정상 = 흡입 산소 부족·순수 저환기.</li>
+<li>🔴 ま 패턴: <strong>수술 후 1–2일 + 저산소 → Type III</strong> (ABGA가 Type I처럼 보여도 상황이 결정). '수술 + COPD + CO2↑' → I+II / II+III 조합형도 출제.</li>
+</ul>
+<h3>1-2. [호흡부전 &gt; 산소공급 &gt; 장치 선택]</h3>
+<ul>
+<li><strong>본질</strong>: 환자의 흡기 유량(질환 시 ≥ 35 L/min)을 장치가 따라가는가 + 환기(CO2)를 도와야 하는가</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>장치</th>
+<th>특징</th>
+<th>쓰는 상황</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nasal cannula</td>
+<td>≤ 5–6 L, FiO2 ~40%</td>
+<td>낮은 요구량</td>
+</tr>
+<tr>
+<td>Simple / reservoir mask</td>
+<td>FiO2 40–60% / ~100%, CO2 재흡입 위험</td>
+<td>중등·높은 요구량 (단 유량 한계)</td>
+</tr>
+<tr>
+<td>Venturi mask (high flow)</td>
+<td>정확한 FiO2</td>
+<td>CO2 retainer에서 FiO2 조절</td>
+</tr>
+<tr>
+<td><strong>HFNC</strong></td>
+<td>가온가습, 60 L, PEEP 2–4 효과, dead space washout</td>
+<td><strong>P/F &lt; 150 hypoxemic failure에서 삽관률↓</strong>, 발관 전후, COPD 악화, DNI</td>
+</tr>
+<tr>
+<td><strong>NIV – CPAP</strong></td>
+<td>지속 양압 → 폐포 개방, preload·afterload↓</td>
+<td><strong>심부전(폐부종) 동반 저산소</strong> → 효과 매우 좋음</td>
+</tr>
+<tr>
+<td><strong>NIV – BiPAP</strong></td>
+<td>IPAP−EPAP = pressure support → 환기 보조</td>
+<td><strong>고탄산(Type II)·의식 명료</strong>, COPD 악화</td>
+</tr>
+<tr>
+<td>삽관 + 기계환기</td>
+<td></td>
+<td><strong>의식 저하</strong>, 혈역학 불안정, NIV 금기</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>NIV 금기 (🔴 22·23 ま, 🔵 25)</strong>: 의식 저하 · 객담 배출 불가/기도 보호 안 됨 · 안면 외상 · 혈역학 불안정</li>
+<li><strong>결정 순서</strong>: 의식·V/S 불안정? → 삽관 / 아니면 CO2↑ → BiPAP / CO2 정상 + 저산소 → (심부전 → CPAP) (그 외 → HFNC)</li>
+<li>⚠️ HFNC는 <strong>고탄산혈증 개선 근거 부족</strong> (25 학습부) → CO2↑ 문제에서 HFNC는 오답 함정.</li>
+</ul>
+<h3>1-3. [ARDS &gt; 정의·원인]</h3>
+<ul>
+<li>Berlin: <strong>1주 내 발생</strong> + <strong>양측 음영(심인성 아님)</strong> + <strong>P/F ≤ 300 (PEEP ≥ 5)</strong> → mild 300 / moderate 200 / severe 100</li>
+<li>원인: <strong>Direct</strong> – 폐렴(m/c), 흡인 / <strong>Indirect</strong> – 패혈증(폐외 m/c, 전체 2위), 수혈, 화상, 외상</li>
+<li>감별: 심부전(echo), ILD 급성악화, DAH, 암 림프관 침범</li>
+<li>병기: exudative(1주, hyaline membrane) → proliferative → fibrotic</li>
+</ul>
+<h3>1-4. [ARDS &gt; 치료 &gt; Lung protective strategy] 🔵 25王</h3>
+<ul>
+<li><strong>본질</strong>: 원인 치료 + <strong>기계환기가 만드는 폐손상(VILI: volu/baro/atelecto/biotrauma, O2 toxicity) 최소화</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>근거 강도</th>
+<th>전략</th>
+<th>조건·수치</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>사망률 개선 증명</strong></td>
+<td><strong>Low tidal volume</strong></td>
+<td><strong>6(–8) mL/kg PBW</strong>(실제 체중 X), Pplat &lt; 30, permissive hypercapnia(pH ≥ 7.3까지 허용)</td>
+</tr>
+<tr>
+<td><strong>사망률 개선 증명</strong></td>
+<td><strong>Prone position</strong></td>
+<td><strong>P/F &lt; 150</strong>, <strong>48시간 내</strong>, <strong>16시간 이상</strong></td>
+</tr>
+<tr>
+<td>조건부</td>
+<td>Higher PEEP</td>
+<td>moderate 이상(P/F &lt; 200), FiO2 높을수록 PEEP↑</td>
+</tr>
+<tr>
+<td>조건부</td>
+<td>Driving pressure(ΔP = Pplat − PEEP = PS)</td>
+<td>낮출수록 사망률↓, <strong>≤ 15</strong></td>
+</tr>
+<tr>
+<td>조건부</td>
+<td>NMBA</td>
+<td>중증 초기 48시간</td>
+</tr>
+<tr>
+<td>근거 부족</td>
+<td>VV-ECMO, steroid</td>
+<td>rescue</td>
+</tr>
+<tr>
+<td>비권고</td>
+<td>Recruitment maneuver</td>
+<td>오히려 mortality↑</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>문제 푸는 순서</strong>: ① TV/PBW 계산(&gt; 8이면 TV↓) → ② PEEP+PS(=Pplat) ≥ 30이면 PS↓(ΔP↓) → ③ PEEP이 FiO2에 비해 낮으면 PEEP↑ → ④ P/F &lt; 150이면 prone</li>
+<li>🔵 25: '여기서부터 전반을 종합한 문제가 출제' — <strong>Strongly vs weakly in favour</strong> 구분.</li>
+</ul>
+<h3>1-5. 문제 (25 복원 문도식 + 학습부 대표 기출)</h3>
+<p><strong>Q1. 🔴 25 #33</strong> 77세 남자, 담낭염으로 cholecystectomy 2일 전 시행. 1일 전부터 호흡곤란, SpO2 감소. ABGA(NC 5L): pH 7.47, PaCO2 29.1, PaO2 44.4, HCO3 21.1, SpO2 90. (CXR 제시) 해당 respiratory failure type은?<br />
+① type V ② type III ③ type II ④ type I ⑤ type IV</p>
+<details>
+<summary>정답·해설</summary>
+<p><strong>② type III</strong> — 단서: <strong>수술 후 2일째</strong> 발생한 저산소 → 객담 배출 저하로 인한 <strong>무기폐(type III)</strong>.<br />
+- ① type V: 분류에 없음 ③ type II: PaCO2 29로 저환기 아님 ④ type I: ABGA만 보면 저산소성이지만 '수술 후' 상황이 결정 (복원 해설) ⑤ type IV: 쇼크·저관류 소견 없음<br />
+- 비슷한 기출: 23 – 대퇴골 골절 수술 후 → 'I+III형' 정답 / 위궤양 천공 수술 + COPD + PaCO2 63 → 'I+II'·'II+III' 조합형</p>
+</details>
+<p><strong>Q2. 🔴 25 #37</strong> 50세 남자, 1년 전부터 COPD 치료 중, 최근 1주 호흡곤란. FVC 40%, FEV1 35%, SaO2 88% → NC 3L. 내원 ABGA pH 7.37 / PaCO2 40 / PaO2 55 → 산소 후 pH 7.34 / PaCO2 48 / PaO2 75. (의식 저하 언급 없음) 다음 조치는?<br />
+① 벤튜리 마스크 ② BiPAP ③ 기도삽관 후 기계환기 ④ HFNC 40L FiO2 60% ⑤ 코 캐뉼라 6L</p>
+<details>
+<summary>정답·해설</summary>
+<p><strong>② BiPAP</strong> — 단서: 산소 투여 후 <strong>PaCO2 상승·pH 하강</strong>(고탄산 진행) + <strong>의식 명료</strong> → 환기 보조가 필요 → BiPAP.<br />
+- ① 벤튜리: FiO2 조절은 되지만 환기 보조 X ③ 삽관: 의식 저하·불안정 없음(NIV 금기 아님) ④ HFNC: 고탄산 개선 근거 부족 ⑤ 산소 증량: CO2 더 쌓임<br />
+- 22 변형: 산소 후 <strong>졸려함</strong>(의식 저하) → <strong>기도삽관 후 기계환기</strong></p>
+</details>
+<p><strong>Q3. 🔴 25 #64</strong> 67세 남자, 고혈압·당뇨·<strong>심부전</strong>, 전신부종으로 누워있기 힘듦. pH 7.38, PaCO2 40, BP 90/60, HCO3 24, SpO2 88. (CXR: 양측 폐부종 양상) 호흡부전 치료는?<br />
+① 벤츄리마스크 ② NIV ③ Nasal cannula ④ 부분 재호흡 마스크 ⑤ HFNC</p>
+<details>
+<summary>정답·해설</summary>
+<p><strong>② NIV(CPAP)</strong> — 단서: <strong>심부전 + 폐부종 + 저산소</strong> → 양압이 폐포를 열고 preload·afterload를 낮춤 → 사망률·삽관률 감소 근거. 금기(의식 저하·불안정) 없음.<br />
+- ①③④ low flow·FiO2 조절로는 폐부종 교정 효과 부족 ⑤ HFNC: 심부전에서는 NIV가 근거 우선 (학습부 22Pま 'HF 동반 hypoxia → NIPPV(CPAP)')</p>
+</details>
+<p><strong>Q4. 🔴 25 #20</strong> 70세 남자, 3일 전 심한 구토 후 호흡곤란 → invasive MV. FiO2 0.8. 설정: PEEP 14 / PS 20 / TV 540 (PBW 60) / MV 10 L, RR 20. ABGA pH 7.38 / PCO2 42 / PaO2 40 / SaO2 88%. 사망률 개선을 위해 가장 먼저?<br />
+① PEEP 감량 ② recruitment maneuver ③ VV-ECMO ④ PS 조절로 TV 증가 ⑤ PS 조절로 driving pressure 감소</p>
+<details>
+<summary>정답·해설</summary>
+<p><strong>⑤</strong> — 단서: 흡인(direct) ARDS, P/F = 40/0.8 = 50(severe). <strong>TV 540/60 = 9 mL/kg</strong>(&gt; 6–8) + <strong>PEEP 14 + PS 20 = 34(Pplat &gt; 30)</strong> → PS를 낮춰 TV·ΔP를 줄이는 것이 첫 단계.<br />
+- ① PEEP↓: 산소화 악화 ② RM: 가이드라인에서 빠짐(비권고) ③ ECMO: rescue, 사망률 근거 부족 ④ TV↑: lung protective와 반대<br />
+- 22 변형: PEEP 6 / TV 360(=6 mL/kg) → TV는 이미 적정 → <strong>higher PEEP</strong>가 답</p>
+</details>
+<p><strong>Q5. 🔴 25 #110</strong> 58세 남자, 기계환기 중 혈역학 안정, SpO2 88–89%. PEEP 8, FiO2 0.6, RR 24, TV 6. 가장 적절한 조치는?<br />
+① PEEP 12로 올리고 FiO2 0.6 유지 ② 즉시 ECMO ③ FiO2 0.9 ④ Recruitment maneuver ⑤ TV 4로 감량</p>
+<details>
+<summary>정답·해설</summary>
+<p><strong>① Higher PEEP</strong> — 단서: TV는 이미 6 mL/kg(적정), FiO2 0.6에 비해 PEEP 8은 낮음 → 산소화 개선은 PEEP↑.<br />
+- ② ECMO 근거 부족 ③ FiO2 과다 → O2 toxicity ④ RM 비권고 ⑤ TV 4: 너무 낮으면 환기 부족 → acidosis</p>
+</details>
+<p><strong>Q6. 🔴 25 #30 (= 23 2Q #11)</strong> 63세 남자, 2일 전부터 호흡곤란·발열. CXR 양측 white-out. 본 질환의 <strong>직접적</strong> 원인이 아닌 것은?<br />
+① Pneumonia ② Aspiration ③ Reperfusion pulmonary edema ④ Pulmonary contusion ⑤ Severe trauma</p>
+<details>
+<summary>정답·해설</summary>
+<p><strong>⑤ Severe trauma</strong> — ARDS 원인을 direct(폐렴·흡인·폐좌상·재관류 폐부종 등 폐 자체 손상) vs indirect(패혈증·외상·수혈·화상)로 구분. 외상은 indirect.<br />
+- 같은 계열 기출: 'ARDS의 가장 흔한 원인?' → <strong>폐렴</strong></p>
+</details>
+<p><strong>Q7. 🔴 22 퀴즈(학습부)</strong> ARDS에서 치료 효과가 증명된 가장 중요한 치료는?<br />
+① VV-ECMO ② Prone position ③ high PEEP ④ Low tidal volume ⑤ Early NMBA</p>
+<details>
+<summary>정답·해설</summary>
+<p><strong>④ Low tidal volume</strong> — lung protective strategy가 사망률 개선의 기본. Prone도 증명됐지만 <strong>P/F &lt; 150 중증에 한정</strong>. ③⑤ 조건부, ① 근거 부족.</p>
+</details>
+<hr />
+  </main>
+</div>
+<footer class="wrap">betheu/study · STUDY TREE · 호흡기학</footer>
+</body>
+</html>
